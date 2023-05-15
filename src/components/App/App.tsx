@@ -8,6 +8,7 @@ export const App = () => {
   <main>
     <NavBar />
     <HomePage />
+    <UserDashboard />
   </main>
   )
 }
