@@ -6,7 +6,7 @@ import { TitleForm } from './TitleForm/TitleForm'
 
 export const NewConditionPage = () => {
   return (
-    <section>
+    <section className='nav-spacing'>
       <h2>Create a New Condition</h2>
       <TitleForm />
       <MedicationForm />

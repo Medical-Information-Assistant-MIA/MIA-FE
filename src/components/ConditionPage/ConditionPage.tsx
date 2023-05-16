@@ -2,7 +2,7 @@ import './ConditionPage.css'
 
 export const ConditionPage = () => {
   return (
-    <section className='condition-page'>
+    <section className='condition-page nav-spacing'>
       <h2>Condition title</h2>
       <h3>Medications</h3>
       <p>Your meds here</p>
