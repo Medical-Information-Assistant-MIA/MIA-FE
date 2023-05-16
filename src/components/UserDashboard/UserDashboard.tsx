@@ -12,7 +12,7 @@ export const UserDashboard = () => {
       <div>
         <Link to='/conditions/c'><p>Condition Card 1</p></Link>
       </div>
-      <button>Create New Condition</button>
+      <Link to='/add-condition'><button>Create New Condition</button></Link>
     </section>
   )
 }
