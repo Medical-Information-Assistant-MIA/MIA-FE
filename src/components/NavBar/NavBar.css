@@ -1,0 +1,14 @@
+.nav-bar {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  width: 150px;
+  height: 100%;
+  border: 2px solid pink;
+}
+
+h1 {
+  font-size: 3.5em;
+}
