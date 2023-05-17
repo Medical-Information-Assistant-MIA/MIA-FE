@@ -1,12 +1,12 @@
 import { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
-  schema: '<URL_OF_YOUR_GRAPHQL_API>',
+  schema: 'https://mia-be.herokuapp.com/graphql',
   documents: ['src/**/*.tsx'],
   generates: {
-    './src/__generated__/': {
+    './src/gql/': {
       preset: 'client',
-      plugins: [],
+      plugins: ['typescript'],
       presetConfig: {
         gqlTagName: 'gql',
       }

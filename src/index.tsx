@@ -3,18 +3,30 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql, createHttpLink } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const link = createHttpLink({
+  uri: 'https://mia-be.herokuapp.com/graphql'
+ })
+
+export const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link,
+});
+
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
+    <BrowserRouter>
+      <React.StrictMode>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </React.StrictMode>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
