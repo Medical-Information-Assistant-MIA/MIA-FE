@@ -3,17 +3,29 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, gql, createHttpLink } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const link = createHttpLink({
+  uri: 'https://80c588ca-d345-476a-9b32-91010b89634f.mock.pstmn.io/graphql'
+ })
+
+export const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link,
+});
+
 root.render(
   <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ApolloProvider client={client}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ApolloProvider>
   </BrowserRouter>
 );
 

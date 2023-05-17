@@ -1,12 +1,12 @@
 import { CodegenConfig } from '@graphql-codegen/cli';
 
 const config: CodegenConfig = {
-  schema: '<URL_OF_YOUR_GRAPHQL_API>',
+  schema: 'https://80c588ca-d345-476a-9b32-91010b89634f.mock.pstmn.io/graphql',
   documents: ['src/**/*.tsx'],
   generates: {
-    './src/__generated__/': {
+    './src/types.ts': {
       preset: 'client',
-      plugins: [],
+      plugins: ['typescript'],
       presetConfig: {
         gqlTagName: 'gql',
       }
