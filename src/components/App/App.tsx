@@ -13,7 +13,11 @@ export const App = () => {
     query User {
       user(id:1) {
         id
-        name     
+        name
+        conditions {
+            id
+            name
+        }     
       }
     }
   `

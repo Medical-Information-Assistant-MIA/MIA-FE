@@ -20,13 +20,15 @@ export const client = new ApolloClient({
 });
 
 root.render(
-  <BrowserRouter>
-    <ApolloProvider client={client}>
+  
+    <BrowserRouter>
       <React.StrictMode>
+      <ApolloProvider client={client}>
         <App />
+        </ApolloProvider>
       </React.StrictMode>
-    </ApolloProvider>
-  </BrowserRouter>
+    </BrowserRouter>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function
