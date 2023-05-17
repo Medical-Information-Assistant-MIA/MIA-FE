@@ -1,7 +1,33 @@
 import { Link } from 'react-router-dom'
 import './HomePage.css'
-
+import { useQuery, gql } from '@apollo/client';
+import { useState, useEffect } from 'react';
+import { Users } from '../../gql/graphql';
+// import { Users } from '../../gql/graphql'
+// type HomeProps = {
+//   display: string | Users
+// }
 export const HomePage = () => {
+  const [user, setUser] = useState({});
+
+  const GET_USERS = gql`
+  query User {
+    user(id:1) {
+      id
+      name    
+    }
+  }
+`
+
+function DisplayUser() {
+  const { loading, error, data } = useQuery(GET_USERS);
+  if (loading) console.log(loading, 'loading')
+  if (error) console.log(error, 'error')
+  console.log(data)
+  return data
+}
+// useEffect(() => )
+
   return (
     <section className='home-page nav-spacing'>
       <h2>Welcome to Mia <span className='small-title'>(Medical Information Assistant)</span></h2>
