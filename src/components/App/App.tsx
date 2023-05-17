@@ -13,11 +13,7 @@ export const App = () => {
     query User {
       user(id:1) {
         id
-        name
-        conditions {
-            id
-            name
-        }     
+        name    
       }
     }
   `
@@ -26,7 +22,7 @@ export const App = () => {
     const { loading, error, data } = useQuery(GET_USERS);
     if (loading) return console.log('Loading', loading)
     if (error) return console.log('Error', error);
-
+    console.log(data)
     return data
   }
 

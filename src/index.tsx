@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 
 const link = createHttpLink({
-  uri: 'https://80c588ca-d345-476a-9b32-91010b89634f.mock.pstmn.io/graphql'
+  uri: 'https://mia-be.herokuapp.com/graphql'
  })
 
 export const client = new ApolloClient({
@@ -20,15 +20,13 @@ export const client = new ApolloClient({
 });
 
 root.render(
-  
     <BrowserRouter>
       <React.StrictMode>
-      <ApolloProvider client={client}>
-        <App />
+        <ApolloProvider client={client}>
+          <App />
         </ApolloProvider>
       </React.StrictMode>
     </BrowserRouter>
-  
 );
 
 // If you want to start measuring performance in your app, pass a function
