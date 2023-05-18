@@ -2,58 +2,65 @@ import './DoctorForm.css';
 import { useState } from 'react';
 
 export const DoctorForm = () => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [specialty, setSpecialty] = useState('');
 
+  const [doctorInfo, setDoctorInfo] = useState({
+    name: '',
+    phone: '',
+    address: '',
+    category: ''
+  })
   
   return (
     <section className='add-doctor'>
       <h2>Add a Doctor</h2>
-      <form>
+      <form onSubmit={e => {
+        e.preventDefault();
+        setDoctorInfo({name: '', phone: '', address: '', category: ''})
+        console.log(doctorInfo)
+      }}>
           <div>
           <label>
-            Add your doctor's name:
+            What is your doctor's name?
             <input 
               type='text'
-              value={name}
-              name='doctors name'
+              value={doctorInfo.name}
+              name='name'
               placeholder='name'
-              onChange={e => setName(e.target.value)}
+              onChange={e => setDoctorInfo({...doctorInfo, [e.target.name]: e.target.value})}
               />
           </label>
           <label>
-            Add your doctor's phone number:
+            What is your doctor's phone number?
             <input 
               type='text'
-              value={phone}
-              name='doctors phone number'
+              value={doctorInfo.phone}
+              name='phone'
               placeholder='phone number'
-              onChange={e => setPhone(e.target.value)}
+              onChange={e => setDoctorInfo({...doctorInfo, [e.target.name]: e.target.value})}
               />
           </label>
           <label>
-            Add your doctor's address here:
+            What is your doctor's address?
             <input 
               type='text'
-              value={address}
-              name='doctors address'
+              value={doctorInfo.address}
+              name='address'
               placeholder='address'
-              onChange={e => setAddress(e.target.value)}
+              onChange={e => setDoctorInfo({...doctorInfo, [e.target.name]: e.target.value})}
               />
           </label>
           <label>
-            Add your doctor's specialty:
+            What kind of doctor are they?
             <input 
               type='text'
-              value={specialty}
-              name='doctors specialty'
+              value={doctorInfo.category}
+              name='category'
               placeholder='specialty'
-              onChange={e => setSpecialty(e.target.value)}
+              onChange={e => setDoctorInfo({...doctorInfo, [e.target.name]: e.target.value})}
               />
           </label>
         </div>
+        <button className='submit-button' type='submit'>Add Another Doctor</button>
         <button className='submit-button' type='submit'>Go to health events</button>
       </form>
     </section>
