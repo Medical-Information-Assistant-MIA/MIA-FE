@@ -1,6 +1,16 @@
 import './ConditionPage.css'
+import { useRouteMatch } from 'react-router-dom';
+
+type matchObj = {
+  id: string | null
+}
 
 export const ConditionPage = () => {
+  const match = useRouteMatch('/conditions/:id');
+  const thing: matchObj = match?.params.id
+    console.log(thing)
+
+
   return (
     <section className='condition-page nav-spacing'>
       <h2>Condition title</h2>
