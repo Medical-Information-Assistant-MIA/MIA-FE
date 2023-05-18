@@ -37,7 +37,7 @@ export const App = () => {
       <Switch>
         <Route exact path='/' render={() => <HomePage />} />
         <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
-        <Route exact path='/conditions/:condition' render={({match}) => <ConditionPage key={match.params.condition}/>} />
+        <Route exact path='/conditions/:id' render={({match}) => <ConditionPage key={match.params.id}/>} />
         <Route exact path='/add-condition'render={() => <NewConditionPage />} />
         <Route exact path='/404' render={() => <ErrorPage /> } />
         <Redirect from='*' to='/404'/>
