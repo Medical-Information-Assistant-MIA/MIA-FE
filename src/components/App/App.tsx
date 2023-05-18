@@ -17,7 +17,11 @@ export const App = () => {
     query User {
       user(id: ${userId}) {
         id
-        name    
+        name
+        conditions {
+          id
+          name
+        } 
       }
     }
   `
@@ -32,7 +36,7 @@ export const App = () => {
       <NavBar />
       <Switch>
         <Route exact path='/' render={() => <HomePage />} />
-        <Route exact path='/user-dashboard' render={() => <UserDashboard data={data.user}/>} />
+        <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
         <Route exact path='/conditions/:condition' render={({match}) => <ConditionPage key={match.params.condition}/>} />
         <Route exact path='/add-condition'render={() => <NewConditionPage />} />
         <Route exact path='/404' render={() => <ErrorPage /> } />
