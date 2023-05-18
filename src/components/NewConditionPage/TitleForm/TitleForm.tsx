@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import './TitleForm.css';
 
 
@@ -44,9 +45,12 @@ export const TitleForm = ({ userId }: TitleFormProps) => {
             value={conditionName} 
             name='condition name' 
             placeholder='Condition Name'
+            required
             onChange={e => setConditionName(e.target.value)}/>
         </label>
-        <button className='submit-button' >Submit condition</button>
+        <Link to='/add-condition/add-medication'>
+          <button className='submit-button' >Submit condition</button>
+        </Link>
       </form>
     </section>
   )

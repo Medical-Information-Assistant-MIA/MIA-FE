@@ -5,6 +5,7 @@ import './App.css';
 import { ConditionPage } from '../ConditionPage/ConditionPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { NewConditionPage } from '../NewConditionPage/NewConditionPage';
+import { MedicationForm } from '../NewConditionPage/MedicationForm/MedicationForm';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
 import { useQuery, gql } from '@apollo/client';
 import { useState } from 'react';
@@ -39,6 +40,7 @@ export const App = () => {
         <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
         <Route exact path='/conditions/:id' render={({match}) => <ConditionPage key={match.params.id}/>} />
         <Route exact path='/add-condition'render={() => <NewConditionPage userId={userId}/>} />
+        <Route exact path='/add-condition/add-medication' render={() => <MedicationForm />}/>
         <Route exact path='/404' render={() => <ErrorPage /> } />
         <Redirect from='*' to='/404'/>
       </Switch>
