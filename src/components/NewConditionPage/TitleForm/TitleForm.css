@@ -1,0 +1,7 @@
+.condition-form {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  background-color: rgba(43, 226, 125, 0.283);
+  height: 100vh;
+}
