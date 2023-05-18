@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import './TitleForm.css';
 
-export const TitleForm = () => {
+
+type TitleFormProps = {
+  userId: number
+}
+
+export const TitleForm = ({ userId }: TitleFormProps) => {
   const [conditionName, setConditionName] = useState('');
+
 
   return (
     <section className='condition-form nav-spacing'>
@@ -10,6 +16,8 @@ export const TitleForm = () => {
       <form className='condition-form' onSubmit={e => {
         e.preventDefault()
         console.log(conditionName)
+        setConditionName('')
+        
       }}>
         <label className='med-label'>
           What is the name of your Condition?
