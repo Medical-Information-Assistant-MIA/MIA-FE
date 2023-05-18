@@ -1,15 +1,44 @@
 import './ConditionPage.css'
 import { useRouteMatch } from 'react-router-dom';
+import { useQuery, gql } from '@apollo/client';
 
-type matchObj = {
-  id: string | null
+type MatchParams = {
+  id: string;
 }
 
 export const ConditionPage = () => {
-  const match = useRouteMatch('/conditions/:id');
-  const thing: matchObj = match?.params.id
-    console.log(thing)
+  const match = useRouteMatch<MatchParams>('/conditions/:id');
+  console.log(match?.params.id)
 
+  const GET_CONDITION = gql`
+    query Condition{
+      condition(id: ${match?.params.id}) {
+          name
+          medications {
+              name
+              datePrescribed
+              dosage
+              frequency
+              prescribedBy
+          }  
+          doctors {
+              name
+              phone
+              address
+              category
+          }
+          healthEvents {
+              date
+              note
+              category
+          }
+      }
+    }
+  `
+  const { loading, error, data } = useQuery(GET_CONDITION);
+  if (loading) console.log(loading, 'loading')
+  if (error) console.log(error.message, 'error')
+  console.log('condition query', data)
 
   return (
     <section className='condition-page nav-spacing'>
