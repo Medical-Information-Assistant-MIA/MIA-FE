@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './HealthEventForm.css'
 
-export const HealthEventForm = () => {
-  // const [type, setType] = useState('')
-  // const [date, setDate] = useState('')
-  // const [note, setNote] = useState('')
+type NewEventProps = {
+  conditionId: number,
+}
+
+export const HealthEventForm = ({conditionId}: NewEventProps) => {
   const [eventObj, setEventObj] = useState({
     type: '',
     date: '',

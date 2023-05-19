@@ -1,7 +1,11 @@
 import './DoctorForm.css';
 import { useState } from 'react';
 
-export const DoctorForm = () => {
+type NewDoctorProps = {
+  conditionId: number,
+}
+
+export const DoctorForm = ({conditionId}: NewDoctorProps) => {
 
   const [doctorInfo, setDoctorInfo] = useState({
     name: '',

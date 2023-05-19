@@ -3,7 +3,12 @@ import { useMutation, gql } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import './MedicationForm.css';
 
-export const MedicationForm = () => {
+type NewMedicationProps = {
+  conditionId: number,
+}
+
+
+export const MedicationForm = ({conditionId}: NewMedicationProps) => {
   const [medObj, setMedObj] = useState({
     name : '',
     datePrescribed: '',
@@ -31,7 +36,6 @@ export const MedicationForm = () => {
             frequency
             prescribedBy
         }
-        errors
       }
     }
   `
