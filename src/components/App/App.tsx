@@ -1,15 +1,14 @@
 import { UserDashboard } from '../UserDashboard/UserDashboard';
-import { HomePage } from '../HomePage/HomePage';
-import { NavBar } from '../NavBar/NavBar';
-import './App.css';
-import { ConditionPage } from '../ConditionPage/ConditionPage';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { NewConditionPage } from '../NewConditionPage/NewConditionPage';
-import { MedicationForm } from '../NewConditionPage/MedicationForm/MedicationForm';
-import { ErrorPage } from '../ErrorPage/ErrorPage';
 import { useQuery, gql } from '@apollo/client';
 import { useState } from 'react';
+import { HomePage } from '../HomePage/HomePage';
+import { NavBar } from '../NavBar/NavBar';
+import { ConditionPage } from '../ConditionPage/ConditionPage';
+import { NewConditionPage } from '../NewConditionPage/NewConditionPage';
 import { Users } from '../../gql/graphql';
+import { ErrorPage } from '../ErrorPage/ErrorPage';
+import './App.css';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
