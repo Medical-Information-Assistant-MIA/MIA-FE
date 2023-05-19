@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './TitleForm.css';
 
 
@@ -12,6 +12,7 @@ type TitleFormProps = {
 
 export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   const [conditionName, setConditionName] = useState('');
+  const history = useHistory()
 
   const CREATE_CONDITION = gql`
   mutation {
@@ -31,16 +32,17 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   if (loading) console.log(loading, 'loading')
   if (error) console.log(error, 'error')
 
-  console.log(data)
+  console.log('response', data)
 
   return (
     <section className='condition-form nav-spacing'>
       <h3> Add Your Condition</h3>
-      <form className='condition-form' onSubmit={e => {
+      <form className='condition-form' onSubmit={async e => {
         e.preventDefault()
-        console.log(conditionName)
+        console.log('condition name', conditionName)
+        await mutateFunction()
         setConditionName('')
-        mutateFunction()
+        history.push('/add-condition/add-medication')
       }}>
         <label className='med-label'>
           What is the name of your Condition?
@@ -52,9 +54,7 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
             required
             onChange={e => setConditionName(e.target.value)}/>
         </label>
-        <Link to='/add-condition/add-medication'>
-          <button className='submit-button' >Submit condition</button>
-        </Link>
+          <button className='submit-button' type='submit'>Submit condition</button>
       </form>
     </section>
   )
