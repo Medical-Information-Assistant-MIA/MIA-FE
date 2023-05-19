@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 import './MedicationForm.css';
 
 type NewMedicationProps = {
@@ -8,6 +9,7 @@ type NewMedicationProps = {
 
 
 export const MedicationForm = ({conditionId}: NewMedicationProps) => {
+  const history = useHistory();
   const [medObj, setMedObj] = useState({
     name : '',
     datePrescribed: '',
@@ -15,6 +17,12 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     frequency: '',
     prescribedBy: ''
   })
+
+  const goToDoc = () => {
+    // if(!Object.values(medObj).length) {
+      history.push('/add-condition/add-doctor');
+    // }
+  }
 
   const CREATE_MEDICATION = gql`
     mutation {
@@ -40,25 +48,24 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     }
   `
 
-  const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION)
+  const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
   if (loading || !conditionId) return <p>Loading...</p>
-  if (error) return <p>Error</p>
+  if (error) return <p>Error: {error.message}</p>
 
 
   return (
     <section className='medication-form nav-spacing'>
       <h3> Add New Medications</h3>
       <form className='med-form' onSubmit={async e => {
-        
         e.preventDefault()
         await mutateFunction()
-        // setMedObj({
-        //   name : '',
-        //   datePrescribed: '',
-        //   dosage: '',
-        //   frequency: '',
-        //   prescribedBy: ''
-        // })
+        setMedObj({
+          name : '',
+          datePrescribed: '',
+          dosage: '',
+          frequency: '',
+          prescribedBy: ''
+        })
         console.log('medObj', data)
       }}>
         <label className='med-label'>
@@ -106,8 +113,8 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
             onChange={e => setMedObj({...medObj, [e.target.name]: e.target.value })}/>
         </label>
         <button className='submit-button' type='submit' >Add New Medication</button>
-        <button className='submit-button' >Go to Doctor form</button>
       </form>
+        <button className='f' onClick={() => goToDoc()}>Go to Doctor form</button>
     </section>
   )
 }

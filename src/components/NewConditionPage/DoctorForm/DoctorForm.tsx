@@ -1,26 +1,62 @@
-import './DoctorForm.css';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useMutation, gql } from '@apollo/client';
+import './DoctorForm.css';
 
 type NewDoctorProps = {
   conditionId: number,
 }
 
 export const DoctorForm = ({conditionId}: NewDoctorProps) => {
-
+  const history = useHistory();
   const [doctorInfo, setDoctorInfo] = useState({
     name: '',
     phone: '',
     address: '',
     category: ''
   })
+
+  const goToHealthEvent = () => {
+    // if(!Object.values(medObj).length) {
+      history.push('/add-condition/add-health-event');
+    // }
+  }
+
+   console.log('doctor form', conditionId)
+
+  const CREATE_DOCTOR = gql`
+    mutation {
+      createDoctor(input:{
+        name: "${doctorInfo.name}",
+        conditionId: ${conditionId},
+        phone: "${doctorInfo.phone}",
+        address: "${doctorInfo.address}",
+        category: "${doctorInfo.category}"
+      }) {
+        doctor {
+          id
+          name
+          phone
+          address
+          category
+        }
+        errors
+      }
+    }
+  `
+
+  const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR);
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
   
   return (
     <section className='add-doctor'>
       <h2>Add a Doctor</h2>
-      <form onSubmit={e => {
+      <form onSubmit={async e => {
         e.preventDefault();
-        setDoctorInfo({name: '', phone: '', address: '', category: ''})
-        console.log(doctorInfo)
+        await mutateFunction();
+        setDoctorInfo({name: '', phone: '', address: '', category: ''});
+        console.log(doctorInfo);
       }}>
           <div>
           <label>
@@ -65,8 +101,8 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
           </label>
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
-        <button className='submit-button' type='submit'>Go to health events</button>
       </form>
+      <button className='' onClick={() => goToHealthEvent()}>Go to health events</button>
     </section>
   )
 }

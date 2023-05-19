@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './TitleForm.css';
 
 
@@ -12,8 +12,7 @@ type TitleFormProps = {
 
 export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   const [conditionName, setConditionName] = useState('');
-  const history = useHistory()
-
+  const history = useHistory();
   const CREATE_CONDITION = gql`
   mutation {
     createCondition(input: {
@@ -28,29 +27,27 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   }
   `
   
-  const [mutateFunction, { data, loading, error }] = useMutation(CREATE_CONDITION)
+  const [mutateFunction, { data, loading, error }] = useMutation(CREATE_CONDITION);
+  const condId = data?.createCondition.condition.id;
 
   useEffect(() => {
-    setConditionId(data?.createCondition.condition.id)
-  }, [data?.createCondition.condition.id])
+    setConditionId(condId);
+  }, [condId])
 
   useEffect(() => {
-    if (data?.createCondition.condition.id) history.push('/add-condition/add-medication')
-  }, [data?.createCondition.condition.id])
+    if (condId) history.push('/add-condition/add-medication');
+  }, [condId])
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error</p>
-  
-  console.log('response', data)
 
   return (
     <section className='condition-form nav-spacing'>
       <h3> Add Your Condition</h3>
       <form className='condition-form' onSubmit={async e => {
-        e.preventDefault()
-        await mutateFunction()
-        setConditionName('')
-        // 
+        e.preventDefault();
+        await mutateFunction();
+        setConditionName('');
       }}>
         <label className='med-label'>
           What is the name of your Condition?
