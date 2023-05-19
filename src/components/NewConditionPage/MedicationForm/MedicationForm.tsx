@@ -1,7 +1,15 @@
 import { useState } from 'react';
+import { useMutation, gql } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 import './MedicationForm.css';
 
-export const MedicationForm = () => {
+type NewMedicationProps = {
+  conditionId: number,
+}
+
+
+export const MedicationForm = ({conditionId}: NewMedicationProps) => {
+  const history = useHistory();
   const [medObj, setMedObj] = useState({
     name : '',
     datePrescribed: '',
@@ -10,12 +18,55 @@ export const MedicationForm = () => {
     prescribedBy: ''
   })
 
+  const goToDoc = () => {
+    // if(!Object.values(medObj).length) {
+      history.push('/add-condition/add-doctor');
+    // }
+  }
+
+  const CREATE_MEDICATION = gql`
+    mutation {
+      createMedication(input: {
+        conditionId: ${conditionId}
+        name: "${medObj.name}"
+        datePrescribed: "${medObj.datePrescribed}"
+        dosage: "${medObj.dosage}"
+        frequency: "${medObj.frequency}"
+        prescribedBy: "${medObj.prescribedBy}"
+      }) {
+        medication {
+            id
+            conditionId
+            name
+            datePrescribed
+            dosage
+            frequency
+            prescribedBy
+        }
+      errors
+      }
+    }
+  `
+
+  const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
+  if (loading || !conditionId) return <p>Loading...</p>
+  if (error) return <p>Error: {error.message}</p>
+
+
   return (
     <section className='medication-form nav-spacing'>
       <h3> Add New Medications</h3>
-      <form className='med-form' onSubmit={e => {
+      <form className='med-form' onSubmit={async e => {
         e.preventDefault()
-        console.log(medObj)
+        await mutateFunction()
+        setMedObj({
+          name : '',
+          datePrescribed: '',
+          dosage: '',
+          frequency: '',
+          prescribedBy: ''
+        })
+        console.log('medObj', data)
       }}>
         <label className='med-label'>
           What is your medication name?
@@ -61,9 +112,9 @@ export const MedicationForm = () => {
             placeholder='Prescribed by'
             onChange={e => setMedObj({...medObj, [e.target.name]: e.target.value })}/>
         </label>
-        <button className='submit-button' >Add New Medication</button>
-        <button className='submit-button' >Go to Doctor form</button>
+        <button className='submit-button' type='submit' >Add New Medication</button>
       </form>
+        <button className='f' onClick={() => goToDoc()}>Go to Doctor form</button>
     </section>
   )
 }

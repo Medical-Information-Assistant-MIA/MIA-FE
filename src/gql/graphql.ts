@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -162,8 +161,6 @@ export type Mutation = {
   createHealthEvent?: Maybe<CreateHealthEventPayload>;
   createMedication?: Maybe<CreateMedicationPayload>;
   createUser?: Maybe<CreateUserPayload>;
-  /** An example field added by the generator */
-  testField: Scalars['String'];
 };
 
 
@@ -243,9 +240,3 @@ export type Users = {
   name: Scalars['String'];
   updatedAt: Scalars['ISO8601DateTime'];
 };
-
-export type UserQueryVariables = Exact<{ [key: string]: never; }>;
-
-export type UserQuery = { __typename?: 'Query', user: { __typename?: 'Users', id: number, name: string } };
-
-export const UserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"User"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"IntValue","value":"1"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<UserQuery, UserQueryVariables>;
