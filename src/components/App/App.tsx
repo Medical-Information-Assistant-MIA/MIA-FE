@@ -13,6 +13,7 @@ import { Users } from '../../gql/graphql';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
+  const [conditionId, setConditionId] = useState(0)
 
   const GET_USERS = gql`
     query User {
@@ -39,7 +40,7 @@ export const App = () => {
         <Route exact path='/' render={() => <HomePage />} />
         <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
         <Route exact path='/conditions/:id' render={({match}) => <ConditionPage key={match.params.id}/>} />
-        <Route exact path='/add-condition'render={() => <NewConditionPage userId={userId}/>} />
+        <Route exact path='/add-condition'render={() => <NewConditionPage userId={userId} setConditionId={setConditionId}/>} />
         <Route exact path='/add-condition/add-medication' render={() => <MedicationForm />}/>
         <Route exact path='/404' render={() => <ErrorPage /> } />
         <Redirect from='*' to='/404'/>

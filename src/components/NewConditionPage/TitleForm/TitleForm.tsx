@@ -5,10 +5,12 @@ import './TitleForm.css';
 
 
 type TitleFormProps = {
-  userId: number
+  userId: number,
+  setConditionId: Function
 }
 
-export const TitleForm = ({ userId }: TitleFormProps) => {
+
+export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   const [conditionName, setConditionName] = useState('');
 
   const CREATE_CONDITION = gql`
@@ -24,9 +26,11 @@ export const TitleForm = ({ userId }: TitleFormProps) => {
     }
   }
   `
+  
   const [mutateFunction, { data, loading, error }] = useMutation(CREATE_CONDITION)
   if (loading) console.log(loading, 'loading')
   if (error) console.log(error, 'error')
+
   console.log(data)
 
   return (

@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useMutation, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
 import './MedicationForm.css';
 
 export const MedicationForm = () => {
@@ -9,6 +11,30 @@ export const MedicationForm = () => {
     frequency: '',
     prescribedBy: ''
   })
+
+  const CREATE_MEDICATION = gql`
+    mutation {
+      createMedication(input: {
+        conditionId: 1
+        name: "Acetaminophen"
+        datePrescribed: null
+        dosage: "1000mg"
+        frequency: "as needed for pain"
+        prescribedBy: null
+      }) {
+        medication {
+            id
+            conditionId
+            name
+            datePrescribed
+            dosage
+            frequency
+            prescribedBy
+        }
+        errors
+      }
+    }
+  `
 
   return (
     <section className='medication-form nav-spacing'>
