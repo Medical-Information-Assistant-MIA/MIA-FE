@@ -34,6 +34,7 @@ export const ConditionPage = () => {
   const GET_CONDITION = gql`
     query Condition{
       condition(id: ${match?.params.id}) {
+          id
           name
           medications {
               name
@@ -62,7 +63,7 @@ export const ConditionPage = () => {
   if (error) return <p>{error.message}</p>
   if(data) {
     const {name, medications, doctors, healthEvents} = data.condition
-    console.log('condition query', healthEvents)
+    console.log('condition query', data)
 
     const medDisplay = medications.length ? 
       medications.map((med: Medication) => {

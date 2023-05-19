@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { Link } from 'react-router-dom';
 import './MedicationForm.css';
 
 type NewMedicationProps = {
@@ -20,12 +19,12 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
   const CREATE_MEDICATION = gql`
     mutation {
       createMedication(input: {
-        conditionId: 1
-        name: "Acetaminophen"
-        datePrescribed: null
-        dosage: "1000mg"
-        frequency: "as needed for pain"
-        prescribedBy: null
+        conditionId: ${conditionId}
+        name: "${medObj.name}"
+        datePrescribed: "${medObj.datePrescribed}"
+        dosage: "${medObj.dosage}"
+        frequency: "${medObj.frequency}"
+        prescribedBy: "${medObj.prescribedBy}"
       }) {
         medication {
             id
@@ -36,16 +35,31 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
             frequency
             prescribedBy
         }
+      errors
       }
     }
   `
 
+  const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION)
+  if (loading || !conditionId) return <p>Loading...</p>
+  if (error) return <p>Error</p>
+
+
   return (
     <section className='medication-form nav-spacing'>
       <h3> Add New Medications</h3>
-      <form className='med-form' onSubmit={e => {
+      <form className='med-form' onSubmit={async e => {
+        
         e.preventDefault()
-        console.log(medObj)
+        await mutateFunction()
+        // setMedObj({
+        //   name : '',
+        //   datePrescribed: '',
+        //   dosage: '',
+        //   frequency: '',
+        //   prescribedBy: ''
+        // })
+        console.log('medObj', data)
       }}>
         <label className='med-label'>
           What is your medication name?
@@ -91,7 +105,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
             placeholder='Prescribed by'
             onChange={e => setMedObj({...medObj, [e.target.name]: e.target.value })}/>
         </label>
-        <button className='submit-button' >Add New Medication</button>
+        <button className='submit-button' type='submit' >Add New Medication</button>
         <button className='submit-button' >Go to Doctor form</button>
       </form>
     </section>

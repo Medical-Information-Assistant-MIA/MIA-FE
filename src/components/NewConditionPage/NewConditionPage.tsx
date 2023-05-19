@@ -13,6 +13,8 @@ type NewConditionProps = {
 export const NewConditionPage = ({ userId }: NewConditionProps) => {
   const [conditionId, setConditionId] = useState(0)
 
+  console.log('conditionID',conditionId)
+
   return (
     <section className='nav-spacing'>
       <h2>Create a New Condition</h2>

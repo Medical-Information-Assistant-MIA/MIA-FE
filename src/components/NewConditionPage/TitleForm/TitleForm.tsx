@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { Link, useHistory } from 'react-router-dom';
 import './TitleForm.css';
@@ -29,9 +29,18 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   `
   
   const [mutateFunction, { data, loading, error }] = useMutation(CREATE_CONDITION)
-  if (loading) console.log(loading, 'loading')
-  if (error) console.log(error, 'error')
 
+  useEffect(() => {
+    setConditionId(data?.createCondition.condition.id)
+  }, [data?.createCondition.condition.id])
+
+  useEffect(() => {
+    if (data?.createCondition.condition.id) history.push('/add-condition/add-medication')
+  }, [data?.createCondition.condition.id])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error</p>
+  
   console.log('response', data)
 
   return (
@@ -39,10 +48,9 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
       <h3> Add Your Condition</h3>
       <form className='condition-form' onSubmit={async e => {
         e.preventDefault()
-        console.log('condition name', conditionName)
         await mutateFunction()
         setConditionName('')
-        history.push('/add-condition/add-medication')
+        // 
       }}>
         <label className='med-label'>
           What is the name of your Condition?

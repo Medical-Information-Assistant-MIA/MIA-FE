@@ -27,10 +27,8 @@ export const App = () => {
     }
   `
   const { loading, error, data } = useQuery(GET_USERS);
-  if (loading) console.log(loading, 'loading')
-  if (error) console.log(error, 'error')
-  console.log(data)
-
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error</p>
 
   return (
     <main>
