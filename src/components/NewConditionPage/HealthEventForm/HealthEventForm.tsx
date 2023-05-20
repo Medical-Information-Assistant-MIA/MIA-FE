@@ -15,9 +15,14 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     note: ''
   });
 
-  const handleClick = () => {
-    if (Object.keys(eventObj).filter(Boolean).length) {
-      mutateFunction();
+  const handleClick = async() => {
+    const formIsDirty = Object.keys(eventObj).filter(Boolean).length;
+    if (formIsDirty) {
+      try { 
+        await mutateFunction();
+      } catch(error) {
+        return;
+      }
       setEventObj({
         category: '',
         date: '',
@@ -47,14 +52,17 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
-  if (loading) return (<p>Loading...</p>);
-  if (error) return (<p>Error: {error.message}</p>);
 
   return (
     <section>
+      <h3>Add a health event</h3>
       <form onSubmit={async e => {
         e.preventDefault()
-        await mutateFunction();
+        try { 
+          await mutateFunction();
+        } catch(error) {
+          return;
+        }
         setEventObj({
           category: '',
           date: '',
@@ -71,7 +79,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
             <option defaultValue='' hidden>Select health event type:</option>
             <option value='symptom'>Symptom</option>
             <option value='doctor_visit'>Doctor's Visit</option>
-            <option value='other_note'>Other Note</option>
+            <option value='general_note'>Other Note</option>
           </select>
         </label>
         <label>
@@ -92,7 +100,9 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         </label>
         <button>Add New Note</button>
       </form>
-      <button onClick={handleClick}>Finish and Return to Dash</button>
+      <button type='button' onClick={handleClick}>Finish and Return to Dash</button>
+      {loading ? <p>Loading...</p> : null}
+      {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
     </section>
   );
 }
