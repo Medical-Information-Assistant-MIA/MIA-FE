@@ -3,8 +3,9 @@
   --color-1: #18A4B6;
   --color-1-light: #18a4b64e;
   --color-2: #1855B6;
+  --color-2-light: #1855b66d;
   --color-3: #18B679; 
-  --color-3-light: #18b6797b;
+  --color-3-light: #18b6798b;
   --border: 2px solid;
   --border-radius: 5px;
   --font-family:'Open Sans', sans-serif;
@@ -30,7 +31,7 @@ button {
 
 .nav-spacing {
   margin-left: 13%;
-  height: 95%;
+  height: 100%;
 }
 
 .submit-button {

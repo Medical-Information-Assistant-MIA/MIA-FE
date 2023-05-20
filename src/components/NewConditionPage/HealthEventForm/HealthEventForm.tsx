@@ -51,7 +51,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   if (error) return (<p>Error: {error.message}</p>);
 
   return (
-    <section>
+    <section className='condition-form'>
       <form onSubmit={async e => {
         e.preventDefault()
         await mutateFunction();

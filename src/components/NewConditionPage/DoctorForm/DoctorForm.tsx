@@ -55,14 +55,14 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
   if (error) return (<p>Error: {error.message}</p>);
   
   return (
-    <section className='add-doctor'>
+    <section className='condition-form'>
       <h2>Add a Doctor</h2>
       <form onSubmit={async e => {
         e.preventDefault();
         await mutateFunction();
         setDoctorInfo({name: '', phone: '', address: '', category: ''});
       }}>
-          <div>
+        <div>
           <label>
             What is your doctor's name?
             <input 

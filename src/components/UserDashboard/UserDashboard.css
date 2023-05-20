@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: fit-content;
+  height: fit-content !important;
   padding: 3%;
   width: 81%;
 }

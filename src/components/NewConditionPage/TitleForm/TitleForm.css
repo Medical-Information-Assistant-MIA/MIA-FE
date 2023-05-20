@@ -4,7 +4,9 @@
   justify-content: center;
   align-items: center;
   padding: 5%;
-  background-color: rgba(43, 226, 125, 0.283);
+  background-color: white;
+  border: var(--border) var(--color-2);
+  border-radius: var(--border-radius);
   height: 50vh;
   width:70%
 }

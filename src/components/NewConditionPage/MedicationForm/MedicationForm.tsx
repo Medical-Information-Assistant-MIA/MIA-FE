@@ -61,7 +61,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
 
 
   return (
-    <section className='medication-form nav-spacing'>
+    <section className='condition-form'>
       <h3>Add New Medications</h3>
       <form className='med-form' onSubmit={async e => {
         e.preventDefault();
@@ -120,7 +120,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
         </label>
         <button className='submit-button' type='submit' >Add New Medication</button>
       </form>
-        <button className='submit-button' onClick={handleClick}>Go to Doctor form</button>
+      <button className='submit-button' onClick={handleClick}>Go to Doctor form</button>
     </section>
   );
 }

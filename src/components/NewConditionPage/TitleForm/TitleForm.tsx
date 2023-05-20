@@ -59,7 +59,7 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
             required
             onChange={e => setConditionName(e.target.value)}/>
         </label>
-          <button className='submit-button' type='submit'>Submit condition</button>
+        <button className='submit-button' type='submit'>Submit condition</button>
       </form>
     </section>
   )
