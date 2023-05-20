@@ -1,7 +1,14 @@
 .condition-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 5%;
   background-color: rgba(43, 226, 125, 0.283);
-  height: 100vh;
+  height: 50vh;
+  width:70%
+}
+
+label {
+  text-align: center;
 }

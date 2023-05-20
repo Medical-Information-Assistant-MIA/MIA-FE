@@ -42,9 +42,9 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   if (error) return <p>Error</p>
 
   return (
-    <section className='condition-form nav-spacing'>
+    <section className='condition-form'>
       <h3> Add Your Condition</h3>
-      <form className='condition-form' onSubmit={async e => {
+      <form onSubmit={async e => {
         e.preventDefault();
         await mutateFunction();
         setConditionName('');

@@ -28,6 +28,11 @@ button {
   border: none;
 }
 
+.nav-spacing {
+  margin-left: 13%;
+  height: 95%;
+}
+
 .submit-button {
   border: var(--border) var(--color-3);
   border-radius: var(--border-radius);
@@ -46,3 +51,4 @@ button {
   scale: 1.1;
   background-color: var(--color-3);
 }
+
