@@ -79,7 +79,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
             <option defaultValue='' hidden>Select health event type:</option>
             <option value='symptom'>Symptom</option>
             <option value='doctor_visit'>Doctor's Visit</option>
-            <option value='other_note'>Other Note</option>
+            <option value='general_note'>Other Note</option>
           </select>
         </label>
         <label>
