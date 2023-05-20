@@ -45,7 +45,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
         datePrescribed: "${medObj.datePrescribed}"
         dosage: "${medObj.dosage}"
         frequency: "${medObj.frequency}"
-        prescribedBy: 69
+        prescribedBy: "${medObj.prescribedBy}"
       }) {
         medication {
             id
