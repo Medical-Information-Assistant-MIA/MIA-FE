@@ -4,7 +4,7 @@ import { useMutation, gql } from '@apollo/client';
 import './DoctorForm.css';
 
 type NewDoctorProps = {
-  conditionId: number,
+  conditionId: number
 }
 
 export const DoctorForm = ({conditionId}: NewDoctorProps) => {
@@ -14,15 +14,20 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
     phone: '',
     address: '',
     category: ''
-  })
+  });
 
-  const goToHealthEvent = () => {
-    // if(!Object.values(medObj).length) {
-      history.push('/add-condition/add-health-event');
-    // }
+
+  const handleClick = () => {
+    if (Object.keys(doctorInfo).filter(Boolean).length) {
+      mutateFunction();
+      setDoctorInfo({name: '',
+      phone: '',
+      address: '',
+      category: ''
+      });
+    }
+    history.push('/add-condition/add-health-event');
   }
-
-   console.log('doctor form', conditionId)
 
   const CREATE_DOCTOR = gql`
     mutation {
@@ -43,11 +48,11 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         errors
       }
     }
-  `
+  `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR);
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
+  if (loading) return (<p>Loading...</p>);
+  if (error) return (<p>Error: {error.message}</p>);
   
   return (
     <section className='add-doctor'>
@@ -56,7 +61,6 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         e.preventDefault();
         await mutateFunction();
         setDoctorInfo({name: '', phone: '', address: '', category: ''});
-        console.log(doctorInfo);
       }}>
           <div>
           <label>
@@ -102,7 +106,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
-      <button className='' onClick={() => goToHealthEvent()}>Go to health events</button>
+      <button onClick={handleClick}>Go to health events</button>
     </section>
-  )
+  );
 }
