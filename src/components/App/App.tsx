@@ -9,9 +9,11 @@ import { NewConditionPage } from '../NewConditionPage/NewConditionPage';
 import { Users } from '../../gql/graphql';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
 import './App.css';
+import { LoginPage } from '../LoginPage/LoginPage';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
+  console.log(userId)
 
   const GET_USERS = gql`
     query User {
@@ -35,6 +37,7 @@ export const App = () => {
       <NavBar />
       <Switch>
         <Route exact path='/' render={() => <HomePage />} />
+        <Route exact path='/login' render={() => <LoginPage setUserId={setUserId} />} />
         <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
         <Route exact path='/conditions/:id' render={({match}) => <ConditionPage key={match.params.id}/>} />
         <Route path='/add-condition' render={() => <NewConditionPage userId={userId} />} />

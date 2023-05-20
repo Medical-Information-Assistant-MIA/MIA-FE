@@ -17,9 +17,15 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     prescribedBy: ''
   });
 
-  const handleClick = () => {
-    if (Object.keys(medObj).filter(Boolean).length) {
-      mutateFunction();
+  
+  const handleClick = async () => {
+    const formIsDirty = Object.keys(medObj).filter(Boolean).length;
+    if (formIsDirty) {
+      try { 
+        await mutateFunction();
+      } catch(error) {
+        return;
+      }
       setMedObj({
         name : '',
         datePrescribed: '',
@@ -56,16 +62,18 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
   `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
-  if (loading || !conditionId) return (<p>Loading...</p>);
-  if (error) return (<p>Error: {error.message}</p>);
-
+  if (!conditionId) return (<p>Loading...</p>);
 
   return (
     <section className='condition-form'>
       <h3>Add New Medications</h3>
       <form className='med-form' onSubmit={async e => {
         e.preventDefault();
-        await mutateFunction();
+        try { 
+          await mutateFunction();
+        } catch(error) {
+          return;
+        }
         setMedObj({
           name : '',
           datePrescribed: '',
@@ -120,7 +128,9 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
         </label>
         <button className='submit-button' type='submit' >Add New Medication</button>
       </form>
-      <button className='submit-button' onClick={handleClick}>Go to Doctor form</button>
+      <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to Doctor form</button>
+        {loading ? <p>Loading...</p> : null}
+        {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
     </section>
   );
 }

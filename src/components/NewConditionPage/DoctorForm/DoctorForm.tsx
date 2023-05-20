@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+
 import { useHistory } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
 import './DoctorForm.css';
@@ -16,14 +18,18 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
     category: ''
   });
 
-
-  const handleClick = () => {
-    if (Object.keys(doctorInfo).filter(Boolean).length) {
-      mutateFunction();
+  const handleClick = async () => {
+    const formIsDirty = Object.keys(doctorInfo).filter(Boolean).length;
+    if (formIsDirty) {
+      try { 
+        await mutateFunction();
+      } catch(error) {
+        return;
+      }
       setDoctorInfo({name: '',
-      phone: '',
-      address: '',
-      category: ''
+        phone: '',
+        address: '',
+        category: ''
       });
     }
     history.push('/add-condition/add-health-event');
@@ -51,16 +57,22 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
   `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR);
-  if (loading) return (<p>Loading...</p>);
-  if (error) return (<p>Error: {error.message}</p>);
   
   return (
     <section className='condition-form'>
       <h2>Add a Doctor</h2>
       <form onSubmit={async e => {
         e.preventDefault();
-        await mutateFunction();
-        setDoctorInfo({name: '', phone: '', address: '', category: ''});
+        try { 
+          await mutateFunction();
+        } catch(error) {
+          return;
+        }
+        setDoctorInfo({
+          name: '',
+          phone: '',
+          address: '',
+          category: ''});
       }}>
         <div>
           <label>
@@ -106,7 +118,9 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
-      <button className='submit-button' onClick={handleClick}>Go to health events</button>
+      <button className='submit-button' type='button' onClick={handleClick}>Go to health events</button>
+      {loading ? <p>Loading...</p> : null}
+      {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
     </section>
   );
 }
