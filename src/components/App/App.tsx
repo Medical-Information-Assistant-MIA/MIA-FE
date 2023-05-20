@@ -21,6 +21,7 @@ export const App = () => {
         conditions {
           id
           name
+          createdAt
         } 
       }
     }
