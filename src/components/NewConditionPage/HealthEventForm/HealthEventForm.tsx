@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
-import './HealthEventForm.css'
+import './HealthEventForm.css';
 
 type NewEventProps = {
-  conditionId: number,
+  conditionId: number
 }
 
 export const HealthEventForm = ({conditionId}: NewEventProps) => {
@@ -13,12 +13,18 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     category: '',
     date: '',
     note: ''
-  })
+  });
 
-  const goToDashBoard = () => {
-    // if(!Object.values(medObj).length) {
-      history.push('/user-dashboard');
-    // }
+  const handleClick = () => {
+    if (Object.keys(eventObj).filter(Boolean).length) {
+      mutateFunction();
+      setEventObj({
+        category: '',
+        date: '',
+        note: ''
+      });
+    }
+    history.push('/user-dashboard');
   }
 
   const CREATE_NOTE = gql `
@@ -38,13 +44,11 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         errors
       }
     }
-  `
+  `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
-  console.log(eventObj)
-  console.log('data for HE', data)
+  if (loading) return (<p>Loading...</p>);
+  if (error) return (<p>Error: {error.message}</p>);
 
   return (
     <section>
@@ -55,7 +59,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
           category: '',
           date: '',
           note: ''
-        })
+        });
       }}>
         <h2>Create Event Notes</h2>
         <label>
@@ -66,8 +70,8 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
             onChange={e => setEventObj({...eventObj, [e.target.name]: e.target.value })}>
             <option defaultValue='' hidden>Select health event type:</option>
             <option value='symptom'>Symptom</option>
-            <option value='doctor-visit'>Doctor's Visit</option>
-            <option value='other-note'>Other Note</option>
+            <option value='doctor_visit'>Doctor's Visit</option>
+            <option value='other_note'>Other Note</option>
           </select>
         </label>
         <label>
@@ -88,7 +92,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         </label>
         <button>Add New Note</button>
       </form>
-      <button onClick={() => goToDashBoard()}>Finish and Return to Dash</button>
+      <button onClick={handleClick}>Finish and Return to Dash</button>
     </section>
-  )
+  );
 }

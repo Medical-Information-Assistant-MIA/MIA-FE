@@ -4,9 +4,8 @@ import { useHistory } from 'react-router-dom';
 import './MedicationForm.css';
 
 type NewMedicationProps = {
-  conditionId: number,
+  conditionId: number
 }
-
 
 export const MedicationForm = ({conditionId}: NewMedicationProps) => {
   const history = useHistory();
@@ -16,12 +15,20 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     dosage: '',
     frequency: '',
     prescribedBy: ''
-  })
+  });
 
-  const goToDoc = () => {
-    // if(!Object.values(medObj).length) {
-      history.push('/add-condition/add-doctor');
-    // }
+  const handleClick = () => {
+    if (Object.keys(medObj).filter(Boolean).length) {
+      mutateFunction();
+      setMedObj({
+        name : '',
+        datePrescribed: '',
+        dosage: '',
+        frequency: '',
+        prescribedBy: ''
+      });
+    }
+    history.push('/add-condition/add-doctor');
   }
 
   const CREATE_MEDICATION = gql`
@@ -46,27 +53,26 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
       errors
       }
     }
-  `
+  `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
-  if (loading || !conditionId) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message}</p>
+  if (loading || !conditionId) return (<p>Loading...</p>);
+  if (error) return (<p>Error: {error.message}</p>);
 
 
   return (
     <section className='medication-form nav-spacing'>
-      <h3> Add New Medications</h3>
+      <h3>Add New Medications</h3>
       <form className='med-form' onSubmit={async e => {
-        e.preventDefault()
-        await mutateFunction()
+        e.preventDefault();
+        await mutateFunction();
         setMedObj({
           name : '',
           datePrescribed: '',
           dosage: '',
           frequency: '',
           prescribedBy: ''
-        })
-        console.log('medObj', data)
+        });
       }}>
         <label className='med-label'>
           What is your medication name?
@@ -114,7 +120,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
         </label>
         <button className='submit-button' type='submit' >Add New Medication</button>
       </form>
-        <button className='f' onClick={() => goToDoc()}>Go to Doctor form</button>
+        <button className='f' onClick={handleClick}>Go to Doctor form</button>
     </section>
-  )
+  );
 }
