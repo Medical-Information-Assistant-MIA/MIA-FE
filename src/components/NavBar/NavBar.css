@@ -7,8 +7,16 @@
   top: 0;
   width: 13%;
   height: 99%;
+  background-color: var(--nav-color);
 }
 
 h1 {
+  margin: 3%;
   font-size: 3.5em;
+  transition: 0.5s;
+}
+
+h1:hover {
+  scale: 1.1;
+  text-shadow: 2px 4px 4px white;
 }
