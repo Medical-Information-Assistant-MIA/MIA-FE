@@ -106,7 +106,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
-      <button onClick={handleClick}>Go to health events</button>
+      <button className='submit-button' onClick={handleClick}>Go to health events</button>
     </section>
   );
 }

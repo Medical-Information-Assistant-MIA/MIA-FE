@@ -90,9 +90,9 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
             name='note' 
             onChange={e => setEventObj({...eventObj, [e.target.name]: e.target.value })} />
         </label>
-        <button>Add New Note</button>
+        <button className='submit-button'>Add New Note</button>
       </form>
-      <button onClick={handleClick}>Finish and Return to Dash</button>
+      <button className='submit-button' onClick={handleClick}>Finish and Return to Dash</button>
     </section>
   );
 }

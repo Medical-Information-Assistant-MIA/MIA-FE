@@ -120,7 +120,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
         </label>
         <button className='submit-button' type='submit' >Add New Medication</button>
       </form>
-        <button className='f' onClick={handleClick}>Go to Doctor form</button>
+        <button className='submit-button' onClick={handleClick}>Go to Doctor form</button>
     </section>
   );
 }
