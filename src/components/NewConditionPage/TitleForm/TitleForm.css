@@ -8,9 +8,23 @@
   border: var(--border) var(--border-color);
   border-radius: var(--border-radius);
   height: 50vh;
-  width:70%
+  width:70%;
 }
 
 label {
   text-align: center;
+}
+
+input {
+  font-size: large;
+}
+
+.go-back-btn {
+  border: var(--border) var(--border-color) !important;
+  background-color: var(--nav-btn) !important;
+}
+
+.go-back-btn:hover {
+  background-color: var(--border-color) !important;
+  color: var(--nav-color);
 }

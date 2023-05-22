@@ -7,6 +7,7 @@
   --color-3: #18B679; 
   --color-3-light: #80d7b6;
   --border-color: #686767;
+  --nav-btn: #bcbbbb;
   --nav-color: #f1f1f1;
   --border: 2px solid;
   --border-radius: 5px;
@@ -55,3 +56,6 @@ button {
   background-color: var(--color-3);
 }
 
+.hidden {
+  display: none;
+}

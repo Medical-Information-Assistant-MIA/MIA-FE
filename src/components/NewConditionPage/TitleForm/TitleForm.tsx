@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import './TitleForm.css';
 
 type TitleFormProps = {
@@ -63,6 +63,9 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
           {loading ? <p>Loading...</p> : null}
           {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
       </form>
+      <Link to='/user-dashboard'>
+        <button className='submit-button go-back-btn' type='submit'>Go Back</button>
+      </Link>
     </section>
   );
 }

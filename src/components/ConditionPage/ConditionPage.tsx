@@ -116,7 +116,7 @@ export const ConditionPage = () => {
         {healthEventDisplay}
       </div>
       <Link to='/user-dashboard'>
-        <button className='nav-btn'>To DashBoard</button>
+        <button className='submit-button go-back-btn'>Return To Dashnoard</button>
       </Link>
     </section>
   )
