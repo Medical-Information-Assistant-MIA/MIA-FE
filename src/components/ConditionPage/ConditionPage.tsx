@@ -4,39 +4,9 @@ import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
 import './ConditionPage.css';
 
-type MatchParams = {
-  id: string;
-}
-
-type Medication = {
-  id: number, 
-  name: string,
-  datePrescribed: string,
-  dosage: string,
-  frequency: string,
-  prescribedBy: string
-}
-
-type Doctor = {
-  id: number,
-  createdAt: string,
-  address: string,
-  category: string,
-  name: string,
-  phone: string
-}
-
-type HealthEvent = {
-  id: number,
-  date: string,
-  category: string,
-  note: string
-}
-
 const formatDate = (date: string) => {
   return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
 }
-
 
 export const ConditionPage = () => {
   const match = useRouteMatch<MatchParams>('/conditions/:id');

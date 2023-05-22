@@ -5,6 +5,7 @@ export type MatchParams = {
 }
 
 export type Medication = { 
+  id: string,
   name: string,
   datePrescribed: string,
   dosage: string,
@@ -13,13 +14,16 @@ export type Medication = {
 }
 
 export type Doctor = {
+  id: string,
   address: string,
   category: string,
   name: string,
-  phone: string
+  phone: string,
+  createdAt: string
 }
 
 export type HealthEvent = {
+  id: string,
   date: string,
   category: string,
   note: string
@@ -27,6 +31,23 @@ export type HealthEvent = {
 
 export type UserID = {
   setUserId: Function
+}
+
+// Component Prop Types
+export type ConditionProps = {
+  condition: {
+    id: number,
+    name: string,
+    createdAt: string
+  }
+}
+
+export type DashProps = {
+  user: Users
+}
+
+export type NewConditionProps = {
+  userId: number,
 }
 
 export type NewDoctorProps = {
@@ -44,20 +65,4 @@ export type NewMedicationProps = {
 export type TitleFormProps = {
   userId: number,
   setConditionId: Function
-}
-
-export type NewConditionProps = {
-  userId: number,
-}
-
-export type ConditionProps = {
-  condition: {
-    id: number,
-    name: string,
-    createdAt: string
-  }
-}
-
-export type DashProps = {
-  user: Users
 }
