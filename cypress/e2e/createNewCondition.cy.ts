@@ -9,8 +9,11 @@ describe('template spec', () => {
       })
     })
     .visit('http://localhost:3000/')
-    cy.get('.home-page > a > button').click()
-    .get('[href="/add-condition"] > button').click()
+    cy.get('.submit-button').click()
+    .get('[type="text"]').type('1')
+    .get('[type="password"]').type('mia123')
+    .get('.submit-button').click()
+    .get('.submit-button').click()
   })
 
   it('Should add a new condition by title', () => {

@@ -9,7 +9,10 @@ describe('template spec', () => {
       })
     })
     .visit('http://localhost:3000/')
-    cy.get('.home-page > a > button').click()
+    cy.get('.submit-button').click()
+    .get('[type="text"]').type('1')
+    .get('[type="password"]').type('mia123')
+    .get('.submit-button').click()
   })
 
   it('Should navigate to dashboard and display conditions', () => { 
@@ -24,7 +27,7 @@ describe('template spec', () => {
         fixture: 'condition-fixture.json'
       })
     })
-    cy.get(':nth-child(1) > .condition-card > p').click()
+    cy.get(':nth-child(1) > .condition-card').click()
     .get('h2').should('contain', 'Tummy Ache')
   })
 
