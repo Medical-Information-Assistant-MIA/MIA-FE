@@ -6,7 +6,8 @@ type MatchParams = {
   id: string;
 }
 
-type Medication = { 
+type Medication = {
+  id: number, 
   name: string,
   datePrescribed: string,
   dosage: string,
@@ -15,6 +16,7 @@ type Medication = {
 }
 
 type Doctor = {
+  id: number,
   address: string,
   category: string,
   name: string,
@@ -22,6 +24,7 @@ type Doctor = {
 }
 
 type HealthEvent = {
+  id: number,
   date: string,
   category: string,
   note: string
@@ -36,22 +39,25 @@ export const ConditionPage = () => {
         id
         name
         medications {
-            name
-            datePrescribed
-            dosage
-            frequency
-            prescribedBy
+          id
+          name
+          datePrescribed
+          dosage
+          frequency
+          prescribedBy
         }  
         doctors {
-            name
-            phone
-            address
-            category
+          id
+          name
+          phone
+          address
+          category
         }
         healthEvents {
-            date
-            note
-            category
+          id
+          date
+          note
+          category
         }
       }
     }
@@ -62,12 +68,11 @@ export const ConditionPage = () => {
   if (error) return <p>{error.message}</p>
 
   const {name, medications, doctors, healthEvents} = data.condition
-  console.log('condition query', data)
 
   const medDisplay = medications.length ? 
     medications.map((med: Medication) => {
     return (
-      <div className='medication'>
+      <div key={med.id} className='medication'>
         <p>Medication Name: {med.name}</p>
         <p>Date Prescribed: {med.datePrescribed}</p>
         <p>Dosage: {med.dosage}</p>
@@ -80,7 +85,7 @@ export const ConditionPage = () => {
   const docDisplay = doctors.length ? 
     doctors.map((doc: Doctor) => {
     return (
-      <div className='doctor'>
+      <div key={doc.id} className='doctor'>
         <p>{doc.name}</p>
         <p>{doc.category}</p>
         <p>{doc.address}</p>
@@ -92,7 +97,7 @@ export const ConditionPage = () => {
   const healthEventDisplay = healthEvents.length ? 
     healthEvents.map((event: HealthEvent) => {
     return (
-      <div className='health-event'>
+      <div key={event.id} className='health-event'>
         <p>{event.date}</p>
         <p>{event.category}</p>
         <p>{event.note}</p>
