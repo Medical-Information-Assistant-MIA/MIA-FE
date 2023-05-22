@@ -16,7 +16,7 @@ export const NewConditionPage = ({ userId }: NewConditionProps) => {
   console.log('conditionID',conditionId)
 
   return (
-    <section className='nav-spacing'>
+    <section className='create-condition nav-spacing'>
       <h2>Create a New Condition</h2>
       <Switch>
         <Route exact path='/add-condition' render={() => <TitleForm userId={userId} setConditionId={setConditionId}/>}/>

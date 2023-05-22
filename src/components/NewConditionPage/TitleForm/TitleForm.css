@@ -1,7 +1,30 @@
 .condition-form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 5%;
-  background-color: rgba(43, 226, 125, 0.283);
-  height: 100vh;
+  background-color: var(--nav-color);
+  border: var(--border) var(--border-color);
+  border-radius: var(--border-radius);
+  height: 50vh;
+  width:70%;
+}
+
+label {
+  text-align: center;
+}
+
+input {
+  font-size: large;
+}
+
+.go-back-btn {
+  border: var(--border) var(--border-color) !important;
+  background-color: var(--nav-btn) !important;
+}
+
+.go-back-btn:hover {
+  background-color: var(--border-color) !important;
+  color: var(--nav-color);
 }

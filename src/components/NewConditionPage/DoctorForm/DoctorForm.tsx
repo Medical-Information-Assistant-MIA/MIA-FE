@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+
 import { useHistory } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
 import './DoctorForm.css';
@@ -57,7 +59,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR);
   
   return (
-    <section className='add-doctor'>
+    <section className='condition-form'>
       <h2>Add a Doctor</h2>
       <form onSubmit={async e => {
         e.preventDefault();
@@ -72,7 +74,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
           address: '',
           category: ''});
       }}>
-          <div>
+        <div>
           <label>
             What is your doctor's name?
             <input 
@@ -116,7 +118,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
-      <button type='button' onClick={handleClick}>Go to health events</button>
+      <button className='submit-button' type='button' onClick={handleClick}>Go to health events</button>
       {loading ? <p>Loading...</p> : null}
       {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
     </section>
