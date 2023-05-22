@@ -1,7 +1,8 @@
 import { useRouteMatch, Link } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery} from '@apollo/client';
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
+import { GET_CONDITION } from '../../gql-queries';
 import './ConditionPage.css';
 
 const formatDate = (date: string) => {
@@ -10,39 +11,12 @@ const formatDate = (date: string) => {
 
 export const ConditionPage = () => {
   const match = useRouteMatch<MatchParams>('/conditions/:id');
+  const paraId: any = match?.params.id;
+  const pId = parseInt(paraId);
 
-  const GET_CONDITION = gql`
-    query Condition {
-      condition(id: ${match?.params.id}) {
-        id
-        name
-        medications {
-          id
-          name
-          datePrescribed
-          dosage
-          frequency
-          prescribedBy
-        }  
-        doctors {
-          id
-          name
-          createdAt
-          phone
-          address
-          category
-        }
-        healthEvents {
-          id
-          date
-          note
-          category
-        }
-      }
-    }
-  `;
-
-  const { loading, error, data } = useQuery(GET_CONDITION);
+  const { loading, error, data } = useQuery(GET_CONDITION, {
+    variables: { pId }
+  });
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error.message}</p>
 
