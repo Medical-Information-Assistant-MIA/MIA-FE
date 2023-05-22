@@ -9,6 +9,7 @@
   height: 100%;
   background-color: var(--nav-color);
   border-right: var(--border) var(--border-color);
+  box-shadow: 3px 0 5px 1px #888;
 }
 
 .logo {
@@ -35,3 +36,4 @@
   transition: 0.5s;
   cursor: pointer;
 }
+
