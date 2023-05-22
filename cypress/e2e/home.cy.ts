@@ -4,6 +4,9 @@ describe('template spec', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       aliasQuery(req, 'User')
+      req.reply({
+        fixture: 'user-fixture.json'
+      })
     })
     .visit('http://localhost:3000/')
   })
@@ -11,7 +14,7 @@ describe('template spec', () => {
   it('Should get a user', () => {
     cy.wait('@gqlUserQuery')
       .its('response.body.data.user')
-      .should('have.property', 'id')
+      .should('have.property', 'name')
   })
 
   it('Should land on the homepage', () => {

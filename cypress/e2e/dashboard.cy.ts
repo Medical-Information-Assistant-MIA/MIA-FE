@@ -1,0 +1,30 @@
+import { aliasQuery, aliasMutation } from "../utils/graphql-test-utils"
+
+describe('template spec', () => {
+  beforeEach(() => {
+    cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
+      aliasQuery(req, 'User')
+      req.reply({
+        fixture: 'user-fixture.json'
+      })
+    })
+    .visit('http://localhost:3000/')
+    cy.get('.home-page > a > button').click()
+  })
+
+  it('Should navigate to dashboard and display conditions', () => { 
+    cy.url().should('contain', '/user-dashboard')
+    .get('.condition-cards >').should('have.length', 3)
+  })
+
+  it('Should be able to click a condition', () => {
+    cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
+      aliasQuery(req, 'Conditions')
+      req.reply({
+        fixture: 'condition-fixture.json'
+      })
+    })
+    cy.get(':nth-child(1) > .condition-card > p').click()
+    .get('h2').should('contain', 'Tummy Ache')
+  })
+})
