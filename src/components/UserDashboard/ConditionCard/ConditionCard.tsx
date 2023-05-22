@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 type ConditionProps = {
   condition: {
     id: number,
-    name: string
+    name: string,
+    createdAt: string
   }
 }
 

@@ -13,7 +13,6 @@ import { LoginPage } from '../LoginPage/LoginPage';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
-  console.log(userId)
 
   const GET_USERS = gql`
     query User {
@@ -23,6 +22,7 @@ export const App = () => {
         conditions {
           id
           name
+          createdAt
         } 
       }
     }
