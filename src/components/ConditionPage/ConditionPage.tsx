@@ -102,6 +102,10 @@ export const ConditionPage = () => {
         )
   }) : <p>No Doctors Added</p>
 
+  const formatEventCategory = (category: string) => {
+    return category.split('_').join(' ');
+  }
+
   const healthEventDisplay = healthEvents.length ? 
     healthEvents
       .slice(0)
@@ -109,9 +113,9 @@ export const ConditionPage = () => {
       .map((event: HealthEvent) => {
         return (
           <div key={event.id} className='health-event'>
-            <p>{event.date}</p>
-            <p>{event.category}</p>
-            <p>{event.note}</p>
+            <p>Date: {event.date}</p>
+            <p>Category: {formatEventCategory(event.category)}</p>
+            <p>Note: {event.note}</p>
           </div>
         )
   }) : <p>No Notes Added</p>
