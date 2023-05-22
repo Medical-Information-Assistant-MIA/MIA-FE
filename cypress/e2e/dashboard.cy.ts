@@ -27,4 +27,9 @@ describe('template spec', () => {
     cy.get(':nth-child(1) > .condition-card > p').click()
     .get('h2').should('contain', 'Tummy Ache')
   })
+
+  it('Should navigate to the new condition page', () => {
+    cy.get('[href="/add-condition"] > button').click()
+    .get('h2').should('contain', 'Create a New Condition')
+  })
 })
