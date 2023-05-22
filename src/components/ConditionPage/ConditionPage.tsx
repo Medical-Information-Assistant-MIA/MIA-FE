@@ -1,31 +1,8 @@
 import { useRouteMatch, Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import './ConditionPage.css';
 
-type MatchParams = {
-  id: string;
-}
-
-type Medication = { 
-  name: string,
-  datePrescribed: string,
-  dosage: string,
-  frequency: string,
-  prescribedBy: string
-}
-
-type Doctor = {
-  address: string,
-  category: string,
-  name: string,
-  phone: string
-}
-
-type HealthEvent = {
-  date: string,
-  category: string,
-  note: string
-}
 
 export const ConditionPage = () => {
   const match = useRouteMatch<MatchParams>('/conditions/:id');
@@ -55,14 +32,13 @@ export const ConditionPage = () => {
         }
       }
     }
-  `
+  `;
 
   const { loading, error, data } = useQuery(GET_CONDITION);
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error.message}</p>
 
   const {name, medications, doctors, healthEvents} = data.condition
-  console.log('condition query', data)
 
   const medDisplay = medications.length ? 
     medications.map((med: Medication) => {
@@ -74,7 +50,7 @@ export const ConditionPage = () => {
         <p>Frequency: {med.frequency}</p>
         <p>Prescribed By: {med.prescribedBy}</p>
       </div>
-    )
+    );
   }) : <p>No Medications Added</p>
 
   const docDisplay = doctors.length ? 
@@ -86,7 +62,7 @@ export const ConditionPage = () => {
         <p>{doc.address}</p>
         <p>{doc.phone}</p>
       </div>
-    )
+    );
   }) : <p>No Doctors Added</p>
 
   const healthEventDisplay = healthEvents.length ? 
@@ -97,7 +73,7 @@ export const ConditionPage = () => {
         <p>{event.category}</p>
         <p>{event.note}</p>
       </div>
-    )
+    );
   }) : <p>No Notes Added</p>
 
   return (
@@ -119,5 +95,5 @@ export const ConditionPage = () => {
         <button className='submit-button go-back-btn'>Return To Dashnoard</button>
       </Link>
     </section>
-  )
+  );
 }

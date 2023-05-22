@@ -6,10 +6,9 @@ import { HomePage } from '../HomePage/HomePage';
 import { NavBar } from '../NavBar/NavBar';
 import { ConditionPage } from '../ConditionPage/ConditionPage';
 import { NewConditionPage } from '../NewConditionPage/NewConditionPage';
-import { Users } from '../../gql/graphql';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
-import './App.css';
 import { LoginPage } from '../LoginPage/LoginPage';
+import './App.css';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);

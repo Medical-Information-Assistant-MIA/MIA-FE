@@ -1,12 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { useHistory, Link } from 'react-router-dom';
+import { TitleFormProps } from '../../../types';
 import './TitleForm.css';
-
-type TitleFormProps = {
-  userId: number,
-  setConditionId: Function
-};
 
 export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   const [conditionName, setConditionName] = useState('');

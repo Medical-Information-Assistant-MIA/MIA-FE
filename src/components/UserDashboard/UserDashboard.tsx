@@ -1,11 +1,7 @@
-import { Link } from 'react-router-dom'
-import './UserDashboard.css'
-import { Users } from '../../gql/graphql'
-import { ConditionCard } from './ConditionCard/ConditionCard'
-
-type DashProps = {
-    user: Users
-  }
+import { Link } from 'react-router-dom';
+import './UserDashboard.css';
+import { DashProps } from '../../types';
+import { ConditionCard } from './ConditionCard/ConditionCard';
 
 export const UserDashboard = ({user}: DashProps) => {
   let conditionCards

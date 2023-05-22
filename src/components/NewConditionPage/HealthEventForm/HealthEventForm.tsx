@@ -1,11 +1,8 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
+import { NewEventProps } from '../../../types';
 import './HealthEventForm.css';
-
-type NewEventProps = {
-  conditionId: number
-}
 
 export const HealthEventForm = ({conditionId}: NewEventProps) => {
   const history = useHistory();
