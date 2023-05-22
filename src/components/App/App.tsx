@@ -23,13 +23,14 @@ export const App = () => {
         conditions {
           id
           name
+          createdAt
         } 
       }
     }
   `
   const { loading, error, data } = useQuery(GET_USERS);
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error</p>
+  if (error) return <ErrorPage />
 
   return (
     <main>

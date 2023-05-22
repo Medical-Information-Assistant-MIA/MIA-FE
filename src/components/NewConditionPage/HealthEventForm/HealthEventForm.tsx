@@ -54,7 +54,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
 
   return (
-    <section>
+    <section className='condition-form'>
       <h3>Add a health event</h3>
       <form onSubmit={async e => {
         e.preventDefault()
@@ -98,9 +98,9 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
             name='note' 
             onChange={e => setEventObj({...eventObj, [e.target.name]: e.target.value })} />
         </label>
-        <button>Add New Note</button>
+        <button className='submit-button'>Add New Note</button>
       </form>
-      <button type='button' onClick={handleClick}>Finish and Return to Dash</button>
+      <button className='submit-button' type='button' onClick={handleClick}>Finish and Return to Dash</button>
       {loading ? <p>Loading...</p> : null}
       {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
     </section>
