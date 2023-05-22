@@ -12,7 +12,8 @@ export const LoginPage = ({setUserId}: UserID) =>  {
 
   const checkLogin= () => {
     if((username === '1' || username === '2') && password === 'mia123') {
-      setUserId(username);
+      const id = parseInt(username);
+      setUserId(id);
       history.push('/user-dashboard');
     } else {
       setError(true);

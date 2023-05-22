@@ -1,7 +1,7 @@
-import { Users } from "./gql/graphql";
+import { Users } from './gql/graphql';
 
 export type MatchParams = {
-  id: string;
+ id: string;
 }
 
 export type Medication = { 
@@ -65,4 +65,8 @@ export type NewMedicationProps = {
 export type TitleFormProps = {
   userId: number,
   setConditionId: Function
+}
+
+export type ErrorProps = {
+  error: string
 }
