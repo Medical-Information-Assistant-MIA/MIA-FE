@@ -17,6 +17,7 @@ type Medication = {
 
 type Doctor = {
   id: number,
+  createdAt: string,
   address: string,
   category: string,
   name: string,
@@ -49,6 +50,7 @@ export const ConditionPage = () => {
         doctors {
           id
           name
+          createdAt
           phone
           address
           category
@@ -70,39 +72,48 @@ export const ConditionPage = () => {
   const {name, medications, doctors, healthEvents} = data.condition
 
   const medDisplay = medications.length ? 
-    medications.map((med: Medication) => {
-    return (
-      <div key={med.id} className='medication'>
-        <p>Medication Name: {med.name}</p>
-        <p>Date Prescribed: {med.datePrescribed}</p>
-        <p>Dosage: {med.dosage}</p>
-        <p>Frequency: {med.prescribedBy}</p>
-        <p>Prescribed By: {med.prescribedBy}</p>
-      </div>
-    )
+    medications
+      .slice(0)
+      .sort((a : Medication, b: Medication) => Date.parse(b.datePrescribed) - Date.parse(a.datePrescribed))
+      .map((med: Medication) => {
+        return (
+          <div key={med.id} className='medication'>
+            <p>Medication Name: {med.name}</p>
+            <p>Date Prescribed: {med.datePrescribed}</p>
+            <p>Dosage: {med.dosage}</p>
+            <p>Frequency: {med.prescribedBy}</p>
+            <p>Prescribed By: {med.prescribedBy}</p>
+          </div>
+        )
   }) : <p>No Medications Added</p>
 
   const docDisplay = doctors.length ? 
-    doctors.map((doc: Doctor) => {
-    return (
-      <div key={doc.id} className='doctor'>
-        <p>{doc.name}</p>
-        <p>{doc.category}</p>
-        <p>{doc.address}</p>
-        <p>{doc.phone}</p>
-      </div>
-    )
+    doctors
+      .slice(0)
+      .sort((a: Doctor, b: Doctor) => Date.parse(b.createdAt) - Date.parse(a.createdAt)) 
+      .map((doc: Doctor) => {
+        return (
+          <div key={doc.id} className='doctor'>
+            <p>{doc.name}</p>
+            <p>{doc.category}</p>
+            <p>{doc.address}</p>
+            <p>{doc.phone}</p>
+          </div>
+        )
   }) : <p>No Doctors Added</p>
 
   const healthEventDisplay = healthEvents.length ? 
-    healthEvents.map((event: HealthEvent) => {
-    return (
-      <div key={event.id} className='health-event'>
-        <p>{event.date}</p>
-        <p>{event.category}</p>
-        <p>{event.note}</p>
-      </div>
-    )
+    healthEvents
+      .slice(0)
+      .sort((a: HealthEvent, b: HealthEvent) => Date.parse(b.date) - Date.parse(a.date))
+      .map((event: HealthEvent) => {
+        return (
+          <div key={event.id} className='health-event'>
+            <p>{event.date}</p>
+            <p>{event.category}</p>
+            <p>{event.note}</p>
+          </div>
+        )
   }) : <p>No Notes Added</p>
 
   return (
