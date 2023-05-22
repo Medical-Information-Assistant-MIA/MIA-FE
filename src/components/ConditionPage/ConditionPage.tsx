@@ -83,11 +83,11 @@ export const ConditionPage = () => {
       .sort((a : Medication, b: Medication) => Date.parse(b.datePrescribed) - Date.parse(a.datePrescribed))
       .map((med: Medication) => {
         return (
-          <div key={med.id} className='medication'>
+          <div key={med.id} className='condition-info'>
             <p>Medication Name: {med.name}</p>
             <p>Date Prescribed: {formatDate(med.datePrescribed)}</p>
             <p>Dosage: {med.dosage}</p>
-            <p>Frequency: {med.prescribedBy}</p>
+            <p>Frequency: {med.frequency}</p>
             <p>Prescribed By: {med.prescribedBy}</p>
           </div>
         )
@@ -99,7 +99,7 @@ export const ConditionPage = () => {
       .sort((a: Doctor, b: Doctor) => Date.parse(b.createdAt) - Date.parse(a.createdAt)) 
       .map((doc: Doctor) => {
         return (
-          <div key={doc.id} className='doctor'>
+          <div key={doc.id} className='condition-info'>
             <p>{doc.name}</p>
             <p>{doc.category}</p>
             <p>{doc.address}</p>
@@ -118,7 +118,7 @@ export const ConditionPage = () => {
       .sort((a: HealthEvent, b: HealthEvent) => Date.parse(b.date) - Date.parse(a.date))
       .map((event: HealthEvent) => {
         return (
-          <div key={event.id} className='health-event'>
+          <div key={event.id} className='condition-info'>
             <p>Date: {formatDate(event.date)}</p>
             <p>Category: {formatEventCategory(event.category)}</p>
             <p>Note: {event.note}</p>
@@ -129,16 +129,20 @@ export const ConditionPage = () => {
   return (
     <section className='condition-page nav-spacing'>
       <h2>{name}</h2>
-      <h3>Medications</h3>
-      {medDisplay}
-      <h3>Doctors</h3>
-      <div className='all-doctors'>
+      <h3 className='condition-heading'>Medications</h3>
+      <div className='info-block'>
+        {medDisplay}
+      </div>
+      <h3 className='condition-heading'>Doctors</h3>
+      <div className='info-block'>
         {docDisplay}
       </div>
-      <h3>Health Events</h3>
-      {healthEventDisplay}
+      <h3 className='condition-heading'>Health Events</h3>
+      <div className='info-block'>
+        {healthEventDisplay}
+      </div>
       <Link to='/user-dashboard'>
-        <button>To DashBoard</button>
+        <button className='submit-button go-back-btn'>Return To Dashnoard</button>
       </Link>
     </section>
   )

@@ -14,6 +14,7 @@ export const ConditionCard = ({condition}: ConditionProps) => {
     <Link to={`/conditions/${condition.id}`}>
       <div className='condition-card'>
         <p>{condition.name}</p>
+        <p>Added on {condition.createdAt}</p>
       </div>
     </Link>
   )

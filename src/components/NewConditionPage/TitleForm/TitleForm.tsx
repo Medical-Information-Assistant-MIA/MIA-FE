@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import './TitleForm.css';
 
 type TitleFormProps = {
@@ -42,9 +42,9 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   }, [condId]);
 
   return (
-    <section className='condition-form nav-spacing'>
+    <section className='condition-form'>
       <h3> Add Your Condition</h3>
-      <form className='condition-form' onSubmit={async e => {
+      <form onSubmit={async e => {
         e.preventDefault();
         try { 
           await mutateFunction();
@@ -63,10 +63,13 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
             required
             onChange={e => setConditionName(e.target.value)}/>
         </label>
-          <button className='submit-button' type='submit'>Submit condition</button>
+        <button className='submit-button' type='submit'>Submit condition</button>
           {loading ? <p>Loading...</p> : null}
           {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
       </form>
+      <Link to='/user-dashboard'>
+        <button className='submit-button go-back-btn' type='submit'>Go Back</button>
+      </Link>
     </section>
   );
 }
