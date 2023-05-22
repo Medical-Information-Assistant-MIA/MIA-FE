@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 :root {
   --color-1: #18A4B6;
-  --color-1-light: #18a4b64e;
+  --color-1-light: #b8e3e9;
   --color-2: #1855B6;
   --color-2-light: #1855b66d;
   --color-3: #18B679; 
-  --color-3-light: #18b6798b;
-  --nav-color: rgba(99, 7, 99, 0.404);
+  --color-3-light: #80d7b6;
+  --border-color: #686767;
+  --nav-color: #f1f1f1;
   --border: 2px solid;
   --border-radius: 5px;
   --font-family:'Open Sans', sans-serif;

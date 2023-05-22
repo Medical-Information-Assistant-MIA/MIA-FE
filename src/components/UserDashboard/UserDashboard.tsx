@@ -17,7 +17,7 @@ export const UserDashboard = ({user}: DashProps) => {
     <section className='user-dashboard nav-spacing'>
       <h2>{user.name}'s Dashboard</h2>
       <p>This is your Dashboard! You can see all your current conditions and create new ones from here.</p>
-      <Link to='/add-condition'><button className='submit-button'>Create New Condition</button></Link>
+      <Link to='/add-condition'><button className='submit-button create-condition-btn'>Create New Condition</button></Link>
       <div className='condition-cards'>
         {conditionCards}
       </div>

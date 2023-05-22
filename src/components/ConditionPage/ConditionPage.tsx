@@ -67,11 +67,11 @@ export const ConditionPage = () => {
   const medDisplay = medications.length ? 
     medications.map((med: Medication) => {
     return (
-      <div className='medication'>
+      <div className='condition-info'>
         <p>Medication Name: {med.name}</p>
         <p>Date Prescribed: {med.datePrescribed}</p>
         <p>Dosage: {med.dosage}</p>
-        <p>Frequency: {med.prescribedBy}</p>
+        <p>Frequency: {med.frequency}</p>
         <p>Prescribed By: {med.prescribedBy}</p>
       </div>
     )
@@ -80,7 +80,7 @@ export const ConditionPage = () => {
   const docDisplay = doctors.length ? 
     doctors.map((doc: Doctor) => {
     return (
-      <div className='doctor'>
+      <div className='condition-info'>
         <p>{doc.name}</p>
         <p>{doc.category}</p>
         <p>{doc.address}</p>
@@ -92,7 +92,7 @@ export const ConditionPage = () => {
   const healthEventDisplay = healthEvents.length ? 
     healthEvents.map((event: HealthEvent) => {
     return (
-      <div className='health-event'>
+      <div className='condition-info'>
         <p>{event.date}</p>
         <p>{event.category}</p>
         <p>{event.note}</p>
@@ -103,16 +103,20 @@ export const ConditionPage = () => {
   return (
     <section className='condition-page nav-spacing'>
       <h2>{name}</h2>
-      <h3>Medications</h3>
-      {medDisplay}
-      <h3>Doctors</h3>
-      <div className='all-doctors'>
+      <h3 className='condition-heading'>Medications</h3>
+      <div className='info-block'>
+        {medDisplay}
+      </div>
+      <h3 className='condition-heading'>Doctors</h3>
+      <div className='info-block'>
         {docDisplay}
       </div>
-      <h3>Health Events</h3>
-      {healthEventDisplay}
+      <h3 className='condition-heading'>Health Events</h3>
+      <div className='info-block'>
+        {healthEventDisplay}
+      </div>
       <Link to='/user-dashboard'>
-        <button>To DashBoard</button>
+        <button className='nav-btn'>To DashBoard</button>
       </Link>
     </section>
   )

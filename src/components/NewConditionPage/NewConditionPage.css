@@ -2,6 +2,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: ;
   background-color: var(--color-1-light);
 }
