@@ -6,8 +6,11 @@ import { ConditionCard } from './ConditionCard/ConditionCard';
 export const UserDashboard = ({user}: DashProps) => {
   let conditionCards
   if(user?.conditions?.length) {
-    conditionCards = user.conditions.map(condition =>
-      <ConditionCard key={condition.id} condition={condition}/>)
+    conditionCards = user.conditions
+      .slice(0)
+      .sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))
+      .map(condition =>
+        <ConditionCard key={condition.id} condition={condition}/>)
   }
   return (
     <section className='user-dashboard nav-spacing'>

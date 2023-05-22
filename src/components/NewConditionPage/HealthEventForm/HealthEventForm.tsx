@@ -73,7 +73,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
             value={eventObj.category} 
             name='category' 
             onChange={e => setEventObj({...eventObj, [e.target.name]: e.target.value })}>
-            <option defaultValue='' hidden>Select health event type:</option>
+            <option disabled value=''>select the event type</option>
             <option value='symptom'>Symptom</option>
             <option value='doctor_visit'>Doctor's Visit</option>
             <option value='general_note'>Other Note</option>

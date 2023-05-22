@@ -12,7 +12,6 @@ import './App.css';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
-  console.log(userId)
 
   const GET_USERS = gql`
     query User {

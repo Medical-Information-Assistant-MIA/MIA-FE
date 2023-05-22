@@ -22,7 +22,11 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
     }
   `;
 
-  const [mutateFunction, { data, loading, error }] = useMutation(CREATE_CONDITION);
+  const [mutateFunction, { data, loading, error }] = useMutation(CREATE_CONDITION, {
+    refetchQueries: [
+      'User'
+    ],
+  });
   const condId = data?.createCondition.condition.id;
 
   useEffect(() => {
