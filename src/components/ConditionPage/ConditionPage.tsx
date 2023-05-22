@@ -1,5 +1,6 @@
 import { useRouteMatch, Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import { DateTime } from 'luxon';
 import './ConditionPage.css';
 
 type MatchParams = {
@@ -30,6 +31,11 @@ type HealthEvent = {
   category: string,
   note: string
 }
+
+const formatDate = (date: string) => {
+  return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
+}
+
 
 export const ConditionPage = () => {
   const match = useRouteMatch<MatchParams>('/conditions/:id');
@@ -79,7 +85,7 @@ export const ConditionPage = () => {
         return (
           <div key={med.id} className='medication'>
             <p>Medication Name: {med.name}</p>
-            <p>Date Prescribed: {med.datePrescribed}</p>
+            <p>Date Prescribed: {formatDate(med.datePrescribed)}</p>
             <p>Dosage: {med.dosage}</p>
             <p>Frequency: {med.prescribedBy}</p>
             <p>Prescribed By: {med.prescribedBy}</p>
@@ -113,7 +119,7 @@ export const ConditionPage = () => {
       .map((event: HealthEvent) => {
         return (
           <div key={event.id} className='health-event'>
-            <p>Date: {event.date}</p>
+            <p>Date: {formatDate(event.date)}</p>
             <p>Category: {formatEventCategory(event.category)}</p>
             <p>Note: {event.note}</p>
           </div>
