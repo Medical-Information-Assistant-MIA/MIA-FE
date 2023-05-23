@@ -36,7 +36,7 @@ describe('template spec', () => {
   })
 
   it('Should be able to create a new condition', () => {
-    cy.get('input').type('Cold')
+    cy.get('[type="text"]').type('Cold')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
       if(req.body.operationName === 'User') {
