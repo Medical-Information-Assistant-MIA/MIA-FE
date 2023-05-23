@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
+import { NewMedicationProps } from '../../../types';
+import { CREATE_MEDICATION } from '../../../gql-queries';
 import './MedicationForm.css';
-
-type NewMedicationProps = {
-  conditionId: number
-}
 
 export const MedicationForm = ({conditionId}: NewMedicationProps) => {
   const history = useHistory();
@@ -22,7 +20,17 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     const formIsDirty = Object.values(medObj).filter(Boolean).length;
     if (formIsDirty) {
       try { 
-        await mutateFunction();
+        const input = {
+          conditionId: conditionId,
+          name: medObj.name,
+          datePrescribed: medObj.datePrescribed,
+          dosage: medObj.dosage,
+          frequency: medObj.frequency,
+          prescribedBy: medObj.prescribedBy
+        }
+        await mutateFunction({
+          variables: { input }
+        });
       } catch(error) {
         return;
       }
@@ -37,30 +45,6 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     history.push('/add-condition/add-doctor');
   }
 
-  const CREATE_MEDICATION = gql`
-    mutation {
-      createMedication(input: {
-        conditionId: ${conditionId}
-        name: "${medObj.name}"
-        datePrescribed: "${medObj.datePrescribed}"
-        dosage: "${medObj.dosage}"
-        frequency: "${medObj.frequency}"
-        prescribedBy: "${medObj.prescribedBy}"
-      }) {
-        medication {
-            id
-            conditionId
-            name
-            datePrescribed
-            dosage
-            frequency
-            prescribedBy
-        }
-      errors
-      }
-    }
-  `;
-
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
   if (!conditionId) return (<p>Loading...</p>);
 
@@ -70,7 +54,17 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
       <form className='med-form' onSubmit={async e => {
         e.preventDefault();
         try { 
-          await mutateFunction();
+          const input = {
+            conditionId: conditionId,
+            name: medObj.name,
+            datePrescribed: medObj.datePrescribed,
+            dosage: medObj.dosage,
+            frequency: medObj.frequency,
+            prescribedBy: medObj.prescribedBy
+          }
+          await mutateFunction({
+            variables: { input }
+          });
         } catch(error) {
           return;
         }

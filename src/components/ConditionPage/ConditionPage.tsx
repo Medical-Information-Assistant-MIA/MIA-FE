@@ -1,77 +1,22 @@
 import { useRouteMatch, Link } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery} from '@apollo/client';
+import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
+import { GET_CONDITION } from '../../gql-queries';
 import './ConditionPage.css';
-
-type MatchParams = {
-  id: string;
-}
-
-type Medication = {
-  id: number, 
-  name: string,
-  datePrescribed: string,
-  dosage: string,
-  frequency: string,
-  prescribedBy: string
-}
-
-type Doctor = {
-  id: number,
-  createdAt: string,
-  address: string,
-  category: string,
-  name: string,
-  phone: string
-}
-
-type HealthEvent = {
-  id: number,
-  date: string,
-  category: string,
-  note: string
-}
 
 const formatDate = (date: string) => {
   return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
 }
 
-
 export const ConditionPage = () => {
   const match = useRouteMatch<MatchParams>('/conditions/:id');
+  const paraId: any = match?.params.id;
+  const pId = parseInt(paraId);
 
-  const GET_CONDITION = gql`
-    query Condition {
-      condition(id: ${match?.params.id}) {
-        id
-        name
-        medications {
-          id
-          name
-          datePrescribed
-          dosage
-          frequency
-          prescribedBy
-        }  
-        doctors {
-          id
-          name
-          createdAt
-          phone
-          address
-          category
-        }
-        healthEvents {
-          id
-          date
-          note
-          category
-        }
-      }
-    }
-  `
-
-  const { loading, error, data } = useQuery(GET_CONDITION);
+  const { loading, error, data } = useQuery(GET_CONDITION, {
+    variables: { pId }
+  });
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error.message}</p>
 
@@ -90,7 +35,7 @@ export const ConditionPage = () => {
             <p>Frequency: {med.frequency}</p>
             <p>Prescribed By: {med.prescribedBy}</p>
           </div>
-        )
+        );
   }) : <p>No Medications Added</p>
 
   const docDisplay = doctors.length ? 
@@ -105,7 +50,7 @@ export const ConditionPage = () => {
             <p>{doc.address}</p>
             <p>{doc.phone}</p>
           </div>
-        )
+        );
   }) : <p>No Doctors Added</p>
 
   const formatEventCategory = (category: string) => {
@@ -145,5 +90,5 @@ export const ConditionPage = () => {
         <button className='submit-button go-back-btn'>Return To Dashnoard</button>
       </Link>
     </section>
-  )
+  );
 }

@@ -8,7 +8,6 @@ export const NavBar =  () => {
   const showLogOut = location.pathname !== '/' ? <button className='nav-btn go-back-btn'>Logout</button> : <button className='nav-btn go-back-btn hidden'>Logout</button>
   const logoRoute = location.pathname !== '/login' && location.pathname !== '/' ? <Link to='/user-dashboard'><img className='logo' src={require('../../Mia-logo.png')} alt='Mia: Medical Information Assistant' /></Link> : <Link to='/'><img className='logo' src={require('../../Mia-logo.png')} alt='Mia: Medical Information Assistant' /></Link>
   
-
   return (
     <nav className='nav-bar'>
       {logoRoute}

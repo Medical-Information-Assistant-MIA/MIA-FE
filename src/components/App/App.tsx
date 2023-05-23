@@ -1,35 +1,24 @@
 import { UserDashboard } from '../UserDashboard/UserDashboard';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { HomePage } from '../HomePage/HomePage';
 import { NavBar } from '../NavBar/NavBar';
 import { ConditionPage } from '../ConditionPage/ConditionPage';
 import { NewConditionPage } from '../NewConditionPage/NewConditionPage';
-import { Users } from '../../gql/graphql';
 import { ErrorPage } from '../ErrorPage/ErrorPage';
-import './App.css';
 import { LoginPage } from '../LoginPage/LoginPage';
+import { GET_USERS } from '../../gql-queries';
+import './App.css';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
 
-  const GET_USERS = gql`
-    query User {
-      user(id: ${userId}) {
-        id
-        name
-        conditions {
-          id
-          name
-          createdAt
-        } 
-      }
-    }
-  `
-  const { loading, error, data } = useQuery(GET_USERS);
+  const { loading, error, data } = useQuery(GET_USERS, {
+    variables: { userId }
+  });
   if (loading) return <p>Loading...</p>
-  if (error) return <ErrorPage />
+  if (error) return <ErrorPage error={error.message}/>
 
   return (
     <main>
@@ -40,7 +29,7 @@ export const App = () => {
         <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
         <Route exact path='/conditions/:id' render={({match}) => <ConditionPage key={match.params.id}/>} />
         <Route path='/add-condition' render={() => <NewConditionPage userId={userId} />} />
-        <Route exact path='/404' render={() => <ErrorPage /> } />
+        <Route exact path='/404' render={() => <ErrorPage error={'Whoops, This Page does not exist'}/> } />
         <Redirect from='*' to='/404'/>
       </Switch>
     </main>

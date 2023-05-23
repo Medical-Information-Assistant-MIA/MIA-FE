@@ -1,30 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { useHistory, Link } from 'react-router-dom';
+import { TitleFormProps } from '../../../types';
+import { CREATE_CONDITION } from '../../../gql-queries';
 import './TitleForm.css';
-
-type TitleFormProps = {
-  userId: number,
-  setConditionId: Function
-};
 
 export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   const [conditionName, setConditionName] = useState('');
   const history = useHistory();
-
-  const CREATE_CONDITION = gql`
-    mutation CreateCondition {
-      createCondition(input: {
-        name: "${conditionName}"
-        userId: ${userId}
-      }) {
-        condition {
-          id
-          name 
-        }
-      }
-    }
-  `;
 
   const [mutateFunction, { data, loading, error }] = useMutation(CREATE_CONDITION, {
     refetchQueries: [
@@ -47,7 +30,13 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
       <form onSubmit={async e => {
         e.preventDefault();
         try { 
-          await mutateFunction();
+          const input = {
+            name: conditionName,
+            userId: userId
+          }
+          await mutateFunction({
+            variables: { input }
+          });
         } catch(error) {
           return;
         }

@@ -1,14 +1,7 @@
-import './ConditionCard.css';
 import { Link } from 'react-router-dom';
 import { DateTime } from 'luxon';
-
-type ConditionProps = {
-  condition: {
-    id: number,
-    name: string,
-    createdAt: string
-  }
-}
+import { ConditionProps } from '../../../types';
+import './ConditionCard.css';
 
 const formatDate = (date: string) => {
   return DateTime.fromSQL(date).toLocaleString(DateTime.DATE_MED);
