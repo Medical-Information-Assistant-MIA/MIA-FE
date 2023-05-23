@@ -1,9 +1,12 @@
 import { useRouteMatch, Link } from 'react-router-dom';
-import { useQuery} from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
 import { GET_CONDITION } from '../../gql-queries';
 import './ConditionPage.css';
+import { MedicationDisplay } from './MedicationDisplay/MedicationDisplay';
+import { DoctorDisplay } from './DoctorDisplay/DoctorDisplay';
+import { HealthEventDisplay } from './HealthNoteDisplay/HealthNoteDisplay';
 
 const formatDate = (date: string) => {
   return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
@@ -28,15 +31,9 @@ export const ConditionPage = () => {
       .sort((a : Medication, b: Medication) => Date.parse(b.datePrescribed) - Date.parse(a.datePrescribed))
       .map((med: Medication) => {
         return (
-          <div key={med.id} className='condition-info'>
-            <p>Medication Name: {med.name}</p>
-            <p>Date Prescribed: {formatDate(med.datePrescribed)}</p>
-            <p>Dosage: {med.dosage}</p>
-            <p>Frequency: {med.frequency}</p>
-            <p>Prescribed By: {med.prescribedBy}</p>
-          </div>
+          <MedicationDisplay med={med} formatDate={formatDate}/>
         );
-  }) : <p>No Medications Added</p>
+      }) : <p>No Medications Added</p>
 
   const docDisplay = doctors.length ? 
     doctors
@@ -44,14 +41,9 @@ export const ConditionPage = () => {
       .sort((a: Doctor, b: Doctor) => Date.parse(b.createdAt) - Date.parse(a.createdAt)) 
       .map((doc: Doctor) => {
         return (
-          <div key={doc.id} className='condition-info'>
-            <p>{doc.name}</p>
-            <p>{doc.category}</p>
-            <p>{doc.address}</p>
-            <p>{doc.phone}</p>
-          </div>
+          <DoctorDisplay doc={doc}/>
         );
-  }) : <p>No Doctors Added</p>
+      }) : <p>No Doctors Added</p>
 
   const formatEventCategory = (category: string) => {
     return category.split('_').join(' ');
@@ -63,13 +55,9 @@ export const ConditionPage = () => {
       .sort((a: HealthEvent, b: HealthEvent) => Date.parse(b.date) - Date.parse(a.date))
       .map((event: HealthEvent) => {
         return (
-          <div key={event.id} className='condition-info'>
-            <p>Date: {formatDate(event.date)}</p>
-            <p>Category: {formatEventCategory(event.category)}</p>
-            <p>Note: {event.note}</p>
-          </div>
+          <HealthEventDisplay event={event} formatDate={formatDate} formatEventCategory={formatEventCategory}/>
         )
-  }) : <p>No Notes Added</p>
+      }) : <p>No Notes Added</p>
 
   return (
     <section className='condition-page nav-spacing'>

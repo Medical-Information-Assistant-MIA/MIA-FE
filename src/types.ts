@@ -70,3 +70,19 @@ export type TitleFormProps = {
 export type ErrorProps = {
   error: string
 }
+
+// Condition Display Component Props
+export type MedicationDisplayProps = {
+  med: Medication,
+  formatDate: Function
+}
+
+export type DoctorDisplayProps = {
+  doc: Doctor
+}
+
+export type HealthEventDisplayProps = {
+  event: HealthEvent,
+  formatDate: Function,
+  formatEventCategory: Function
+}
