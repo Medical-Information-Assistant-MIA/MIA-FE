@@ -32,22 +32,7 @@ describe('template spec', () => {
       const { body } = req
       if(req.body.operationName === 'CreateCondition') {
         req.alias = 'gqlCreateConditionMutation'
-        console.log('create condition')
         req.reply({fixture: 'create-condition-response.json'})
-          // (res) => {
-          
-          // console.log('res', res)
-          // res.body = {
-          //   "data": {
-          //       "createCondition":{
-          //         "condition": {
-          //           "id": 4,
-          //           "name": "Cold"
-          //         }
-          //       }
-          //   }
-          // }
-        // })
       }
     })
     
