@@ -19,7 +19,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
   });
 
   const handleClick = async () => {
-    const formIsDirty = Object.keys(doctorInfo).filter(Boolean).length;
+    const formIsDirty = Object.values(doctorInfo).filter(Boolean).length;
     if (formIsDirty) {
       try { 
         await mutateFunction();
