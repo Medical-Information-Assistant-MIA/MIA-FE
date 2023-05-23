@@ -13,7 +13,6 @@ describe('template spec', () => {
         req.reply({fixture: 'create-condition-response.json'})
       } else if (req.body.operationName === 'CreateMedication') {
         aliasMutation(req, 'CreateMedication')
-        req.reply({fixture: 'create-condition-response.json'})
       } else if (req.body.operationName === 'CreateDoctor') {
         aliasMutation(req, 'CreateDoctor')
         req.reply({fixture: 'create-doctor-fixture.json'})
@@ -31,7 +30,7 @@ describe('template spec', () => {
   })
 
   it('Should add a new condition by title', () => {
-    cy.get('input').type('Cold')
+    cy.get('[type="text"]').type('Cold')
     .get('form > .submit-button').click()
     .url().should('include', '/add-medication')
   })
@@ -52,9 +51,9 @@ describe('template spec', () => {
     .get(':nth-child(4) > input').type('Twice a day')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
-      if(req.body.operationName === 'User') {
-        req.alias = 'gqlUserQuery'
-        req.reply({fixture: 'user-fixture-2.json'})
+      if(req.body.operationName === 'CreateMediciation') {
+        req.alias = 'gqlCreateMediciationQuery'
+        req.reply({fixture: 'create-medication-response.json'})
       }
     })
     .get('.med-form > .submit-button').click()
