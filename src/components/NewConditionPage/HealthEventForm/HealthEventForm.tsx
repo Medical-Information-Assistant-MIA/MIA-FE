@@ -16,7 +16,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   });
 
   const handleClick = async() => {
-    const formIsDirty = Object.keys(eventObj).filter(Boolean).length;
+    const formIsDirty = Object.values(eventObj).filter(Boolean).length > 0;
     if (formIsDirty) {
       try { 
         await mutateFunction();
@@ -52,6 +52,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
+  const mutateErrors = data?.createHealthEvent.errors;
 
   return (
     <section className='condition-form'>
