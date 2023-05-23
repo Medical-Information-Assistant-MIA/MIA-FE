@@ -15,7 +15,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     frequency: '',
     prescribedBy: ''
   });
-
+  const [success, setSuccess] = useState(false);
   
   const handleClick = async () => {
     const formIsDirty = Object.values(medObj).filter(Boolean).length;
@@ -78,6 +78,8 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
           frequency: '',
           prescribedBy: ''
         });
+        setSuccess(true);
+        setTimeout(setSuccess, 4000, false);
       }}>
         <label className='med-label'>
           What is your medication name?
@@ -124,11 +126,12 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
             placeholder='Prescribed by'
             onChange={e => setMedObj({...medObj, [e.target.name]: e.target.value })}/>
         </label>
-        <button className='submit-button' type='submit' >Add New Medication</button>
+        <button className='submit-button' type='submit' >Add Another Medication</button>
       </form>
       <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to Doctor form</button>
         {loading ? <p>Loading...</p> : null}
         {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
+        {success ? <p>Your medication was successfully added, you can now add another one.</p> : null}
     </section>
   );
 }

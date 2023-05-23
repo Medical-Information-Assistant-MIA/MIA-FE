@@ -15,6 +15,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
     address: '',
     category: ''
   });
+  const [success, setSuccess] = useState(false);
 
   const handleClick = async () => {
     const formIsDirty = Object.values(doctorInfo).filter(Boolean).length;
@@ -67,7 +68,10 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
           name: '',
           phone: '',
           address: '',
-          category: ''});
+          category: ''
+        });
+        setSuccess(true);
+        setTimeout(setSuccess, 4000, false);
       }}>
         <div>
           <label>
@@ -113,9 +117,10 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
-      <button className='submit-button' type='button' onClick={handleClick}>Go to health events</button>
+      <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to health events</button>
       {loading ? <p>Loading...</p> : null}
       {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
+      {success ? <p>Your doctor was successfully added, you can now add another one.</p> : null}
     </section>
   );
 }
