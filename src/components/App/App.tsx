@@ -1,6 +1,6 @@
 import { UserDashboard } from '../UserDashboard/UserDashboard';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { useState } from 'react';
 import { HomePage } from '../HomePage/HomePage';
 import { NavBar } from '../NavBar/NavBar';

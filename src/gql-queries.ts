@@ -45,6 +45,49 @@ export const GET_CONDITION = gql`
   }
 `;
 
+export const CREATE_CONDITION = gql`
+mutation CreateCondition($input: CreateConditionInput!) {
+  createCondition(input: $input) {
+    condition {
+      id
+      name 
+    }
+  }
+}
+`;
+
+export const CREATE_MEDICATION = gql`
+mutation CreateMedication($input: CreateMedicationInput!){
+  createMedication(input: $input) {
+    medication {
+        id
+        conditionId
+        name
+        datePrescribed
+        dosage
+        frequency
+        prescribedBy
+    }
+  errors
+  }
+}
+`;
+
+export const CREATE_DOCTOR = gql`
+    mutation CreateDoctor($input: CreateDoctorInput!) {
+      createDoctor(input: $input) {
+        doctor {
+          id
+          name
+          phone
+          address
+          category
+        }
+        errors
+      }
+    }
+  `;
+
 export const CREATE_NOTE = gql `
   mutation CreateHealthEvent($input: CreateHealthEventInput!) {
     createHealthEvent(input: $input){

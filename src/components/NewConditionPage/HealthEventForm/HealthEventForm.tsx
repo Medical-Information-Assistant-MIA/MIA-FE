@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { NewEventProps } from '../../../types';
 import './HealthEventForm.css';
 import { CREATE_NOTE } from '../../../gql-queries';
@@ -17,7 +17,15 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     const formIsDirty = Object.values(eventObj).filter(Boolean).length > 0;
     if (formIsDirty) {
       try { 
-        const data = await mutateFunction();
+        const input = {
+          conditionId: conditionId,
+          note: eventObj.note,
+          date: eventObj.date,
+          category: eventObj.category
+        }
+        const data = await mutateFunction({
+          variables: { input },
+        })
         if (data?.data?.createHealthEvent.errors.length) {
           return;
         }
@@ -32,20 +40,6 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     }
     history.push('/user-dashboard');
   }
-
-  // const CREATE_NOTE = gql `
-  //   mutation CreateHealthEvent($input: CreateHealthEventInput!) {
-  //     createHealthEvent(input: $input) {
-  //       healthEvent {
-  //         id
-  //         note
-  //         date
-  //         category
-  //       }
-  //       errors
-  //     }
-  //   }
-  // `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
   const mutateErrors = data?.createHealthEvent.errors;
