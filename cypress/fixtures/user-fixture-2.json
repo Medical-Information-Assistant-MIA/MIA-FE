@@ -140,6 +140,10 @@
                           "category": "general_note"
                       }
                   ]
+              },
+              {
+                "name": "Cold",
+                "id": 4
               }
           ]
       }
