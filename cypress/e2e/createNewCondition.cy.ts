@@ -19,15 +19,12 @@ describe('template spec', () => {
   it('Should add a new condition by title', () => {
     cy.get('input').type('Cold')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      if(req.body.query.includes('createCondition')) {
-        req.reply({"body": {"data": {
-          "createCondition": {
-            "id": 4,
-            "name": "Cold"
-          }
-        }}})
-      }
+      console.log(req.body)
+      aliasQuery(req, 'User')
+      aliasMutation(req, 'CreateCondition')
     })
-    .get('.submit-button').click()
+    
+    cy.get('form > .submit-button').click()
+    .url().should('include', '/add-medication')
   })
 })

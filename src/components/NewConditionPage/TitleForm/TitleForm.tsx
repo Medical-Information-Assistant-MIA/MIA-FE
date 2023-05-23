@@ -13,7 +13,7 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
   const history = useHistory();
 
   const CREATE_CONDITION = gql`
-    mutation {
+    mutation CreateCondition {
       createCondition(input: {
         name: "${conditionName}"
         userId: ${userId}
