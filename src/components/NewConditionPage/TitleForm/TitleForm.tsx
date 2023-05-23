@@ -64,12 +64,12 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
             onChange={e => setConditionName(e.target.value)}/>
         </label>
         <button className='submit-button' type='submit'>Submit condition</button>
-          {loading ? <p>Loading...</p> : null}
-          {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
       </form>
       <Link to='/user-dashboard'>
         <button className='submit-button go-back-btn' type='submit'>Go Back</button>
       </Link>
+      {loading ? <p>Loading...</p> : null}
+      {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
     </section>
   );
 }

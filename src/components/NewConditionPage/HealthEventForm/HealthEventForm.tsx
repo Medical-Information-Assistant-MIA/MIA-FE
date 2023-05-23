@@ -19,7 +19,10 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     const formIsDirty = Object.values(eventObj).filter(Boolean).length > 0;
     if (formIsDirty) {
       try { 
-        await mutateFunction();
+        const data = await mutateFunction();
+        if (data?.data?.createHealthEvent.errors.length) {
+          return;
+        }
       } catch(error) {
         return;
       }
@@ -58,9 +61,12 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     <section className='condition-form'>
       <h3>Add a health event</h3>
       <form onSubmit={async e => {
-        e.preventDefault()
+        e.preventDefault();
         try { 
-          await mutateFunction();
+          const data = await mutateFunction();
+          if (data?.data?.createHealthEvent.errors.length) {
+            return;
+          }
         } catch(error) {
           return;
         }
@@ -75,7 +81,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
           Select the event type:
           <select 
             value={eventObj.category} 
-            name='category' 
+            name='category'
             onChange={e => setEventObj({...eventObj, [e.target.name]: e.target.value })}>
             <option disabled value=''>select the event type</option>
             <option value='symptom'>Symptom</option>
@@ -88,7 +94,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
           <input 
             type='date' 
             value={eventObj.date} 
-            name='date' 
+            name='date'
             onChange={e => setEventObj({...eventObj, [e.target.name]: e.target.value })} />
         </label>
         <label>
@@ -96,7 +102,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
           <input 
             value={eventObj.note} 
             type='input' 
-            name='note' 
+            name='note'
             onChange={e => setEventObj({...eventObj, [e.target.name]: e.target.value })} />
         </label>
         <button className='submit-button'>Add New Note</button>
@@ -104,6 +110,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
       <button className='submit-button' type='button' onClick={handleClick}>Finish and Return to Dash</button>
       {loading ? <p>Loading...</p> : null}
       {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
+      {mutateErrors?.length ? <p>Please fill out all fields</p> : null}
     </section>
   );
 }
