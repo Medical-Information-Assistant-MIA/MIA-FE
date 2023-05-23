@@ -3,13 +3,17 @@ import { useQuery } from '@apollo/client';
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
 import { GET_CONDITION } from '../../gql-queries';
-import './ConditionPage.css';
 import { MedicationDisplay } from './MedicationDisplay/MedicationDisplay';
 import { DoctorDisplay } from './DoctorDisplay/DoctorDisplay';
 import { HealthEventDisplay } from './HealthNoteDisplay/HealthNoteDisplay';
+import './ConditionPage.css';
 
 const formatDate = (date: string) => {
   return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
+}
+
+const formatEventCategory = (category: string) => {
+  return category.split('_').join(' ');
 }
 
 export const ConditionPage = () => {
@@ -31,7 +35,7 @@ export const ConditionPage = () => {
       .sort((a : Medication, b: Medication) => Date.parse(b.datePrescribed) - Date.parse(a.datePrescribed))
       .map((med: Medication) => {
         return (
-          <MedicationDisplay med={med} formatDate={formatDate}/>
+          <MedicationDisplay key={med.id} med={med} formatDate={formatDate}/>
         );
       }) : <p>No Medications Added</p>
 
@@ -41,13 +45,9 @@ export const ConditionPage = () => {
       .sort((a: Doctor, b: Doctor) => Date.parse(b.createdAt) - Date.parse(a.createdAt)) 
       .map((doc: Doctor) => {
         return (
-          <DoctorDisplay doc={doc}/>
+          <DoctorDisplay key={doc.id} doc={doc}/>
         );
       }) : <p>No Doctors Added</p>
-
-  const formatEventCategory = (category: string) => {
-    return category.split('_').join(' ');
-  }
 
   const healthEventDisplay = healthEvents.length ? 
     healthEvents
@@ -55,7 +55,7 @@ export const ConditionPage = () => {
       .sort((a: HealthEvent, b: HealthEvent) => Date.parse(b.date) - Date.parse(a.date))
       .map((event: HealthEvent) => {
         return (
-          <HealthEventDisplay event={event} formatDate={formatDate} formatEventCategory={formatEventCategory}/>
+          <HealthEventDisplay key={event.id} event={event} formatDate={formatDate} formatEventCategory={formatEventCategory}/>
         )
       }) : <p>No Notes Added</p>
 
@@ -63,19 +63,28 @@ export const ConditionPage = () => {
     <section className='condition-page nav-spacing'>
       <h2>{name}</h2>
       <h3 className='condition-heading'>Medications</h3>
+      <button className='add-new-button'>
+        <span className="material-symbols-outlined">add_circle</span>
+      </button>
       <div className='info-block'>
         {medDisplay}
       </div>
       <h3 className='condition-heading'>Doctors</h3>
+      <button className='add-new-button'>
+        <span className="material-symbols-outlined">add_circle</span>
+      </button>
       <div className='info-block'>
         {docDisplay}
       </div>
       <h3 className='condition-heading'>Health Events</h3>
+      <button className='add-new-button'>
+        <span className="material-symbols-outlined">add_circle</span>
+      </button>
       <div className='info-block'>
         {healthEventDisplay}
       </div>
       <Link to='/user-dashboard'>
-        <button className='submit-button go-back-btn'>Return To Dashnoard</button>
+        <button className='submit-button go-back-btn'>Return To Dashboard</button>
       </Link>
     </section>
   );

@@ -2,7 +2,7 @@ import { MedicationDisplayProps } from '../../../types';
 
 export const MedicationDisplay = ({med, formatDate}: MedicationDisplayProps) => {
   return (
-    <div key={med.id} className='condition-info'>
+    <div className='condition-info'>
       <p>Medication Name: {med.name}</p>
       <p>Date Prescribed: {formatDate(med.datePrescribed)}</p>
       <p>Dosage: {med.dosage}</p>
