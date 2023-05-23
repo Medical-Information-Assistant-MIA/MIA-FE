@@ -143,7 +143,37 @@
               },
               {
                 "name": "Cold",
-                "id": 4
+                "id": 4,
+                "createdAt": "May 22, 2023",
+                "medications": [
+                  {
+                    "id": "1",
+                    "conditionId": "4",
+                    "name": "Dayquil",
+                    "datePrescribed": "2023-05-22",
+                    "dosage": null,
+                    "frequency": "Twice a day",
+                    "prescribedBy": null
+                  }
+                ],
+                "doctors": [
+                   {
+                    "id": 1,
+                    "name": "Doctor Who",
+                    "phone": "1234",
+                    "address": "Tards",
+                    "category": "Any",
+                    "conditionId": 4
+                  }
+                ],
+                "healthEvents": [
+                  {
+                    "id": 1,
+                    "note": "Cold started",
+                    "date": "2023-05-22",
+                    "category": "general_note"
+                  }
+                ]
               }
           ]
       }
