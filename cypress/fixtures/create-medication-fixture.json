@@ -1,0 +1,15 @@
+{
+  "data": {
+      "createMedication": {
+          "Medication":{
+              "id": "1",
+              "conditionId": "4",
+              "name": "Dayquil",
+              "datePrescribed": "2023-05-22",
+              "dosage": null,
+              "frequency": "Twice a day",
+              "prescribedBy": null
+          }
+      }
+  }
+}

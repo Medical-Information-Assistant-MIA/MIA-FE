@@ -1,0 +1,10 @@
+{
+  "operationName": "CreateCondition",
+  "variables": {
+      "input": {
+          "name": "Cold",
+          "userId": 1
+      }
+  },
+  "query": "mutation CreateCondition($input: CreateConditionInput!) {\n  createCondition(input: $input) {\n    condition {\n      id\n      name\n      __typename\n    }\n    __typename\n  }\n}"
+}

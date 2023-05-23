@@ -1,0 +1,15 @@
+{
+  "data": {
+      "createDoctor": {
+          "doctor": {
+              "id": 1,
+              "name": "Doctor Who",
+              "phone": "1234",
+              "address": "Tards",
+              "category": "Any",
+              "conditionId": 4
+          },
+          "errors": []
+      }
+  }
+}

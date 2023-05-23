@@ -1,0 +1,13 @@
+{
+  "data": {
+    "createHealthEvent": {
+      "healthEvent": {
+        "id": 1,
+        "note": "Cold started",
+        "date": "2023-05-22",
+        "category": "general_note"
+      },
+      "errors": []
+    }
+  }
+}
