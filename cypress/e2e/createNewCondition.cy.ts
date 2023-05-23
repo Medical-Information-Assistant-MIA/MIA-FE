@@ -10,12 +10,16 @@ describe('template spec', () => {
         })
       } else if (req.body.operationName === 'CreateCondition') {
         aliasMutation(req, 'CreateCondition')
+        req.reply({fixture: 'create-condition-response.json'})
       } else if (req.body.operationName === 'CreateMedication') {
         aliasMutation(req, 'CreateMedication')
+        req.reply({fixture: 'create-condition-response.json'})
       } else if (req.body.operationName === 'CreateDoctor') {
         aliasMutation(req, 'CreateDoctor')
+        req.reply({fixture: 'create-doctor-fixture.json'})
       } else if (req.body.operationName === 'CreateHealthEvent') {
         aliasMutation(req, 'CreateHealthEvent')
+        req.reply({fixture: 'create-event-fixture.json'})
       }
     })
     .visit('http://localhost:3000/')
@@ -28,15 +32,7 @@ describe('template spec', () => {
 
   it('Should add a new condition by title', () => {
     cy.get('input').type('Cold')
-    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      const { body } = req
-      if(req.body.operationName === 'CreateCondition') {
-        req.alias = 'gqlCreateConditionMutation'
-        req.reply({fixture: 'create-condition-response.json'})
-      }
-    })
-    
-    cy.get('form > .submit-button').click()
+    .get('form > .submit-button').click()
     .url().should('include', '/add-medication')
   })
 
@@ -44,10 +40,7 @@ describe('template spec', () => {
     cy.get('input').type('Cold')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
-      if(req.body.operationName === 'CreateCondition') {
-        req.alias = 'gqlCreateConditionMutation'
-        req.reply({fixture: 'create-condition-response.json'})
-      } else if (req.body.operationName === 'User') {
+      if(req.body.operationName === 'User') {
         req.alias = 'User'
         req.reply({fixture: 'user-fixture-2.json'})
       }
@@ -59,10 +52,7 @@ describe('template spec', () => {
     .get(':nth-child(4) > input').type('Twice a day')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
-      if(req.body.operationName === 'CreateMedication') {
-        req.alias = 'gqlCreateMedicationMutation'
-        req.reply({fixture: 'create-medication-fixture.json'})
-      } else if (req.body.operationName === 'User') {
+      if(req.body.operationName === 'User') {
         req.alias = 'gqlUserQuery'
         req.reply({fixture: 'user-fixture-2.json'})
       }
@@ -75,13 +65,6 @@ describe('template spec', () => {
     .get(':nth-child(2) > input').type('1234')
     .get(':nth-child(3) > input').type('Tardis')
     .get(':nth-child(4) > input').type('Any')
-    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      const { body } = req
-      if(req.body.operationName === 'CreateDoctor') {
-        req.alias = 'gqlCreateDoctorMutation'
-        req.reply({fixture: 'create-doctor-fixture.json'})
-      }
-    })
     .get('form > .submit-button').click()
     .get('[type="button"]').click()
     .url().should('include', '/add-health-event')
@@ -89,13 +72,6 @@ describe('template spec', () => {
     cy.get('select').select('general_note')
     .get(':nth-child(3) > input').type('2023-05-22')
     .get(':nth-child(4) > input').type('Cold started')
-    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      const { body } = req
-      if(req.body.operationName === 'CreateHealthEvent') {
-        req.alias = 'gqlCreateHealthEventMutation'
-        req.reply({fixture: 'create-event-fixture.json'})
-      }
-    })
     .get('form > .submit-button').click()
     .get('[type="button"]').click()
 

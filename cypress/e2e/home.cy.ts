@@ -31,5 +31,6 @@ describe('template spec', () => {
     .get('[type="text"]').type('1')
     .get('[type="password"]').type('mia123')
     .get('.submit-button').click()
+    .url().should('contain', '/user-dashboard')
   })
 })
