@@ -15,32 +15,46 @@ export const GET_USERS = gql`
 `;
 
 export const GET_CONDITION = gql`
-    query Condition($pId: Int!) {
-      condition(id: $pId) {
+  query Condition($pId: Int!) {
+    condition(id: $pId) {
+      id
+      name
+      medications {
         id
         name
-        medications {
-          id
-          name
-          datePrescribed
-          dosage
-          frequency
-          prescribedBy
-        }  
-        doctors {
-          id
-          name
-          createdAt
-          phone
-          address
-          category
-        }
-        healthEvents {
-          id
-          date
-          note
-          category
-        }
+        datePrescribed
+        dosage
+        frequency
+        prescribedBy
+      }  
+      doctors {
+        id
+        name
+        createdAt
+        phone
+        address
+        category
+      }
+      healthEvents {
+        id
+        date
+        note
+        category
       }
     }
-  `;
+  }
+`;
+
+export const CREATE_NOTE = gql `
+  mutation CreateHealthEvent($input: CreateHealthEventInput!) {
+    createHealthEvent(input: $input){
+      healthEvent {
+        id
+        note
+        date
+        category
+      }
+      errors
+    }
+  }
+`;

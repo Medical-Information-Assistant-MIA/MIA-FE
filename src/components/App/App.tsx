@@ -13,14 +13,12 @@ import './App.css';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
-  console.log('userId',userId)
 
   const { loading, error, data } = useQuery(GET_USERS, {
     variables: { userId }
   });
   if (loading) return <p>Loading...</p>
   if (error) return <ErrorPage error={error.message}/>
-  console.log('data',data)
 
   return (
     <main>

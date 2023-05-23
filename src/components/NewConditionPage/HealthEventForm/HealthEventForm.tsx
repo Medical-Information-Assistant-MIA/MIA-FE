@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
 import { NewEventProps } from '../../../types';
 import './HealthEventForm.css';
+import { CREATE_NOTE } from '../../../gql-queries';
 
 export const HealthEventForm = ({conditionId}: NewEventProps) => {
   const history = useHistory();
@@ -29,37 +30,43 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     history.push('/user-dashboard');
   }
 
-  const CREATE_NOTE = gql `
-    mutation {
-      createHealthEvent(input: {
-        conditionId: ${conditionId},
-        note: "${eventObj.note}",
-        date: "${eventObj.date}",
-        category: "${eventObj.category}"
-      }) {
-        healthEvent {
-          id
-          note
-          date
-          category
-        }
-        errors
-      }
-    }
-  `;
+  // const CREATE_NOTE = gql `
+  //   mutation CreateHealthEvent($input: CreateHealthEventInput!) {
+  //     createHealthEvent(input: $input) {
+  //       healthEvent {
+  //         id
+  //         note
+  //         date
+  //         category
+  //       }
+  //       errors
+  //     }
+  //   }
+  // `;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
+
+  // onCompleted instead of async
+  // fetchPolicy: "no-cache",
 
   return (
     <section className='condition-form'>
       <h3>Add a health event</h3>
       <form onSubmit={async e => {
         e.preventDefault()
-        try { 
-          await mutateFunction();
-        } catch(error) {
-          return;
-        }
+        // try { 
+          const input = {
+            conditionId: conditionId,
+            note: eventObj.note,
+            date: eventObj.date,
+            category: eventObj.category
+          }
+           mutateFunction({
+            variables: { input },
+          });
+        // } catch(error) {
+        //   return;
+        // }
         setEventObj({
           category: '',
           date: '',
