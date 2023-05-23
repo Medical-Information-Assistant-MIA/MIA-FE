@@ -8,7 +8,7 @@ describe('template spec', () => {
         fixture: 'user-fixture.json'
       })
     })
-    .visit('http://localhost:3000/')
+    .visit('https://mia-fe.vercel.app/')
     cy.get('.submit-button').click()
     .get('[type="text"]').type('1')
     .get('[type="password"]').type('mia123')

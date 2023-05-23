@@ -8,7 +8,7 @@ describe('template spec', () => {
         fixture: 'user-fixture.json'
       })
     })
-    .visit('http://localhost:3000/')
+    .visit('https://mia-fe.vercel.app/')
   })
 
   it('Should get a user', () => {
