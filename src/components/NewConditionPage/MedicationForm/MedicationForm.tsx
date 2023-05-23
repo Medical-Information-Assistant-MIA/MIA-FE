@@ -3,6 +3,7 @@ import { useMutation, gql } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 import { NewMedicationProps } from '../../../types';
 import { CREATE_MEDICATION } from '../../../gql-queries';
+import { DateTime } from 'luxon';
 import './MedicationForm.css';
 
 export const MedicationForm = ({conditionId}: NewMedicationProps) => {
@@ -44,6 +45,8 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     }
     history.push('/add-condition/add-doctor');
   }
+
+  const currentDate = DateTime.now().toISODate() as string
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
   if (!conditionId) return (<p>Loading...</p>);
@@ -91,6 +94,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
             type='date'
             value={medObj.datePrescribed}
             name='datePrescribed'
+            max={currentDate}
             onChange={e => setMedObj({...medObj, [e.target.name]: e.target.value })}/>
         </label>
         <label className='med-label'>
