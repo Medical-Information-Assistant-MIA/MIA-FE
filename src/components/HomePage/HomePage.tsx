@@ -1,12 +1,5 @@
-import { Link } from 'react-router-dom'
-import './HomePage.css'
-import { useQuery, gql } from '@apollo/client';
-import { useState, useEffect } from 'react';
-import { Users } from '../../gql/graphql';
-// import { Users } from '../../gql/graphql'
-// type HomeProps = {
-//   DisplayUser: string | Users
-// }
+import { Link } from 'react-router-dom';
+import './HomePage.css';
 
 export const HomePage = () => {
     return (
@@ -17,5 +10,5 @@ export const HomePage = () => {
         </div>
         <Link to='/login'><button className='submit-button'>Login</button></Link>
       </section>
-    )
+    );
 }

@@ -1,13 +1,11 @@
 import { useState } from 'react';
-
-
 import { useHistory } from 'react-router-dom';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { NewDoctorProps } from '../../../types';
+import { CREATE_DOCTOR } from '../../../gql-queries';
 import './DoctorForm.css';
 
-type NewDoctorProps = {
-  conditionId: number
-}
+
 
 export const DoctorForm = ({conditionId}: NewDoctorProps) => {
   const history = useHistory();
@@ -22,7 +20,16 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
     const formIsDirty = Object.values(doctorInfo).filter(Boolean).length;
     if (formIsDirty) {
       try { 
-        await mutateFunction();
+        const input = {
+          name: doctorInfo.name,
+          conditionId: conditionId,
+          phone: doctorInfo.phone,
+          address: doctorInfo.address,
+          category: doctorInfo.category
+        }
+        await mutateFunction({
+          variables: { input }
+        });
       } catch(error) {
         return;
       }
@@ -35,27 +42,6 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
     history.push('/add-condition/add-health-event');
   }
 
-  const CREATE_DOCTOR = gql`
-    mutation {
-      createDoctor(input:{
-        name: "${doctorInfo.name}",
-        conditionId: ${conditionId},
-        phone: "${doctorInfo.phone}",
-        address: "${doctorInfo.address}",
-        category: "${doctorInfo.category}"
-      }) {
-        doctor {
-          id
-          name
-          phone
-          address
-          category
-        }
-        errors
-      }
-    }
-  `;
-
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR);
   
   return (
@@ -64,7 +50,16 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
       <form onSubmit={async e => {
         e.preventDefault();
         try { 
-          await mutateFunction();
+          const input = {
+            name: doctorInfo.name,
+            conditionId: conditionId,
+            phone: doctorInfo.phone,
+            address: doctorInfo.address,
+            category: doctorInfo.category
+          }
+          await mutateFunction({
+            variables: { input }
+          });
         } catch(error) {
           return;
         }

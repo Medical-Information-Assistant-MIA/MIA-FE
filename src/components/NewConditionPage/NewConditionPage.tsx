@@ -1,14 +1,12 @@
-import { DoctorForm } from './DoctorForm/DoctorForm'
-import { HealthEventForm } from './HealthEventForm/HealthEventForm'
-import { MedicationForm } from './MedicationForm/MedicationForm'
-import './NewConditionPage.css'
-import { Route, Switch } from 'react-router-dom'
-import { TitleForm } from './TitleForm/TitleForm'
-import { useState } from 'react'
+import { DoctorForm } from './DoctorForm/DoctorForm';
+import { HealthEventForm } from './HealthEventForm/HealthEventForm';
+import { MedicationForm } from './MedicationForm/MedicationForm';
+import { Route, Switch } from 'react-router-dom';
+import { TitleForm } from './TitleForm/TitleForm';
+import { useState } from 'react';
+import { NewConditionProps } from '../../types';
+import './NewConditionPage.css';
 
-type NewConditionProps = {
-  userId: number,
-}
 
 export const NewConditionPage = ({ userId }: NewConditionProps) => {
   const [conditionId, setConditionId] = useState(0)
