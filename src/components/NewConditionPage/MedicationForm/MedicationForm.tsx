@@ -29,9 +29,12 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
           frequency: medObj.frequency,
           prescribedBy: medObj.prescribedBy
         }
-        await mutateFunction({
+        const data = await mutateFunction({
           variables: { input }
         });
+        if (data?.data?.createMedication.errors.length) {
+          return;
+        }
       } catch(error) {
         return;
       }
@@ -49,6 +52,8 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
   const currentDate = DateTime.now().toISODate() as string
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
+  const mutateErrors = data?.createMedication?.errors;
+
   if (!conditionId) return (<p>Loading...</p>);
 
   return (
@@ -65,9 +70,12 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
             frequency: medObj.frequency,
             prescribedBy: medObj.prescribedBy
           }
-          await mutateFunction({
+          const data = await mutateFunction({
             variables: { input }
           });
+          if (data?.data?.createMedication.errors.length) {
+            return;
+          }
         } catch(error) {
           return;
         }
@@ -131,6 +139,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
       <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to Doctor form</button>
         {loading ? <p>Loading...</p> : null}
         {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
+        {mutateErrors?.length ? <p>{mutateErrors}</p> : null}
         {success ? <p>Your medication was successfully added, you can now add another one.</p> : null}
     </section>
   );
