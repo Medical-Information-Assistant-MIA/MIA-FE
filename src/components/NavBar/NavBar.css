@@ -24,16 +24,21 @@
 }
 
 .nav-btn {
-  border: var(--border) var(--color-3);
+  border: var(--border) var(--border-color);
   border-radius: var(--border-radius);
+  margin: 10px;
   min-width: 110px;
   width: 8vw;
-  margin: 1%;
   height: 3vh;
-  min-height: 25px;
+  min-height: 60px;
   font-weight: bold;
-  background-color: var(--color-3-light);
+  background-color: var(--nav-btn);
   transition: 0.5s;
-  cursor: pointer;
+}
+
+.nav-btn:hover {
+  scale: 1.08;
+  background-color: var(--border-color);
+  color: var(--nav-color);
 }
 

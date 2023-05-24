@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { UserID } from '../../types';
 import './LoginPage.css';
-
 
 export const LoginPage = ({setUserId}: UserID) =>  {
   const [username, setUsername] = useState('');
@@ -32,6 +31,7 @@ export const LoginPage = ({setUserId}: UserID) =>  {
           <input type='password' value={password} name='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)} />
           <button type='submit' className='submit-button'>Login</button>
         </form>
+        <Link to='/'><button className='nav-btn'>Exit</button></Link>
         {error ? (<p>Incorrect login, please try again.</p>) : null}
       </section>
     </div>

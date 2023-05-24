@@ -18,13 +18,3 @@ label {
 input {
   font-size: large;
 }
-
-.go-back-btn {
-  border: var(--border) var(--border-color) !important;
-  background-color: var(--nav-btn) !important;
-}
-
-.go-back-btn:hover {
-  background-color: var(--border-color) !important;
-  color: var(--nav-color);
-}

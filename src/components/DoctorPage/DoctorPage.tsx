@@ -12,7 +12,7 @@ export const DoctorPage = ({user}: DoctorPageProps) => {
   if (loading) return (<h1 className='nav-spacing doctor-page'>Loading...</h1>);
   if (error) return (<h1 className='nav-spacing doctor-page'>{error.message}</h1>);
 
-  const docsDisp = data.userDoctors.map((doc: Doctor)=> {
+  const docsDisp = data?.userDoctors?.map((doc: Doctor)=> {
     return (
       <div key={doc.id} className='doc-card'>
         <h2>{doc.name}</h2>
@@ -23,11 +23,13 @@ export const DoctorPage = ({user}: DoctorPageProps) => {
     );
   });
 
+  console.log(data)
+
   return (
     <section className='nav-spacing doctor-page'>
       <h1>Your Doctors</h1>
       <div className='doc-card-container'>
-        {docsDisp}
+        {docsDisp.length ? docsDisp : <h2>You have no doctors</h2>}
       </div>
     </section>
   );

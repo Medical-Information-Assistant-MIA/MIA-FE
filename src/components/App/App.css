@@ -17,25 +17,6 @@ button {
   height: 100%;
 }
 
-.submit-button {
-  border: var(--border) var(--color-3);
-  border-radius: var(--border-radius);
-  min-width: 150px;
-  width: 10vw;
-  margin: 1%;
-  height: 5vh;
-  min-height: 30px;
-  font-weight: bold;
-  background-color: var(--color-3-light);
-  transition: 0.5s;
-  cursor: pointer;
-}
-
-.submit-button:hover {
-  scale: 1.1;
-  background-color: var(--color-3);
-}
-
 .hidden {
   display: none;
 }

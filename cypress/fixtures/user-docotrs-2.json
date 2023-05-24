@@ -1,0 +1,24 @@
+{
+  "data": {
+    "userDoctors": [
+      {
+        "name": "Dr. Jay Garrick",
+        "address": "Suite 931 136 Kuvalis Gardens, Robinchester, MT 93675",
+        "phone": "948.251.3542",
+        "category": "Dermatologist"
+      },
+      {
+        "name": "Dr. Bart Allen",
+        "address": "3048 Satterfield Burgs, Paucekstad, RI 70555-5377",
+        "phone": "1-748-749-6811 x38210",
+        "category": "Endocrinologist"
+      },
+      {
+        "name": "Dr. Dick Grayson",
+        "address": "8844 Hayden Well, Daltonhaven, MD 19036",
+        "phone": "111.980.8922 x355",
+        "category": "Primary Care"
+      }
+    ]
+  }
+}
