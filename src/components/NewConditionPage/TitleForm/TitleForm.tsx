@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
 import { useHistory, Link } from 'react-router-dom';
-import { TitleFormProps } from '../../../types';
+import { useMutation } from '@apollo/client';
 import { CREATE_CONDITION } from '../../../gql-queries';
+import { TitleFormProps } from '../../../types';
 import './TitleForm.css';
 
 export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
@@ -57,8 +57,8 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
       <Link to='/user-dashboard'>
         <button className='submit-button go-back-btn' type='submit'>Go Back</button>
       </Link>
-      {loading ? <p>Loading...</p> : null}
-      {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
+      {loading ? (<p>Loading...</p>) : null}
+      {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
     </section>
   );
 }

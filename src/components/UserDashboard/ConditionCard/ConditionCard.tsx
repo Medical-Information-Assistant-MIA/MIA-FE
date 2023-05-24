@@ -7,14 +7,13 @@ const formatDate = (date: string) => {
   return DateTime.fromSQL(date).toLocaleString(DateTime.DATE_MED);
 }
 
-
 export const ConditionCard = ({condition}: ConditionProps) => {
   return (
     <Link to={`/conditions/${condition.id}`}>
       <div className='condition-card'>
-        <p>{condition.name}</p>
+        <h3>{condition.name}</h3>
         <p>Added on {formatDate(condition.createdAt)}</p>
       </div>
     </Link>
-  )
+  );
 }
