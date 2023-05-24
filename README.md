@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# [Mia (Medical Information Assisstant)](https://mia-fe.vercel.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Abstract:
+[//]: <>
 
-## Available Scripts
+Mia simplifies your healthcare journey by consolidating all your vital medical information in one place. Keep track of conditions, medications, doctors, and health events effortlessly. Access a centralized doctor directory. Maintain a personal health log to record important events and notes. Take control of your health with Mia.
 
-In the project directory, you can run:
+## Built With: 
+[//]: <>
 
-### `npm start`
+TypeScript, React, Graphql. Tested with Cypress.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Contributors:
+[//]: <>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+[Sophie Labelle](https://github.com/sophielabelle) \
+[Kass Daniello](https://github.com/Zertroz) \
+[Amber Shipley](https://github.com/espressoGoddess) 
 
-### `npm test`
+[//]: <>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation Instructions:
+[//]: <>
 
-### `npm run build`
+1. Clone down this repo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Install dependencies by using ‘npm install’ in your terminal within the root directory.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. To host website on your local machine, run ’npm start’ in terminal.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. A window should be opened in your default browser, if not, navigate to http://localhost:3000 in your preferred browser to view the hosted application!
 
-### `npm run eject`
+## Testing Instructions:
+[//]: <>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To run the test suite associated with the functions behind the scenes and how they interact: 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Run 'npm run cypress' from the terminal while within the main directory of the application and select E2E Testing, and your chosen browser in the following window.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Preview of App:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Live demo:
+[//]: <>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Application is deployed live at: [Vercel](https://mia-fe.vercel.app/)
+
+
+## Context:
+[//]: <>
+
+This project was the final capstone project during Turing, combining a front end team with a backend. The backend repo can be found [here](https://github.com/Medical-Information-Assistant-MIA/MIA-BE)
+
+## Learning Goals:
+[//]: <>
+
+- Familiarize ourselves with TypeScript
+- Employ GraphQL
+- Work directly with a backend team
+- 
+
+## Future Feature Ideas:
+[//]: <>
+
+- Edit function
+- Adding additional information to existing conditions
+- Live list of medications to choose from
