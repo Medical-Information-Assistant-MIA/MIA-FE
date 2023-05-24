@@ -1,38 +1,45 @@
 import { aliasQuery, aliasMutation } from "../utils/graphql-test-utils"
 
-describe('template spec', () => {
+describe('Doctor Display Page', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      aliasQuery(req, 'User')
-      req.reply({
-        fixture: 'user-fixture.json'
-      })
+      if(req.body.operationName === 'User') {
+        aliasQuery(req, 'User')
+        req.reply({
+          fixture: 'user-fixture.json'
+        })
+      } else if (req.body.operationName === 'UserDoctors') {
+        aliasMutation(req, 'UserDoctors')
+        req.reply({fixture: 'user-doctors.json'})
+      }
     })
-    .visit('https://mia-fe.vercel.app/')
-    cy.get('.submit-button').click()
-    .get('[type="text"]').type('1')
-    .get('[type="password"]').type('mia123')
-    .get('.submit-button').click()
+    cy.visit('https://mia-fe.vercel.app/')
+    cy.get('.home-page > a > .submit-button').click()
+      .get('[type="text"]').type('1')
+      .get('[type="password"]').type('mia123')
+      .get('form > .submit-button').click()
+      .get('[href="/your-doctors"] > .nav-btn').click()
+      .url().should('contain', '/your-doctors')
   })
 
-  it('Should navigate to dashboard and display conditions', () => { 
-    cy.url().should('contain', '/user-dashboard')
-    .get('.condition-cards >').should('have.length', 3)
+  it('Should display a heading 2 cards and navigation buttons', () => {
+    cy.get('h1').should('contain', 'Your Doctors')
+      .get('.doc-card-container > :nth-child(1)')
+      .get('.doc-card-container > :nth-child(2)')
+      .get('.logo')
+      .get('[href="/"] > .nav-btn').should('contain', 'Logout')
+      .get('.submit-button').should('contain', 'Create New Condition')
   })
 
-  it('Should be able to click a condition', () => {
-    cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      aliasQuery(req, 'Conditions')
-      req.reply({
-        fixture: 'condition-fixture.json'
-      })
-    })
-    cy.get(':nth-child(1) > .condition-card').click()
-    .get('h2').should('contain', 'Tummy Ache')
-  })
+  it('Should have 2 doctor cards with each doctors details on them', () => { 
+    cy.get('.doc-card-container > :nth-child(1)').should('contain', 'Dr. Jay Garrick')
+      .get('.doc-card-container > :nth-child(1) > :nth-child(2)').should('contain', 'Dermatologist')
+      .get('.doc-card-container > :nth-child(1) > :nth-child(3)').should('contain', '948.251.3542')
+      .get('.doc-card-container > :nth-child(1) > :nth-child(4)').should('contain', 'Suite 931 136 Kuvalis Gardens, Robinchester, MT 93675')
 
-  it('Should navigate to the new condition page', () => {
-    cy.get('[href="/add-condition"] > button').click()
-    .get('h2').should('contain', 'Create a New Condition')
+    cy.get('.doc-card-container > :nth-child(2)').should('contain', 'Dr. Bart Allen')
+      .get('.doc-card-container > :nth-child(2) > :nth-child(2)').should('contain', 'Endocrinologist')
+      .get('.doc-card-container > :nth-child(2) > :nth-child(3)').should('contain', '1-748-749-6811 x38210')
+      .get('.doc-card-container > :nth-child(2) > :nth-child(4)').should('contain', '3048 Satterfield Burgs, Paucekstad, RI 70555-5377')
   })
 })

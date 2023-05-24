@@ -1,6 +1,6 @@
 import { aliasQuery, aliasMutation } from "../utils/graphql-test-utils"
 
-describe('template spec', () => {
+describe('Dashboard Display', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       aliasQuery(req, 'User')
