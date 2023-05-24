@@ -132,7 +132,7 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
-      <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to health events</button>
+      <button className='to-next-button' type='button' onClick={handleClick} disabled={loading}>Go to health events</button>
       {loading ? (<p>Loading...</p>) : null}
       {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
       {mutateErrors?.length ? (<p>{mutateErrors}</p>) : null}

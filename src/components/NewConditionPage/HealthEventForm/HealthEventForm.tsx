@@ -49,7 +49,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   
   return (
     <section className='condition-form'>
-      <h2>Add a health event</h2>
+      <h2>Add Health Event Notes</h2>
       <form onSubmit={async e => {
         e.preventDefault();
         try { 
@@ -76,7 +76,6 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         setSuccess(true);
         setTimeout(setSuccess, 4000, false);
       }}>
-        <h2>Create Event Notes</h2>
         <label>
           Select the event type:
           <select 
@@ -108,7 +107,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         </label>
         <button className='submit-button'>Add Another Note</button>
       </form>
-      <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Finish and Return to Dash</button>
+      <button className='to-next-button' type='button' onClick={handleClick} disabled={loading}>Finish and Return to Dash</button>
       {loading ? (<p>Loading...</p>) : null}
       {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
       {mutateErrors?.length ? (<p>Please fill out all fields</p>) : null}
