@@ -1,10 +1,12 @@
 # [Mia (Medical Information Assisstant)](https://mia-fe.vercel.app/)
 
 ## Abstract:
+[//]: <>
 
-Mia is a application dedicated to helping those suffering from chronic illnesses or conditions manage and organize their medication and doctor information, as well as keep all notes about those conditions in one place. 
+Mia simplifies your healthcare journey by consolidating all your vital medical information in one place. Keep track of conditions, medications, doctors, and health events effortlessly. Access a centralized doctor directory. Maintain a personal health log to record important events and notes. Take control of your health with Mia.
 
 ## Built With: 
+[//]: <>
 
 TypeScript, React, Graphql. Tested with Cypress.
 
