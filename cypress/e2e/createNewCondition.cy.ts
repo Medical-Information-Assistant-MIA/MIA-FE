@@ -1,6 +1,6 @@
 import { aliasQuery, aliasMutation } from "../utils/graphql-test-utils"
 
-describe('template spec', () => {
+describe('should be able to add new condition', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       if(req.body.operationName === 'User') {

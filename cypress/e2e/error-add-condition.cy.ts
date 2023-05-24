@@ -1,6 +1,6 @@
 import { aliasQuery, aliasMutation } from "../utils/graphql-test-utils"
 
-describe('Should not be able to add a condition without a title', () => {
+describe('Should see errors when errors are present', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       if(req.body.operationName === 'User') {
