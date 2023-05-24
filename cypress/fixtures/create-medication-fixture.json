@@ -1,7 +1,7 @@
 {
   "data": {
     "createMedication": {
-      "Medication": {
+      "medication": {
         "id": "1",
         "conditionId": "4",
         "name": "Dayquil",
@@ -9,7 +9,8 @@
         "dosage": null,
         "frequency": "Twice a day",
         "prescribedBy": null
-      }
+      }, 
+      "errors": []
     }
   }
 }
