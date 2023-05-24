@@ -10,6 +10,7 @@ import { ErrorPage } from '../ErrorPage/ErrorPage';
 import { LoginPage } from '../LoginPage/LoginPage';
 import { GET_USERS } from '../../gql-queries';
 import './App.css';
+import { DoctorPage } from '../DoctorPage/DoctorPage';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
@@ -27,6 +28,7 @@ export const App = () => {
         <Route exact path='/' render={() => <HomePage />} />
         <Route exact path='/login' render={() => <LoginPage setUserId={setUserId} />} />
         <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
+        <Route exact path='/your-doctors' render={() => <DoctorPage user={data.user}/>}
         <Route exact path='/conditions/:id' render={({match}) => <ConditionPage key={match.params.id}/>} />
         <Route path='/add-condition' render={() => <NewConditionPage userId={userId} />} />
         <Route exact path='/404' render={() => <ErrorPage error={'Whoops, This Page does not exist'}/> } />

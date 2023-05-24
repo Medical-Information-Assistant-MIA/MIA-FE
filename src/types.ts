@@ -42,6 +42,10 @@ export type ConditionProps = {
   }
 }
 
+export type DoctorProps = {
+  user: Users
+}
+
 export type DashProps = {
   user: Users
 }
