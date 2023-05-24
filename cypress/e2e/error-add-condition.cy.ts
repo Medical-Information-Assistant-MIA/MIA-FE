@@ -77,13 +77,80 @@ describe('Should not be able to add a condition without a title', () => {
 
     cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
-      if(req.body.operationName === 'CreateMediciation') {
-        req.alias = 'gqlCreateMediciationQuery'
-        req.reply({fixture: 'create-medication-response.json'})
+      if(req.body.operationName === 'CreateMedication') {
+        req.alias = 'gqlCreateMedicationQuery'
+        req.reply({fixture: 'create-medication-fixture.json'})
       }
     })
     cy.get('[type="button"]').click()
 
     .url().should('include', '/add-doctor')
+
+    cy.get(':nth-child(2) > input').type('1234')
+    .get(':nth-child(3) > input').type('Tardis')
+    .get(':nth-child(4) > input').type('Any')
+
+    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
+      const { body } = req
+      if(req.body.operationName === 'CreateDoctor') {
+        req.alias = 'gqlCreateDoctorQuery'
+        req.reply({fixture: 'create-doctor-500-response.json'})
+      }
+    })
+    .get('[type="button"]').click()
+    cy.get('p').should('contain', 'Name can\'t be blank')
+    cy.get('form > .submit-button').click()
+    cy.get('p').should('contain', 'Name can\'t be blank')
+
+  })
+
+  it('should not navigate past add new health event page without all inputs filled out', () => {
+    cy.get('[href="/add-condition"] > button').click()
+    .get('h2').should('contain', 'Create a New Condition')
+    cy.get('[type="text"]').type('Cold')
+    cy.get('form > .submit-button').click()
+    .url().should('include', '/add-medication')
+    cy.get(':nth-child(1) > input').type('Dayquil')
+    cy.get(':nth-child(2) > input').type('2023-05-22')
+    cy.get(':nth-child(4) > input').type('Twice a day')
+
+    cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
+      const { body } = req
+      if(req.body.operationName === 'CreateMedication') {
+        req.alias = 'gqlCreateMedicationQuery'
+        req.reply({fixture: 'create-medication-fixture.json'})
+      }
+    })
+    cy.get('[type="button"]').click()
+
+    .url().should('include', '/add-doctor')
+    cy.get(':nth-child(1) > input').type('Doctor Who')
+    cy.get(':nth-child(2) > input').type('1234')
+    .get(':nth-child(3) > input').type('Tardis')
+    .get(':nth-child(4) > input').type('Any')
+
+    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
+      const { body } = req
+      if(req.body.operationName === 'CreateDoctor') {
+        req.alias = 'gqlCreateDoctorQuery'
+        req.reply({fixture: 'create-doctor-fixture.json'})
+      }
+    })
+    .get('[type="button"]').click()
+    .url().should('contain', '/add-health-event')
+
+    cy.get('select').select('general_note')
+    .get(':nth-child(3) > input').type('2023-05-22')
+
+    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
+      const { body } = req
+      if(req.body.operationName === 'CreateHealthEvent') {
+        req.alias = 'gqlCreateHealthEventQuery'
+        req.reply({fixture: 'create-event-500-response.json'})
+      }
+    })
+    .get('[type="button"]').click()
+    cy.url().should('not.contain', '/user-dashboard')
+    cy.get('p').should('contain', 'Please fill out all fields')
   })
 })

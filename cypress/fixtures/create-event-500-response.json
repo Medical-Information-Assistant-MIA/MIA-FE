@@ -1,7 +1,7 @@
 {
   "data": {
     "createHealthEvent": {
-      "errors": ["Name can't be blank"]
+      "errors": ["All fields must be filled out"]
     }
   }
 }
