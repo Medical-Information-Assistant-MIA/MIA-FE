@@ -7,7 +7,6 @@ import { MedicationDisplay } from './MedicationDisplay/MedicationDisplay';
 import { DoctorDisplay } from './DoctorDisplay/DoctorDisplay';
 import { HealthEventDisplay } from './HealthNoteDisplay/HealthNoteDisplay';
 import './ConditionPage.css';
-import { MedicationForm } from '../NewConditionPage/MedicationForm/MedicationForm';
 
 const formatDate = (date: string) => {
   return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
@@ -19,7 +18,6 @@ const formatEventCategory = (category: string) => {
 
 export const ConditionPage = () => {
   const match = useRouteMatch<MatchParams>('/conditions/:id');
-  const history = useHistory();
   const paraId: any = match?.params.id;
   const pId = parseInt(paraId);
 
