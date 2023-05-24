@@ -1,4 +1,4 @@
-import { useRouteMatch, Link, useHistory } from 'react-router-dom';
+import { useRouteMatch, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';

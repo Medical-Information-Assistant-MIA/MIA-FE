@@ -23,7 +23,7 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
 
   useEffect(() => {
     if (condId) history.push('/add-condition/add-medication');
-  }, [condId]);
+  }, [condId, history]);
 
   return (
     <section className='condition-form'>
