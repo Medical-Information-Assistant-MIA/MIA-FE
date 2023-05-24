@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import './UserDashboard.css';
-import { DashProps } from '../../types';
+import { DashboardProps } from '../../types';
 import { ConditionCard } from './ConditionCard/ConditionCard';
 
-export const UserDashboard = ({user}: DashProps) => {
+export const UserDashboard = ({user}: DashboardProps) => {
   let conditionCards
   if(user?.conditions?.length) {
     conditionCards = user.conditions
