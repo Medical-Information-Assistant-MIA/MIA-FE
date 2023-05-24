@@ -1,0 +1,181 @@
+{
+  "data": {
+      "user": {
+          "name": "Captain Cold",
+          "id": 1,
+          "email": "captain_cold@example.com",
+          "createdAt": "2023-05-22 21:36:10 UTC",
+          "conditions": [
+              {
+                  "name": "Bronchitis",
+                  "id": 1,
+                  "createdAt": "2023-05-22 21:36:10 UTC",
+                  "medications": [
+                      {
+                          "name": "Methocarbamol",
+                          "dosage": "100mg",
+                          "frequency": "daily",
+                          "prescribedBy": "Dr. Kyle Rayner",
+                          "datePrescribed": "August 15, 2022"
+                      },
+                      {
+                          "name": "Famotidine",
+                          "dosage": "100mg",
+                          "frequency": "daily",
+                          "prescribedBy": "Dr. Terry McGinnis",
+                          "datePrescribed": "March 17, 2019"
+                      }
+                  ],
+                  "doctors": [
+                      {
+                          "name": "Dr. Kyle Rayner",
+                          "address": "8313 Abbott Keys, Reichelbury, MD 73817-4031",
+                          "phone": "1-848-291-2088 x7972",
+                          "category": "Marketing"
+                      },
+                      {
+                          "name": "Dr. Terry McGinnis",
+                          "address": "973 Strosin Unions, New Wilburtown, MI 01816",
+                          "phone": "(932) 148-5701 x00759",
+                          "category": "Marketing"
+                      }
+                  ],
+                  "healthEvents": [
+                      {
+                          "note": "anti-spasmodic",
+                          "category": "general_note"
+                      },
+                      {
+                          "note": "non-psychoactive",
+                          "category": "doctor_visit"
+                      }
+                  ]
+              },
+              {
+                  "name": "Insomnia",
+                  "id": 2,
+                  "createdAt": "2023-05-22 21:36:10 UTC",
+                  "medications": [
+                      {
+                          "name": "Ondansetron",
+                          "dosage": "100mg",
+                          "frequency": "daily",
+                          "prescribedBy": "Dr. Kyle Rayner",
+                          "datePrescribed": "June 09, 2020"
+                      },
+                      {
+                          "name": "Prednisone",
+                          "dosage": "100mg",
+                          "frequency": "daily",
+                          "prescribedBy": "Dr. Clark Kent",
+                          "datePrescribed": "February 16, 2023"
+                      }
+                  ],
+                  "doctors": [
+                      {
+                          "name": "Dr. Kyle Rayner",
+                          "address": "Apt. 448 912 McDermott Ville, East Fionaport, CO 28189",
+                          "phone": "111.479.4846 x5435",
+                          "category": "Advertising"
+                      },
+                      {
+                          "name": "Dr. Clark Kent",
+                          "address": "Apt. 376 611 Gorczany Summit, East Dustytown, WA 91010-0781",
+                          "phone": "471-027-8825",
+                          "category": "Accounting"
+                      }
+                  ],
+                  "healthEvents": [
+                      {
+                          "note": "intestinal anti-prokinetic",
+                          "category": "doctor_visit"
+                      },
+                      {
+                          "note": "analgesic",
+                          "category": "doctor_visit"
+                      }
+                  ]
+              },
+              {
+                  "name": "Hypertension",
+                  "id": 3,
+                  "createdAt": "2023-05-22 21:36:10 UTC",
+                  "medications": [
+                      {
+                          "name": "Stool Softener Laxative",
+                          "dosage": "100mg",
+                          "frequency": "daily",
+                          "prescribedBy": "Dr. Ray Palmer",
+                          "datePrescribed": "October 17, 2021"
+                      },
+                      {
+                          "name": "Hand Sanitizer",
+                          "dosage": "100mg",
+                          "frequency": "daily",
+                          "prescribedBy": "Dr. Oswald Cobblepot",
+                          "datePrescribed": "December 11, 2019"
+                      }
+                  ],
+                  "doctors": [
+                      {
+                          "name": "Dr. Ray Palmer",
+                          "address": "922 Paucek Ports, Roseannahaven, MT 88652",
+                          "phone": "196.107.1931",
+                          "category": "Legal"
+                      },
+                      {
+                          "name": "Dr. Oswald Cobblepot",
+                          "address": "Apt. 518 348 McLaughlin Mount, South Jenine, AK 94588",
+                          "phone": "1-876-843-5257 x40902",
+                          "category": "Advertising"
+                      }
+                  ],
+                  "healthEvents": [
+                      {
+                          "note": "anti-insomnia",
+                          "category": "general_note"
+                      },
+                      {
+                          "note": "anti-stress",
+                          "category": "general_note"
+                      }
+                  ]
+              },
+              {
+                "name": "Cold",
+                "id": 4,
+                "createdAt": "2023-05-22 21:36:10 UTC",
+                "medications": [
+                  {
+                    "id": "1",
+                    "conditionId": "4",
+                    "name": "Dayquil",
+                    "datePrescribed": "2023-05-22",
+                    "dosage": null,
+                    "frequency": "Twice a day",
+                    "prescribedBy": null
+                  }
+                ],
+                "doctors": [
+                   {
+                    "id": 1,
+                    "name": "Doctor Who",
+                    "phone": "1234",
+                    "address": "Tards",
+                    "category": "Any",
+                    "conditionId": 4
+                  }
+                ],
+                "healthEvents": [
+                  {
+                    "id": 1,
+                    "note": "Cold started",
+                    "date": "2023-05-22",
+                    "category": "general_note"
+                  }
+                ]
+              }
+          ]
+      }
+  }
+}

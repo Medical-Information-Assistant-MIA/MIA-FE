@@ -14,6 +14,7 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
       'User'
     ],
   });
+  console.log(error?.message)
   const condId = data?.createCondition.condition.id;
 
   useEffect(() => {

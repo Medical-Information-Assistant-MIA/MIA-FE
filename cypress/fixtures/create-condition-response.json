@@ -1,0 +1,11 @@
+{
+  "data": {
+      "createCondition":{
+        "condition": {
+          "id": 4,
+          "name": "Cold"
+
+        }
+      }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "data": {
+      "condition":{
+          "id": "2",
+          "userId": "1",
+          "name": "Tummy Ache",
+          "medications": [
+              {
+                  "name": "Bismuth subsalicylate",
+                  "datePrescribed": null,
+                  "dosage": null,
+                  "frequency": "as needed for tummy issues",
+                  "prescribedBy": null 
+              },
+              {
+                  "name": "Calcium supplment", 
+                  "datePrescribed": null,
+                  "dosage": null,
+                  "frequency": "as needed for tummy issues",
+                  "prescribedBy": null
+              },
+              {
+                  "name": "Amphetamine",
+                  "datePrescribed": "3-3-2023",
+                  "dosage": "5mg",
+                  "frequency": "Once daily",
+                  "prescribedBy": "Dr. Johnson"
+              }
+          ],
+          "doctors": [
+              {
+                  "name": "Dr. Richard Johnson",
+                  "address": "123 Sesame St",
+                  "phone": "123-456-7890",
+                  "category": "Urologist"
+              }
+          ],
+          "healthEvents": [
+              {
+                  "date": "1-23-23",
+                  "note": "Today I was constipated",
+                  "category": "Symptoms"
+              },
+              {
+                  "date": "1-23-23",
+                  "note": "Today I pooped!",
+                  "category": "Symptoms"
+              }
+          ]
+      }
+  }
+}

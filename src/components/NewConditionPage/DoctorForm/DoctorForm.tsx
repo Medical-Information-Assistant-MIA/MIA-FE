@@ -16,6 +16,7 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
     address: '',
     category: ''
   });
+  const [success, setSuccess] = useState(false);
 
   const handleClick = async () => {
     const formIsDirty = Object.values(doctorInfo).filter(Boolean).length;
@@ -28,9 +29,12 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
           address: doctorInfo.address,
           category: doctorInfo.category
         }
-        await mutateFunction({
+        const data = await mutateFunction({
           variables: { input }
         });
+        if (data?.data?.createDoctor.errors.length) {
+          return;
+        }
       } catch(error) {
         return;
       }
@@ -51,7 +55,8 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
       },
     ],
   });
-  
+  const mutateErrors = data?.createDoctor?.errors;
+
   return (
     <section className='condition-form'>
       <h2>Add a Doctor</h2>
@@ -65,9 +70,12 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
             address: doctorInfo.address,
             category: doctorInfo.category
           }
-          await mutateFunction({
+          const data = await mutateFunction({
             variables: { input }
           });
+          if (data?.data?.createDoctor.errors.length) {
+            return;
+          }
         } catch(error) {
           return;
         }
@@ -75,7 +83,10 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
           name: '',
           phone: '',
           address: '',
-          category: ''});
+          category: ''
+        });
+        setSuccess(true);
+        setTimeout(setSuccess, 4000, false);
       }}>
         <div>
           <label>
@@ -121,9 +132,11 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
         </div>
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
-      <button className='submit-button' type='button' onClick={handleClick}>Go to health events</button>
+      <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to health events</button>
       {loading ? <p>Loading...</p> : null}
       {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
+      {mutateErrors?.length ? <p>{mutateErrors}</p> : null}
+      {success ? <p>Your doctor was successfully added, you can now add another one.</p> : null}
     </section>
   );
 }
