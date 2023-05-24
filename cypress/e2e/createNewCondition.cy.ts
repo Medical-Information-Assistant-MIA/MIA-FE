@@ -51,9 +51,9 @@ describe('New Condition Pages', () => {
     .get(':nth-child(4) > input').type('Twice a day')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
-      if(req.body.operationName === 'CreateMediciation') {
-        req.alias = 'gqlCreateMediciationQuery'
-        req.reply({fixture: 'create-medication-response.json'})
+      if(req.body.operationName === 'CreateMedication') {
+        req.alias = 'gqlCreateMedicationQuery'
+        req.reply({fixture: 'create-medication-fixture.json'})
       }
     })
     .get('.med-form > .submit-button').click()

@@ -73,7 +73,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
           const data = await mutateFunction({
             variables: { input }
           });
-          if (data?.data?.createMedication?.errors?.length) {
+          if (data?.data?.createMedication?.error?.length) {
             return;
           }
         } catch(error) {

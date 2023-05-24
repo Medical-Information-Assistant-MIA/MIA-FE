@@ -28,11 +28,11 @@ describe('Dashboard Display', () => {
       })
     })
     cy.get(':nth-child(1) > .condition-card').click()
-    .get('h2').should('contain', 'Tummy Ache')
+    .get('h1').should('contain', 'Tummy Ache')
   })
 
   it('Should navigate to the new condition page', () => {
     cy.get('.user-dashboard > [href="/add-condition"] > .submit-button').click()
-    .get('h2').should('contain', 'Create a New Condition')
+    .get('h1').should('contain', 'Create a New Condition')
   })
 })
