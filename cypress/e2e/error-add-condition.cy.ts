@@ -23,23 +23,23 @@ describe('Should see errors when errors are present', () => {
     })
 
     .visit('https://mia-fe.vercel.app/')
-    cy.get('.submit-button').click()
+    cy.get('.home-page > a > .submit-button').click()
     .get('[type="text"]').type('1')
     .get('[type="password"]').type('mia123')
-    .get('.submit-button').click()
+    cy.get('form > .submit-button').click()
   })
 
   it('should not navigate past add condition title page without entering a title', () => {
     cy.url().should('contain', 'user-dashboard')
-    cy.get('[href="/add-condition"] > button').click()
-    .get('h2').should('contain', 'Create a New Condition')
+    cy.get('.user-dashboard > [href="/add-condition"] > .submit-button').click()
+    .get('h1').should('contain', 'Create a New Condition')
     cy.get('form > .submit-button').click()
     .url().should('not.contain', '/add-medication')
   })
 
   it('should not navigate past add medication page without entering a name', () => {
-    cy.get('[href="/add-condition"] > button').click()
-    .get('h2').should('contain', 'Create a New Condition')
+    cy.get('.user-dashboard > [href="/add-condition"]').click()
+    .get('h1').should('contain', 'Create a New Condition')
     cy.get('[type="text"]').type('Cold')
     cy.get('form > .submit-button').click()
     .url().should('include', '/add-medication')
@@ -65,8 +65,8 @@ describe('Should see errors when errors are present', () => {
   })
 
   it('should not navigate past add doctor page without entering a name', () => {
-    cy.get('[href="/add-condition"] > button').click()
-    .get('h2').should('contain', 'Create a New Condition')
+    cy.get('.user-dashboard > [href="/add-condition"] > .submit-button').click()
+    .get('h1').should('contain', 'Create a New Condition')
     cy.get('[type="text"]').type('Cold')
    
     cy.get('form > .submit-button').click()
@@ -105,8 +105,8 @@ describe('Should see errors when errors are present', () => {
   })
 
   it('should not navigate past add new health event page without all inputs filled out', () => {
-    cy.get('[href="/add-condition"] > button').click()
-    .get('h2').should('contain', 'Create a New Condition')
+    cy.get('.user-dashboard > [href="/add-condition"] > .submit-button').click()
+    .get('h1').should('contain', 'Create a New Condition')
     cy.get('[type="text"]').type('Cold')
     cy.get('form > .submit-button').click()
     .url().should('include', '/add-medication')

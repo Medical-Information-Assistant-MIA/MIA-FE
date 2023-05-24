@@ -18,7 +18,7 @@ describe('template spec', () => {
   })
 
   it('Should land on the homepage', () => {
-    cy.get('h2').should('contain', 'Welcome to Mia')
+    cy.get('h1').should('contain', 'Introducing Mia')
   })
 
   it('Should navigate to the login page', () => {
