@@ -1,16 +1,16 @@
-import { UserDashboard } from '../UserDashboard/UserDashboard';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { GET_USERS } from '../../gql-queries';
 import { useState } from 'react';
 import { HomePage } from '../HomePage/HomePage';
 import { NavBar } from '../NavBar/NavBar';
+import { LoginPage } from '../LoginPage/LoginPage';
+import { UserDashboard } from '../UserDashboard/UserDashboard';
 import { ConditionPage } from '../ConditionPage/ConditionPage';
 import { NewConditionPage } from '../NewConditionPage/NewConditionPage';
-import { ErrorPage } from '../ErrorPage/ErrorPage';
-import { LoginPage } from '../LoginPage/LoginPage';
-import { GET_USERS } from '../../gql-queries';
-import './App.css';
 import { DoctorPage } from '../DoctorPage/DoctorPage';
+import { ErrorPage } from '../ErrorPage/ErrorPage';
+import './App.css';
 
 export const App = () => {
   const [userId, setUserId] = useState(1);
@@ -18,8 +18,8 @@ export const App = () => {
   const { loading, error, data } = useQuery(GET_USERS, {
     variables: { userId }
   });
-  if (loading) return <p>Loading...</p>
-  if (error) return <ErrorPage error={error.message}/>
+  if (loading) return (<h1 className='nav-spacing loading'>Loading...</h1>);
+  if (error) return (<ErrorPage error={error.message}/>);
 
   return (
     <main>

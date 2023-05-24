@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { NewDoctorProps } from '../../../types';
 import { CREATE_DOCTOR, GET_DOCTORS } from '../../../gql-queries';
+import { NewDoctorProps } from '../../../types';
 import './DoctorForm.css';
 
 
@@ -32,7 +32,7 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
         const data = await mutateFunction({
           variables: { input }
         });
-        if (data?.data?.createDoctor.errors.length) {
+        if (data?.data?.createDoctor?.errors?.length) {
           return;
         }
       } catch(error) {
@@ -73,7 +73,7 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
           const data = await mutateFunction({
             variables: { input }
           });
-          if (data?.data?.createDoctor.errors.length) {
+          if (data?.data?.createDoctor?.errors?.length) {
             return;
           }
         } catch(error) {
@@ -133,10 +133,10 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
         <button className='submit-button' type='submit'>Add Another Doctor</button>
       </form>
       <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to health events</button>
-      {loading ? <p>Loading...</p> : null}
-      {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
-      {mutateErrors?.length ? <p>{mutateErrors}</p> : null}
-      {success ? <p>Your doctor was successfully added, you can now add another one.</p> : null}
+      {loading ? (<p>Loading...</p>) : null}
+      {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
+      {mutateErrors?.length ? (<p>{mutateErrors}</p>) : null}
+      {success ? (<p>Your doctor was successfully added, you can now add another one.</p>) : null}
     </section>
   );
 }

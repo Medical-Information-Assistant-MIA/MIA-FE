@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { NewEventProps } from '../../../types';
-import './HealthEventForm.css';
 import { CREATE_NOTE } from '../../../gql-queries';
+import { NewEventProps } from '../../../types';
 import { DateTime } from 'luxon';
+import './HealthEventForm.css';
 
 export const HealthEventForm = ({conditionId}: NewEventProps) => {
   const history = useHistory();
@@ -28,7 +28,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         const data = await mutateFunction({
           variables: { input },
         })
-        if (data?.data?.createHealthEvent.errors.length) {
+        if (data?.data?.createHealthEvent?.errors?.length) {
           return;
         }
       } catch(error) {
@@ -49,7 +49,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   
   return (
     <section className='condition-form'>
-      <h3>Add a health event</h3>
+      <h2>Add a health event</h2>
       <form onSubmit={async e => {
         e.preventDefault();
         try { 
@@ -62,7 +62,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
           const data = await mutateFunction({
             variables: { input },
           });
-          if (data?.data?.createHealthEvent.errors.length) {
+          if (data?.data?.createHealthEvent?.errors?.length) {
             return;
           }
         } catch(error) {
@@ -109,10 +109,10 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         <button className='submit-button'>Add Another Note</button>
       </form>
       <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Finish and Return to Dash</button>
-      {loading ? <p>Loading...</p> : null}
-      {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
-      {mutateErrors?.length ? <p>Please fill out all fields</p> : null}
-      {success ? <p>Your health event was successfully added, you can now add another one.</p> : null}
+      {loading ? (<p>Loading...</p>) : null}
+      {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
+      {mutateErrors?.length ? (<p>Please fill out all fields</p>) : null}
+      {success ? (<p>Your health event was successfully added, you can now add another one.</p>) : null}
     </section>
   );
 }
