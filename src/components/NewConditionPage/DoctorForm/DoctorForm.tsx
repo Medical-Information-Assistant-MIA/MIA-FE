@@ -31,7 +31,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
         const data = await mutateFunction({
           variables: { input }
         });
-        if (data?.data?.createDoctor.errors.length) {
+        if (data?.data?.createDoctor?.errors?.length) {
           return;
         }
       } catch(error) {
@@ -65,7 +65,7 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
           const data = await mutateFunction({
             variables: { input }
           });
-          if (data?.data?.createDoctor.errors.length) {
+          if (data?.data?.createDoctor?.errors?.length) {
             return;
           }
         } catch(error) {

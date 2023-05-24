@@ -28,7 +28,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
         const data = await mutateFunction({
           variables: { input },
         })
-        if (data?.data?.createHealthEvent.errors.length) {
+        if (data?.data?.createHealthEven?.errors?.length) {
           return;
         }
       } catch(error) {
@@ -62,7 +62,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
           const data = await mutateFunction({
             variables: { input },
           });
-          if (data?.data?.createHealthEvent.errors.length) {
+          if (data?.data?.createHealthEvent?.errors?.length) {
             return;
           }
         } catch(error) {
