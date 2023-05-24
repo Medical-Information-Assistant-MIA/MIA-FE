@@ -22,11 +22,11 @@ describe('template spec', () => {
       }
     })
     .visit('https://mia-fe.vercel.app/')
-    cy.get('.submit-button').click()
+    cy.get('.home-page > a > .submit-button').click()
     .get('[type="text"]').type('1')
     .get('[type="password"]').type('mia123')
-    .get('.submit-button').click()
-    .get('.submit-button').click()
+    .get('form > .submit-button').click()
+    .get('.user-dashboard > [href="/add-condition"] > .submit-button').click()
   })
 
   it('Should add a new condition by title', () => {
