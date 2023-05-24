@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
 import { NewMedicationProps } from '../../../types';
 import { CREATE_MEDICATION } from '../../../gql-queries';

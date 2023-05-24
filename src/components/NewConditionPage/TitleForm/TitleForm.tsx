@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useHistory, Link } from 'react-router-dom';
 import { TitleFormProps } from '../../../types';
 import { CREATE_CONDITION } from '../../../gql-queries';
@@ -23,7 +23,7 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
 
   useEffect(() => {
     if (condId) history.push('/add-condition/add-medication');
-  }, [condId]);
+  }, [condId, history]);
 
   return (
     <section className='condition-form'>

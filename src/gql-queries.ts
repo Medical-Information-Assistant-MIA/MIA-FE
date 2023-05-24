@@ -45,6 +45,17 @@ export const GET_CONDITION = gql`
   }
 `;
 
+export const GET_DOCTORS = gql`
+  query UserDoctors($id: Int!){
+    userDoctors(userId: $id){
+      name
+      address
+      phone
+      category
+        }
+    }
+`;
+
 export const CREATE_CONDITION = gql`
 mutation CreateCondition($input: CreateConditionInput!) {
   createCondition(input: $input) {
