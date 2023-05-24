@@ -1,13 +1,13 @@
 import { useQuery } from '@apollo/client';
-import { Doctor, DoctorProps } from '../../types';
+import { Doctor, DoctorPageProps } from '../../types';
 import { GET_DOCTORS } from '../../gql-queries';
 import './DoctorPage.css';
 
-export const DoctorPage = ({user}: DoctorProps) => {
+export const DoctorPage = ({user}: DoctorPageProps) => {
   const id = user.id;
 
   const { loading, error, data } = useQuery(GET_DOCTORS, {
-    variables: { id }
+    variables: { id },
   });
   if (loading) return <p className='nav-spacing doctor-page'>Loading...</p>
   if (error) return <p className='nav-spacing doctor-page'>{error.message}</p>
@@ -17,9 +17,9 @@ export const DoctorPage = ({user}: DoctorProps) => {
     return (
       <div key={doc.id} className='doc-card'>
         <h2>{doc.name}</h2>
-        <p>{doc.category}</p>
-        <p>{doc.phone}</p>
-        <p>{doc.address}</p>
+        {doc.category ? <p>{doc.category}</p> : null}
+        {doc.phone ? <p>{doc.phone}</p> : null}
+        {doc.address ? <p>{doc.address}</p> : null} 
       </div>
     )
   })
