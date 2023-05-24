@@ -26,7 +26,7 @@ export const DoctorPage = ({user}: DoctorPageProps) => {
   return (
     <section className='nav-spacing doctor-page'>
       <h1>Your Doctors</h1>
-      <div className='doc-card-conatiner'>
+      <div className='doc-card-container'>
         {docsDisp}
       </div>
     </section>

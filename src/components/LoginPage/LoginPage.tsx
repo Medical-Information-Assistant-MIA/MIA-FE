@@ -32,8 +32,8 @@ export const LoginPage = ({setUserId}: UserID) =>  {
           <input type='password' value={password} name='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)} />
           <button type='submit' className='submit-button'>Login</button>
         </form>
-        {error ? <p>Incorrect login, please try again.</p> : null}
+        {error ? (<p>Incorrect login, please try again.</p>) : null}
       </section>
     </div>
-  )
+  );
 }
