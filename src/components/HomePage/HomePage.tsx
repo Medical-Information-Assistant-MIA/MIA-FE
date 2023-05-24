@@ -5,11 +5,11 @@ export const HomePage = () => {
     return (
       <section className='home-page nav-spacing'>
         <div>
-          <h1>Welcome to Mia</h1>
-          <h2>Your Medical Information Assistant</h2>
+          <h1>Introducing Mia</h1>
+          <h2>Your All-in-One Medical Information Assistant</h2>
         </div>
-        <div 
-          className='site-description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <div className='site-description'>
+          <p>Mia simplifies your healthcare journey by consolidating all your vital medical information in one place. Keep track of conditions, medications, doctors, and health events effortlessly. Access a centralized doctor directory. Maintain a personal health log to record important events and notes. Take control of your health with Mia.</p>
         </div>
         <Link to='/login'><button className='submit-button'>Login</button></Link>
       </section>
