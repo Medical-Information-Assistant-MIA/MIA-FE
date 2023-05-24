@@ -33,7 +33,7 @@ export type UserID = {
   setUserId: Function
 }
 
-// Component Prop Types
+// Component Prop Types -------------------------------------
 export type ConditionProps = {
   condition: {
     id: number,
@@ -42,7 +42,11 @@ export type ConditionProps = {
   }
 }
 
-export type DashProps = {
+export type DoctorPageProps = {
+  user: Users
+}
+
+export type DashboardProps = {
   user: Users
 }
 
@@ -51,7 +55,8 @@ export type NewConditionProps = {
 }
 
 export type NewDoctorProps = {
-  conditionId: number
+  conditionId: number,
+  userId: number
 }
 
 export type NewEventProps = {
@@ -69,4 +74,20 @@ export type TitleFormProps = {
 
 export type ErrorProps = {
   error: string
+}
+
+// Condition Display Component Props -------------------------
+export type MedicationDisplayProps = {
+  med: Medication,
+  formatDate: Function
+}
+
+export type DoctorDisplayProps = {
+  doc: Doctor
+}
+
+export type HealthEventDisplayProps = {
+  event: HealthEvent,
+  formatDate: Function,
+  formatEventCategory: Function
 }

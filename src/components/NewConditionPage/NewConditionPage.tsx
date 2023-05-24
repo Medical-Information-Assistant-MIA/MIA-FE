@@ -19,7 +19,7 @@ export const NewConditionPage = ({ userId }: NewConditionProps) => {
       <Switch>
         <Route exact path='/add-condition' render={() => <TitleForm userId={userId} setConditionId={setConditionId}/>}/>
         <Route exact path='/add-condition/add-medication' render={() => <MedicationForm conditionId={conditionId}/>}/>
-        <Route exact path='/add-condition/add-doctor' render={() => <DoctorForm conditionId={conditionId}/>}/>
+        <Route exact path='/add-condition/add-doctor' render={() => <DoctorForm conditionId={conditionId} userId={userId}/>}/>
         <Route exact path='/add-condition/add-health-event' render={() => <HealthEventForm conditionId={conditionId}/>} />
       </Switch>
     </section>

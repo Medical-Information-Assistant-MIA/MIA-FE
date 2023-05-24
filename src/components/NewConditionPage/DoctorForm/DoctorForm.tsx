@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { NewDoctorProps } from '../../../types';
-import { CREATE_DOCTOR } from '../../../gql-queries';
+import { CREATE_DOCTOR, GET_DOCTORS } from '../../../gql-queries';
 import './DoctorForm.css';
 
 
 
-export const DoctorForm = ({conditionId}: NewDoctorProps) => {
+export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
   const history = useHistory();
+  const id = userId;
   const [doctorInfo, setDoctorInfo] = useState({
     name: '',
     phone: '',
@@ -46,7 +47,14 @@ export const DoctorForm = ({conditionId}: NewDoctorProps) => {
     history.push('/add-condition/add-health-event');
   }
 
-  const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR);
+  const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR, {
+    refetchQueries: [
+      {
+        query: GET_DOCTORS,
+        variables: { id }
+      },
+    ],
+  });
   const mutateErrors = data?.createDoctor?.errors;
 
   return (

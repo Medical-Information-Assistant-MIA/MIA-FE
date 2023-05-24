@@ -39,3 +39,20 @@
 .create-condition-btn {
   margin: 5% !important;
 }
+
+.add-new-button {
+  display: flex;
+  width: fit-content;
+  height: min-content;
+  border: var(--border);
+  border-radius: var(--border-radius);
+
+  padding: 3px;
+  background-color: var(--color-3-light);
+  transition: 0.5s;
+}
+
+.add-new-button:hover {
+  scale: 1.1;
+  background-color: var(--color-3);
+}
