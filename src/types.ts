@@ -1,7 +1,7 @@
 import { Users } from './gql/graphql';
 
 export type MatchParams = {
- id: string;
+ id: string
 }
 
 export type Medication = { 
@@ -51,7 +51,7 @@ export type DashboardProps = {
 }
 
 export type NewConditionProps = {
-  userId: number,
+  userId: number
 }
 
 export type NewDoctorProps = {

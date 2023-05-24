@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useMutation } from '@apollo/client';
 import { useHistory } from 'react-router-dom';
-import { NewMedicationProps } from '../../../types';
+import { useMutation } from '@apollo/client';
 import { CREATE_MEDICATION } from '../../../gql-queries';
+import { NewMedicationProps } from '../../../types';
 import { DateTime } from 'luxon';
 import './MedicationForm.css';
 
@@ -49,7 +49,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     history.push('/add-condition/add-doctor');
   }
 
-  const currentDate = DateTime.now().toISODate() as string
+  const currentDate = DateTime.now().toISODate() as string;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
   const mutateErrors = data?.createMedication?.errors;
@@ -137,10 +137,10 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
         <button className='submit-button' type='submit' >Add Another Medication</button>
       </form>
       <button className='submit-button' type='button' onClick={handleClick} disabled={loading}>Go to Doctor form</button>
-        {loading ? <p>Loading...</p> : null}
-        {error ? <p>Sorry, there was an error when submitting your form, please try again</p> : null}
-        {mutateErrors?.length ? <p>{mutateErrors}</p> : null}
-        {success ? <p>Your medication was successfully added, you can now add another one.</p> : null}
+        {loading ? (<p>Loading...</p>) : null}
+        {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
+        {mutateErrors?.length ? (<p>{mutateErrors}</p>) : null}
+        {success ? (<p>Your medication was successfully added, you can now add another one.</p>) : null}
     </section>
   );
 }

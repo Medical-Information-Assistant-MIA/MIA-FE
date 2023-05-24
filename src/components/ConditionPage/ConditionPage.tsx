@@ -1,11 +1,12 @@
 import { useRouteMatch, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import { GET_CONDITION } from '../../gql-queries';
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
-import { GET_CONDITION } from '../../gql-queries';
 import { MedicationDisplay } from './MedicationDisplay/MedicationDisplay';
 import { DoctorDisplay } from './DoctorDisplay/DoctorDisplay';
 import { HealthEventDisplay } from './HealthNoteDisplay/HealthNoteDisplay';
+import { ErrorPage } from '../ErrorPage/ErrorPage';
 import './ConditionPage.css';
 
 const formatDate = (date: string) => {
@@ -24,10 +25,10 @@ export const ConditionPage = () => {
   const { loading, error, data } = useQuery(GET_CONDITION, {
     variables: { pId }
   });
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>{error.message}</p>
+  if (loading) return (<h1 className='nav-spacing loading'>Loading...</h1>);
+  if (error) return (<ErrorPage error={error.message}/>);
 
-  const {name, medications, doctors, healthEvents} = data.condition
+  const {name, medications, doctors, healthEvents} = data.condition;
 
   const medDisplay = medications.length ? 
     medications
@@ -37,7 +38,7 @@ export const ConditionPage = () => {
         return (
           <MedicationDisplay key={med.id} med={med} formatDate={formatDate}/>
         );
-      }) : <p>No Medications Added</p>
+      }) : (<p className='condition-info'>No Medications Added</p>);
 
   const docDisplay = doctors.length ? 
     doctors
@@ -47,7 +48,7 @@ export const ConditionPage = () => {
         return (
           <DoctorDisplay key={doc.id} doc={doc}/>
         );
-      }) : <p>No Doctors Added</p>
+      }) : (<p className='condition-info'>No Doctors Added</p>);
 
   const healthEventDisplay = healthEvents.length ? 
     healthEvents
@@ -56,21 +57,21 @@ export const ConditionPage = () => {
       .map((event: HealthEvent) => {
         return (
           <HealthEventDisplay key={event.id} event={event} formatDate={formatDate} formatEventCategory={formatEventCategory}/>
-        )
-      }) : <p>No Notes Added</p>
+        );
+      }) : (<p className='condition-info'>No Notes Added</p>);
 
   return (
     <section className='condition-page nav-spacing'>
-      <h2>{name}</h2>
-      <h3 className='condition-heading'>Medications</h3>
+      <h1>{name}</h1>
+      <h2 className='condition-heading'>Medications</h2>
       <div className='info-block'>
         {medDisplay}
       </div>
-      <h3 className='condition-heading'>Doctors</h3>
+      <h2 className='condition-heading'>Doctors</h2>
       <div className='info-block'>
         {docDisplay}
       </div>
-      <h3 className='condition-heading'>Health Events</h3>
+      <h2 className='condition-heading'>Health Events</h2>
       <div className='info-block'>
         {healthEventDisplay}
       </div>

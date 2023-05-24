@@ -22,15 +22,15 @@ describe('template spec', () => {
   })
 
   it('Should navigate to the login page', () => {
-    cy.get('.submit-button').click()
+    cy.get('.home-page > a > .submit-button').click()
     .url().should('contain', '/login')
   })
 
   it('Should be able to login', () => {
-    cy.get('.submit-button').click()
+    cy.get('.home-page > a > .submit-button').click()
     .get('[type="text"]').type('1')
     .get('[type="password"]').type('mia123')
-    .get('.submit-button').click()
+    .get('form > .submit-button').click()
     .url().should('contain', '/user-dashboard')
   })
 })

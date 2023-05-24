@@ -5,12 +5,8 @@
   justify-content: space-around;
 }
 
-h2 {
+.home-page > h1 {
   margin: 2%;
-}
-
-.small-title {
-  font-size: small;
 }
 
 .site-description {
