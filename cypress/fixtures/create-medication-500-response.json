@@ -1,0 +1,7 @@
+{
+  "data": {
+    "createMedication": {
+      "errors": ["Name can't be blank"]
+    }
+  }
+}

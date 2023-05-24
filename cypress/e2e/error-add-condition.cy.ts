@@ -46,6 +46,14 @@ describe('Should not be able to add a condition without a title', () => {
 
     cy.get(':nth-child(2) > input').type('2023-05-22')
     .get(':nth-child(4) > input').type('Twice a day')
+
+    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
+      const { body } = req
+      if(req.body.operationName === 'CreateMedication') {
+        req.alias = 'gqlCreateMedicationQuery'
+        req.reply({fixture: 'create-medication-500-response.json'})
+      }
+    })
     cy.get('[type="button"]').click()
 
     .url().should('include', '/add-medication')
@@ -60,13 +68,7 @@ describe('Should not be able to add a condition without a title', () => {
     cy.get('[href="/add-condition"] > button').click()
     .get('h2').should('contain', 'Create a New Condition')
     cy.get('[type="text"]').type('Cold')
-    .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      const { body } = req
-      if(req.body.operationName === 'User') {
-        req.alias = 'User'
-        req.reply({fixture: 'user-fixture-2.json'})
-      }
-    })
+   
     cy.get('form > .submit-button').click()
     .url().should('include', '/add-medication')
     cy.get(':nth-child(1) > input').type('Dayquil')
