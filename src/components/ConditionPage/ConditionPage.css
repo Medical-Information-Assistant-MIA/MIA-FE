@@ -6,6 +6,10 @@
   height: 100vh;
 }
 
+.condition-page > h1 {
+  font-size: 2em;
+}
+
 .condition-heading {
   border-bottom: var(--border) var(--nav-color);
   text-align: center;

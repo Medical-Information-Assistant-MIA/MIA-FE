@@ -8,7 +8,7 @@
   margin: 3vh;
 }
 
-.doc-card-conatiner {
+.doc-card-container {
   display: flex;
   flex-direction: row;
   align-content: flex-start;
