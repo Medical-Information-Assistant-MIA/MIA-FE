@@ -1,4 +1,4 @@
-import { useRouteMatch, Link } from 'react-router-dom';
+import { useRouteMatch, Link, useHistory } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
@@ -7,6 +7,7 @@ import { MedicationDisplay } from './MedicationDisplay/MedicationDisplay';
 import { DoctorDisplay } from './DoctorDisplay/DoctorDisplay';
 import { HealthEventDisplay } from './HealthNoteDisplay/HealthNoteDisplay';
 import './ConditionPage.css';
+import { MedicationForm } from '../NewConditionPage/MedicationForm/MedicationForm';
 
 const formatDate = (date: string) => {
   return DateTime.fromISO(date).toLocaleString(DateTime.DATE_MED);
@@ -18,6 +19,7 @@ const formatEventCategory = (category: string) => {
 
 export const ConditionPage = () => {
   const match = useRouteMatch<MatchParams>('/conditions/:id');
+  const history = useHistory();
   const paraId: any = match?.params.id;
   const pId = parseInt(paraId);
 
@@ -63,23 +65,14 @@ export const ConditionPage = () => {
     <section className='condition-page nav-spacing'>
       <h2>{name}</h2>
       <h3 className='condition-heading'>Medications</h3>
-      <button className='add-new-button'>
-        <span className="material-symbols-outlined">add_circle</span>
-      </button>
       <div className='info-block'>
         {medDisplay}
       </div>
       <h3 className='condition-heading'>Doctors</h3>
-      <button className='add-new-button'>
-        <span className="material-symbols-outlined">add_circle</span>
-      </button>
       <div className='info-block'>
         {docDisplay}
       </div>
       <h3 className='condition-heading'>Health Events</h3>
-      <button className='add-new-button'>
-        <span className="material-symbols-outlined">add_circle</span>
-      </button>
       <div className='info-block'>
         {healthEventDisplay}
       </div>
