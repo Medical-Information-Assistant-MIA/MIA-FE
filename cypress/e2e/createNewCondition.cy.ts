@@ -1,6 +1,6 @@
 import { aliasQuery, aliasMutation } from "../utils/graphql-test-utils"
 
-describe('template spec', () => {
+describe('should be able to add new condition', () => {
   beforeEach(() => {
     cy.intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       if(req.body.operationName === 'User') {
@@ -51,9 +51,9 @@ describe('template spec', () => {
     .get(':nth-child(4) > input').type('Twice a day')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
-      if(req.body.operationName === 'CreateMediciation') {
-        req.alias = 'gqlCreateMediciationQuery'
-        req.reply({fixture: 'create-medication-response.json'})
+      if(req.body.operationName === 'CreateMedication') {
+        req.alias = 'gqlCreateMedicationQuery'
+        req.reply({fixture: 'create-medication-fixture.json'})
       }
     })
     .get('.med-form > .submit-button').click()
