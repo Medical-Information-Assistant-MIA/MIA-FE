@@ -39,7 +39,10 @@ Run 'npm run cypress' from the terminal while within the main directory of the a
 
 ## Preview of App:
 
-
+## Wireframe Screenshots: 
+![Screen Shot 2023-05-25 at 11 54 56 AM](https://github.com/Medical-Information-Assistant-MIA/MIA-FE/assets/117314181/807204e2-430e-42c3-83b3-c80f0f62972f)
+![Screen Shot 2023-05-25 at 11 55 04 AM](https://github.com/Medical-Information-Assistant-MIA/MIA-FE/assets/117314181/4d00142d-ecb8-4d60-986b-b47dfa131e72)
+![Screen Shot 2023-05-25 at 11 55 21 AM](https://github.com/Medical-Information-Assistant-MIA/MIA-FE/assets/117314181/807a57c5-f52d-468a-abea-4442b105bd82)
 
 ## Live demo:
 [//]: <>
