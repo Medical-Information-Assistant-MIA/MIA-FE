@@ -47,6 +47,35 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
     history.push('/add-condition/add-health-event');
   }
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try { 
+      const input = {
+        name: doctorInfo.name,
+        conditionId: conditionId,
+        phone: doctorInfo.phone,
+        address: doctorInfo.address,
+        category: doctorInfo.category
+      }
+      const data = await mutateFunction({
+        variables: { input }
+      });
+      if (data?.data?.createDoctor?.errors?.length) {
+        return;
+      }
+    } catch(error) {
+      return;
+    }
+    setDoctorInfo({
+      name: '',
+      phone: '',
+      address: '',
+      category: ''
+    });
+    setSuccess(true);
+    setTimeout(setSuccess, 4000, false);
+  }
+
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_DOCTOR, {
     refetchQueries: [
       {
@@ -60,34 +89,7 @@ export const DoctorForm = ({conditionId , userId}: NewDoctorProps) => {
   return (
     <section className='condition-form'>
       <h2>Add a Doctor</h2>
-      <form onSubmit={async e => {
-        e.preventDefault();
-        try { 
-          const input = {
-            name: doctorInfo.name,
-            conditionId: conditionId,
-            phone: doctorInfo.phone,
-            address: doctorInfo.address,
-            category: doctorInfo.category
-          }
-          const data = await mutateFunction({
-            variables: { input }
-          });
-          if (data?.data?.createDoctor?.errors?.length) {
-            return;
-          }
-        } catch(error) {
-          return;
-        }
-        setDoctorInfo({
-          name: '',
-          phone: '',
-          address: '',
-          category: ''
-        });
-        setSuccess(true);
-        setTimeout(setSuccess, 4000, false);
-      }}>
+      <form onSubmit={e => {handleSubmit(e)}}>
         <div>
           <label>
             What is your doctor's name?

@@ -25,24 +25,26 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
     if (condId) history.push('/add-condition/add-medication');
   }, [condId, history]);
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try { 
+      const input = {
+        name: conditionName,
+        userId: userId
+      }
+      await mutateFunction({
+        variables: { input }
+      });
+    } catch(error) {
+      return;
+    }
+    setConditionName('');
+  }
+
   return (
     <section className='condition-form'>
       <h3> Add Your Condition</h3>
-      <form onSubmit={async e => {
-        e.preventDefault();
-        try { 
-          const input = {
-            name: conditionName,
-            userId: userId
-          }
-          await mutateFunction({
-            variables: { input }
-          });
-        } catch(error) {
-          return;
-        }
-        setConditionName('');
-      }}>
+      <form onSubmit={(e) => {handleSubmit(e)}}>
         <label className='med-label'>
           What is the name of your Condition?
           <input 

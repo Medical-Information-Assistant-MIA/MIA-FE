@@ -49,6 +49,37 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
     history.push('/add-condition/add-doctor');
   }
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try { 
+      const input = {
+        conditionId: conditionId,
+        name: medObj.name,
+        datePrescribed: medObj.datePrescribed,
+        dosage: medObj.dosage,
+        frequency: medObj.frequency,
+        prescribedBy: medObj.prescribedBy
+      }
+      const data = await mutateFunction({
+        variables: { input }
+      });
+      if (data?.data?.createMedication?.error?.length) {
+        return;
+      }
+    } catch(error) {
+      return;
+    }
+    setMedObj({
+      name : '',
+      datePrescribed: '',
+      dosage: '',
+      frequency: '',
+      prescribedBy: ''
+    });
+    setSuccess(true);
+    setTimeout(setSuccess, 4000, false);
+  }
+
   const currentDate = DateTime.now().toISODate() as string;
 
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_MEDICATION);
@@ -59,36 +90,7 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
   return (
     <section className='condition-form'>
       <h3>Add New Medications</h3>
-      <form className='med-form' onSubmit={async e => {
-        e.preventDefault();
-        try { 
-          const input = {
-            conditionId: conditionId,
-            name: medObj.name,
-            datePrescribed: medObj.datePrescribed,
-            dosage: medObj.dosage,
-            frequency: medObj.frequency,
-            prescribedBy: medObj.prescribedBy
-          }
-          const data = await mutateFunction({
-            variables: { input }
-          });
-          if (data?.data?.createMedication?.error?.length) {
-            return;
-          }
-        } catch(error) {
-          return;
-        }
-        setMedObj({
-          name : '',
-          datePrescribed: '',
-          dosage: '',
-          frequency: '',
-          prescribedBy: ''
-        });
-        setSuccess(true);
-        setTimeout(setSuccess, 4000, false);
-      }}>
+      <form className='med-form' onSubmit={async e => {handleSubmit(e)}}>
         <label className='med-label'>
           What is your medication name?
           <input 
