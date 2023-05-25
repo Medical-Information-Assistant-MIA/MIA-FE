@@ -10,14 +10,25 @@ describe('Dashboard Display', () => {
     })
     .visit('https://mia-fe.vercel.app/')
     cy.get('.home-page > a > .submit-button').click()
-    .get('[type="text"]').type('1')
-    .get('[type="password"]').type('mia123')
-    .get('form > .submit-button').click()
+      .get('[type="text"]').type('1')
+      .get('[type="password"]').type('mia123')
+      .get('form > .submit-button').click()
   })
 
-  it('Should navigate to dashboard and display conditions', () => { 
+  it('Should navigate to the users dashboard and display their name, add new condition button and conditions', () => { 
     cy.url().should('contain', '/user-dashboard')
-    .get('.condition-cards >').should('have.length', 3)
+      .get('h1').should('contain', 'Captain Cold\'s Dashboard')
+      .get('.submit-button').should('contain', 'Create New Condition')
+      .get('.condition-cards >').should('have.length', 3)
+      .get('[href="/conditions/1"] > .condition-card').should('contain', 'Bronchitis')
+      .get('[href="/conditions/3"] > .condition-card').should('contain', 'Hypertension')
+  })
+
+  it('Should have navigation buttons in the nav bar', () => {
+    cy.get('.nav-bar')
+      .get('[href="/"] > .nav-btn').should('contain', 'Logout')
+      .get('[href="/your-doctors"] > .nav-btn').should('contain', 'Your Doctors')
+      .get('[href="/add-condition"] > .nav-btn').should('contain', 'Create New Condition')
   })
 
   it('Should be able to click a condition', () => {
@@ -28,11 +39,13 @@ describe('Dashboard Display', () => {
       })
     })
     cy.get(':nth-child(1) > .condition-card').click()
-    .get('h1').should('contain', 'Tummy Ache')
+      .get('h1').should('contain', 'Tummy Ache')
+      .url().should('contain', '/conditions/1')
   })
 
   it('Should navigate to the new condition page', () => {
     cy.get('.user-dashboard > [href="/add-condition"] > .submit-button').click()
-    .get('h1').should('contain', 'Create a New Condition')
+      .get('h1').should('contain', 'Create a New Condition')
+      .url().should('contain', '/add-condition')
   })
 })

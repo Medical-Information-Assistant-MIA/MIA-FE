@@ -22,13 +22,14 @@ describe('Doctor Display Page', () => {
       .url().should('contain', '/your-doctors')
   })
 
-  it('Should display a heading 2 cards and navigation buttons', () => {
+  it('Should display a heading and navigation buttons', () => {
     cy.get('h1').should('contain', 'Your Doctors')
       .get('.doc-card-container > :nth-child(1)')
       .get('.doc-card-container > :nth-child(2)')
       .get('.logo')
       .get('[href="/"] > .nav-btn').should('contain', 'Logout')
-      .get('.submit-button').should('contain', 'Create New Condition')
+      .get(':nth-child(4) > .nav-btn').should('contain', 'Dashboard')
+      .get('[href="/add-condition"] > .nav-btn').should('contain', 'Create New Condition')
   })
 
   it('Should have 2 doctor cards with each doctors details on them', () => { 
@@ -42,4 +43,20 @@ describe('Doctor Display Page', () => {
       .get('.doc-card-container > :nth-child(2) > :nth-child(3)').should('contain', '1-748-749-6811 x38210')
       .get('.doc-card-container > :nth-child(2) > :nth-child(4)').should('contain', '3048 Satterfield Burgs, Paucekstad, RI 70555-5377')
   })
+
+  it('Should take a user back to their dashboard', () => { 
+    cy.get(':nth-child(4) > .nav-btn').click()
+      .url().should('contain', '/user-dashboard')
+  })
+
+  it('Should take a user to create a condition', () => { 
+    cy.get('[href="/add-condition"] > .nav-btn').click()
+      .url().should('contain', '/add-condition')
+  })
+
+  it('Should navigate back to the users dashboard with the logo', () => { 
+    cy.get('.logo').click()
+      .url().should('contain', '/user-dashboard')
+  })
+
 })
