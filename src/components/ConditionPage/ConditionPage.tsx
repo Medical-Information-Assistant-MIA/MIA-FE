@@ -75,7 +75,7 @@ export const ConditionPage = () => {
       <div className='info-block'>
         {healthEventDisplay}
       </div>
-      <Link to='/user-dashboard' className='nav-btn btn'> Return To Dashboard</Link>
+      <Link to='/user-dashboard' className='nav-btn btn'>Return To Dashboard</Link>
     </section>
   );
 }
