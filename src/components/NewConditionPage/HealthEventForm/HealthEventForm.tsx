@@ -4,7 +4,6 @@ import { useMutation } from '@apollo/client';
 import { CREATE_NOTE } from '../../../gql-queries';
 import { NewEventProps } from '../../../types';
 import { DateTime } from 'luxon';
-import './HealthEventForm.css';
 
 export const HealthEventForm = ({conditionId}: NewEventProps) => {
   const history = useHistory();
@@ -45,7 +44,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
 
   const currentDate = DateTime.now().toISODate() as string
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
-  const mutateErrors = data?.createHealthEvent.errors;
+  const mutateErrors = data?.createHealthEvent?.errors;
   
   return (
     <section className='condition-form'>
