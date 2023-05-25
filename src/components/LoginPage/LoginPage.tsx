@@ -31,7 +31,7 @@ export const LoginPage = ({setUserId}: UserID) =>  {
           <input type='password' value={password} name='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)} />
           <button type='submit' className='submit-button'>Login</button>
         </form>
-        <Link to='/'><button className='nav-btn'>Exit</button></Link>
+        <Link to='/' className='nav-btn btn'>Exit</Link>
         {error ? (<p>Incorrect login, please try again.</p>) : null}
       </section>
     </div>

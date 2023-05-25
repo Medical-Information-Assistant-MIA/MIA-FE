@@ -23,8 +23,6 @@ export const DoctorPage = ({user}: DoctorPageProps) => {
     );
   });
 
-  console.log(data)
-
   return (
     <section className='nav-spacing doctor-page'>
       <h1>Your Doctors</h1>

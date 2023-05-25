@@ -40,6 +40,14 @@ code {
     monospace;
 }
 
+.btn {
+  font-size: 13.3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 button {
   cursor: pointer;
 }

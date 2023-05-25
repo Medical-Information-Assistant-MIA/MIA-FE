@@ -11,7 +11,7 @@ export const HomePage = () => {
         <div className='site-description'>
           <p>Mia simplifies your healthcare journey by consolidating all your vital medical information in one place. Keep track of conditions, medications, doctors, and health events effortlessly. Access a centralized doctor directory. Maintain a personal health log to record important events and notes. Take control of your health with Mia.</p>
         </div>
-        <Link to='/login'><button className='submit-button'>Login</button></Link>
+        <Link to='/login' className='submit-button btn'>Login</Link>
       </section>
     );
 }
