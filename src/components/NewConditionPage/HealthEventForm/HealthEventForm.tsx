@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { CREATE_NOTE } from '../../../gql-queries';
+import { CREATE_NOTE } from '../../../queries/health-event-queries'; 
 import { NewEventProps } from '../../../types';
 import { DateTime } from 'luxon';
 
@@ -42,6 +42,33 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
     history.push('/user-dashboard');
   }
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    try { 
+      const input = {
+        conditionId: conditionId,
+        note: eventObj.note,
+        date: eventObj.date,
+        category: eventObj.category
+      }
+      const data = await mutateFunction({
+        variables: { input },
+      });
+      if (data?.data?.createHealthEvent?.errors?.length) {
+        return;
+      }
+    } catch(error) {
+      return;
+    }
+    setEventObj({
+      category: '',
+      date: '',
+      note: ''
+    });
+    setSuccess(true);
+    setTimeout(setSuccess, 4000, false);
+  }
+
   const currentDate = DateTime.now().toISODate() as string
   const [mutateFunction, {data, loading, error}] = useMutation(CREATE_NOTE);
   const mutateErrors = data?.createHealthEvent?.errors;
@@ -49,32 +76,7 @@ export const HealthEventForm = ({conditionId}: NewEventProps) => {
   return (
     <section className='condition-form'>
       <h2>Add Health Event Notes</h2>
-      <form onSubmit={async e => {
-        e.preventDefault();
-        try { 
-          const input = {
-            conditionId: conditionId,
-            note: eventObj.note,
-            date: eventObj.date,
-            category: eventObj.category
-          }
-          const data = await mutateFunction({
-            variables: { input },
-          });
-          if (data?.data?.createHealthEvent?.errors?.length) {
-            return;
-          }
-        } catch(error) {
-          return;
-        }
-        setEventObj({
-          category: '',
-          date: '',
-          note: ''
-        });
-        setSuccess(true);
-        setTimeout(setSuccess, 4000, false);
-      }}>
+      <form onSubmit={e => {handleSubmit(e)}}>
         <label>
           Select the event type:
           <select 

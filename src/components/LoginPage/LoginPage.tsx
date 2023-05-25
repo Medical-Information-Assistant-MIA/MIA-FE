@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { routes } from '../../routes/routes';
 import { UserID } from '../../types';
 import './LoginPage.css';
 
@@ -31,7 +32,7 @@ export const LoginPage = ({setUserId}: UserID) =>  {
           <input type='password' value={password} name='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)} />
           <button type='submit' className='submit-button'>Login</button>
         </form>
-        <Link to='/' className='nav-btn btn'>Exit</Link>
+        <Link to={routes.base} className='nav-btn btn'>Exit</Link>
         {error ? (<p>Incorrect login, please try again.</p>) : null}
       </section>
     </div>
