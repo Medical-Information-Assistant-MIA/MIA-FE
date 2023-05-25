@@ -13,12 +13,12 @@ describe('Doctor Display Page', () => {
         req.reply({fixture: 'user-doctors.json'})
       }
     })
-    cy.visit('https://mia-fe.vercel.app/')
-    cy.get('.home-page > a > .submit-button').click()
+    cy.visit('http://localhost:3000/')
+    cy.get('a.submit-button').click()
       .get('[type="text"]').type('1')
       .get('[type="password"]').type('mia123')
       .get('form > .submit-button').click()
-      .get('[href="/your-doctors"] > .nav-btn').click()
+      .get('[href="/your-doctors"]').click()
       .url().should('contain', '/your-doctors')
   })
 
@@ -27,9 +27,9 @@ describe('Doctor Display Page', () => {
       .get('.doc-card-container > :nth-child(1)')
       .get('.doc-card-container > :nth-child(2)')
       .get('.logo')
-      .get('[href="/"] > .nav-btn').should('contain', 'Logout')
-      .get(':nth-child(4) > .nav-btn').should('contain', 'Dashboard')
-      .get('[href="/add-condition"] > .nav-btn').should('contain', 'Create New Condition')
+      .get('[href="/"]').should('contain', 'Logout')
+      .get('[href="/user-dashboard"]').should('contain', 'Dashboard')
+      .get('[href="/add-condition"]').should('contain', 'Create New Condition')
   })
 
   it('Should have 2 doctor cards with each doctors details on them', () => { 
@@ -45,12 +45,12 @@ describe('Doctor Display Page', () => {
   })
 
   it('Should take a user back to their dashboard', () => { 
-    cy.get(':nth-child(4) > .nav-btn').click()
+    cy.get('.btn[href="/user-dashboard"]').click()
       .url().should('contain', '/user-dashboard')
   })
 
   it('Should take a user to create a condition', () => { 
-    cy.get('[href="/add-condition"] > .nav-btn').click()
+    cy.get('[href="/add-condition"]').click()
       .url().should('contain', '/add-condition')
   })
 

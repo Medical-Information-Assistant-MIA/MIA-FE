@@ -54,9 +54,7 @@ export const TitleForm = ({ userId, setConditionId }: TitleFormProps) => {
         </label>
         <button className='submit-button' type='submit'>Submit condition</button>
       </form>
-      <Link to='/user-dashboard'>
-        <button className='nav-btn' type='submit'>Go Back</button>
-      </Link>
+      <Link to='/user-dashboard' className='nav-btn btn'>Go Back</Link>
       {loading ? (<p>Loading...</p>) : null}
       {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
     </section>
