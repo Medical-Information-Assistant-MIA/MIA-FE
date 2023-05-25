@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { routes } from '../../routes/routes';
 import { ErrorProps } from '../../types';
-import './ErrorPage.css';
 
 export const ErrorPage = ({error}: ErrorProps) => {
   return (
