@@ -21,10 +21,10 @@ export const NavBar =  () => {
       alt='Mia: Medical Information Assistant' />
     </Link>);
   const showLogin = location.pathname === routes.base;
-  const showLogOut = location.pathname !== (routes.base || routes.login);
-  const showDashboard = location.pathname !== (routes.base || routes.login || routes.userDash);
-  const showDoctors = location.pathname !== (routes.base || routes.doctors || routes.login);
-  const showAddCondition = location.pathname === (routes.userDash || routes.doctors);
+  const showLogOut = location.pathname !== routes.base && location.pathname !== routes.login;
+  const showDashboard = location.pathname !== routes.base && location.pathname !== routes.login && location.pathname !== routes.userDash;
+  const showDoctors = location.pathname !== routes.base && location.pathname !== routes.doctors && location.pathname !== routes.login;
+  const showAddCondition = location.pathname === routes.userDash || location.pathname === routes.doctors;
   
   return (
     <nav className='nav-bar'>
