@@ -1,4 +1,5 @@
 import { useRouteMatch, Link } from 'react-router-dom';
+import { routes } from '../../routes/routes';
 import { useQuery } from '@apollo/client';
 import { GET_CONDITION } from '../../gql-queries';
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
@@ -75,7 +76,7 @@ export const ConditionPage = () => {
       <div className='info-block'>
         {healthEventDisplay}
       </div>
-      <Link to='/user-dashboard' className='nav-btn btn'>Return To Dashboard</Link>
+      <Link to={routes.userDash} className='nav-btn btn'>Return To Dashboard</Link>
     </section>
   );
 }

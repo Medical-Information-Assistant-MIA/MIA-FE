@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { routes } from '../../routes/routes';
 import './HomePage.css';
 
 export const HomePage = () => {
@@ -11,7 +12,7 @@ export const HomePage = () => {
         <div className='site-description'>
           <p>Mia simplifies your healthcare journey by consolidating all your vital medical information in one place. Keep track of conditions, medications, doctors, and health events effortlessly. Access a centralized doctor directory. Maintain a personal health log to record important events and notes. Take control of your health with Mia.</p>
         </div>
-        <Link to='/login' className='submit-button btn'>Login</Link>
+        <Link to={routes.login} className='submit-button btn'>Login</Link>
       </section>
     );
 }

@@ -4,11 +4,26 @@ import './NavBar.css';
 
 export const NavBar =  () => {
   const location = useLocation();
-  const logoRoute = location.pathname !== routes.login && location.pathname !== routes.base ? (<Link to={routes.userDash}><img className='logo' src={require('../../Mia-logo.png')} alt='Mia: Medical Information Assistant' /></Link>) : (<Link to={routes.base}><img className='logo' src={require('../../Mia-logo.png')} alt='Mia: Medical Information Assistant' /></Link>);
+  const logoRoute = location.pathname !== (routes.login || routes.base) 
+    ? 
+    (<Link to={routes.userDash}>
+      <img 
+      className='logo' 
+      src={require('../../Mia-logo.png')} 
+      alt='Mia: Medical Information Assistant'
+      />
+    </Link>) 
+    : 
+    (<Link to={routes.base}>
+      <img 
+      className='logo' 
+      src={require('../../Mia-logo.png')} 
+      alt='Mia: Medical Information Assistant' />
+    </Link>);
   const showLogin = location.pathname === routes.base;
   const showLogOut = location.pathname !== (routes.base || routes.login);
   const showDashboard = location.pathname !== (routes.base || routes.login || routes.userDash);
-  const showDoctors = location.pathname !== routes.base || routes.doctors || routes.login;
+  const showDoctors = location.pathname !== (routes.base || routes.doctors || routes.login);
   const showAddCondition = location.pathname === (routes.userDash || routes.doctors);
   
   return (
