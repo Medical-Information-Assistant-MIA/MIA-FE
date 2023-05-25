@@ -15,3 +15,11 @@
   justify-content: space-around;
   width: 90%;
 }
+
+@media screen and (max-width: 45em) {
+  .user-dashboard {
+    width: fit-content;
+  }
+
+  
+}

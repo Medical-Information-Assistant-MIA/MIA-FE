@@ -139,10 +139,10 @@ export const MedicationForm = ({conditionId}: NewMedicationProps) => {
         <button className='submit-button' type='submit' >Add Another Medication</button>
       </form>
       <button className='to-next-button' type='button' onClick={handleClick} disabled={loading}>Go to Doctor form</button>
-        {loading ? (<p>Loading...</p>) : null}
-        {error ? (<p>Sorry, there was an error when submitting your form, please try again</p>) : null}
-        {mutateErrors?.length ? (<p>{mutateErrors}</p>) : null}
-        {success ? (<p>Your medication was successfully added, you can now add another one.</p>) : null}
+        {loading ? (<p className='util'>Loading...</p>) : null}
+        {error ? (<p className='util'>Sorry, there was an error when submitting your form, please try again</p>) : null}
+        {mutateErrors?.length ? (<p className='util'>{mutateErrors}</p>) : null}
+        {success ? (<p className='util'>Your medication was successfully added, you can now add another one.</p>) : null}
     </section>
   );
 }

@@ -60,3 +60,9 @@
   scale: 1.1;
   background-color: var(--color-3);
 }
+
+@media screen and (max-width: 45em) {
+  .condition-page {
+    justify-content: normal;
+  }
+}
