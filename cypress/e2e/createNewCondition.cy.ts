@@ -1,3 +1,4 @@
+import { getInputByLabel } from "../utils/get-input-by-label"
 import { aliasQuery, aliasMutation } from "../utils/graphql-test-utils"
 
 describe('New Condition Pages', () => {
@@ -46,9 +47,9 @@ describe('New Condition Pages', () => {
     })
     
     cy.get('form > .submit-button').click()
-    .get(':nth-child(1) > input').type('Dayquil')
-    .get(':nth-child(2) > input').type('2023-05-22')
-    .get(':nth-child(4) > input').type('Twice a day')
+    getInputByLabel('What is your medication name?').type('Dayquil')
+    getInputByLabel('When was this prescribed to you?').type('2023-05-22')
+    getInputByLabel('How often do you take this medication?').type('Twice a day')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
       const { body } = req
       if(req.body.operationName === 'CreateMedication') {
@@ -69,8 +70,8 @@ describe('New Condition Pages', () => {
     .url().should('include', '/add-health-event')
 
     cy.get('select').select('general_note')
-    .get(':nth-child(3) > input').type('2023-05-22')
-    .get(':nth-child(4) > input').type('Cold started')
+    getInputByLabel('Select date').type('2023-05-22')
+    getInputByLabel('Describe the event').type('Cold started')
     .get('form > .submit-button').click()
     .get('[type="button"]').click()
 
