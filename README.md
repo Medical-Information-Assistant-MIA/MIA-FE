@@ -38,6 +38,9 @@ To run the test suite associated with the functions behind the scenes and how th
 Run 'npm run cypress' from the terminal while within the main directory of the application and select E2E Testing, and your chosen browser in the following window.
 
 ## Preview of App:
+![Homepage](https://user-images.githubusercontent.com/116397118/241009807-900b1c04-e383-4a52-9e3b-9bcd996b685b.png)
+![Dashboard](https://user-images.githubusercontent.com/116397118/241009796-74978f09-50b0-4266-8503-69c8258efe92.png)
+![Condition page](https://user-images.githubusercontent.com/116397118/241009785-731a0819-70a3-4a6d-b592-67d572a5e56e.png)
 
 ## Wireframe Screenshots: 
 ![Screen Shot 2023-05-25 at 11 54 56 AM](https://github.com/Medical-Information-Assistant-MIA/MIA-FE/assets/117314181/807204e2-430e-42c3-83b3-c80f0f62972f)
