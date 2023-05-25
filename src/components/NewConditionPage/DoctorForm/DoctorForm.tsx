@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { CREATE_DOCTOR, GET_DOCTORS } from '../../../gql-queries';
+import { GET_DOCTORS, CREATE_DOCTOR } from '../../../queries/doctor-queries';
 import { NewDoctorProps } from '../../../types';
 import './DoctorForm.css';
 

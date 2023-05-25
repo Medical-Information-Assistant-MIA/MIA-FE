@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import { routes } from '../../../routes/routes';
 import { useMutation } from '@apollo/client';
-import { CREATE_CONDITION } from '../../../gql-queries';
+import { CREATE_CONDITION } from '../../../queries/condition-queries';
 import { TitleFormProps } from '../../../types';
 import './TitleForm.css';
 

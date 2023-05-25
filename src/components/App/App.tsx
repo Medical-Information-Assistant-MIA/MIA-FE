@@ -1,7 +1,7 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { routes } from '../../routes/routes';
 import { useQuery } from '@apollo/client';
-import { GET_USERS } from '../../gql-queries';
+import { GET_USERS } from '../../queries/user-queries'; 
 import { useState } from 'react';
 import { HomePage } from '../HomePage/HomePage';
 import { NavBar } from '../NavBar/NavBar';

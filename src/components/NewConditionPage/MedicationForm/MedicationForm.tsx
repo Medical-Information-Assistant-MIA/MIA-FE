@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { CREATE_MEDICATION } from '../../../gql-queries';
+import { CREATE_MEDICATION } from '../../../queries/medication-queries';
 import { NewMedicationProps } from '../../../types';
 import { DateTime } from 'luxon';
 import './MedicationForm.css';

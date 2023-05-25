@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { CREATE_NOTE } from '../../../gql-queries';
+import { CREATE_NOTE } from '../../../queries/health-event-queries'; 
 import { NewEventProps } from '../../../types';
 import { DateTime } from 'luxon';
 

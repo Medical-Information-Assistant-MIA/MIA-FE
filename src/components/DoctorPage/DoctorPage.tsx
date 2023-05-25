@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { Doctor, DoctorPageProps } from '../../types';
-import { GET_DOCTORS } from '../../gql-queries';
+import { GET_DOCTORS } from '../../queries/doctor-queries'; 
 import './DoctorPage.css';
 
 export const DoctorPage = ({user}: DoctorPageProps) => {

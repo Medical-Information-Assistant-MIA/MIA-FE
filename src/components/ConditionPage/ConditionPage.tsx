@@ -1,7 +1,7 @@
 import { useRouteMatch, Link } from 'react-router-dom';
 import { routes } from '../../routes/routes';
 import { useQuery } from '@apollo/client';
-import { GET_CONDITION } from '../../gql-queries';
+import { GET_CONDITION } from '../../queries/condition-queries'; 
 import { Doctor, HealthEvent, MatchParams, Medication } from '../../types';
 import { DateTime } from 'luxon';
 import { MedicationDisplay } from './MedicationDisplay/MedicationDisplay';
