@@ -45,7 +45,7 @@ describe('Doctor Display Page', () => {
   })
 
   it('Should take a user back to their dashboard', () => { 
-    cy.get('[href="/user-dashboard"]').click()
+    cy.get('.btn[href="/user-dashboard"]').click()
       .url().should('contain', '/user-dashboard')
   })
 
