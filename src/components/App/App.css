@@ -20,3 +20,10 @@ button {
 .hidden {
   display: none;
 }
+
+@media screen and (max-width: 45em) {
+  .nav-spacing {
+    margin-left: 0%;
+    height: 75%
+  }
+}

@@ -4,7 +4,7 @@ import './HomePage.css';
 export const HomePage = () => {
     return (
       <section className='home-page nav-spacing'>
-        <div>
+        <div className='headers'>
           <h1>Introducing Mia</h1>
           <h2>Your All-in-One Medical Information Assistant</h2>
         </div>

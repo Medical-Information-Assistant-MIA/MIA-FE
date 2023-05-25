@@ -7,12 +7,14 @@
   background-color: var(--nav-color);
   border: var(--border) var(--border-color);
   border-radius: var(--border-radius);
-  height: 50vh;
+  height: 80%;
   width:70%;
+  justify-content: space-between;
 }
 
 label {
   text-align: center;
+  align-items: center;
 }
 
 input {
