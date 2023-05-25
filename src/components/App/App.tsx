@@ -1,4 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { routes } from '../../routes/routes';
 import { useQuery } from '@apollo/client';
 import { GET_USERS } from '../../gql-queries';
 import { useState } from 'react';
@@ -25,14 +26,35 @@ export const App = () => {
     <main>
       <NavBar />
       <Switch>
-        <Route exact path='/' render={() => <HomePage />} />
-        <Route exact path='/login' render={() => <LoginPage setUserId={setUserId} />} />
-        <Route exact path='/user-dashboard' render={() => <UserDashboard user={data.user}/>} />
-        <Route exact path='/your-doctors' render={() => <DoctorPage user={data.user}/>} />
-        <Route exact path='/conditions/:id' render={({match}) => <ConditionPage key={match.params.id}/>} />
-        <Route path='/add-condition' render={() => <NewConditionPage userId={userId} />} />
-        <Route exact path='/404' render={() => <ErrorPage error={'Whoops, This Page does not exist'}/> } />
-        <Redirect from='*' to='/404'/>
+        <Route 
+        exact path={routes.base} 
+        render={() => <HomePage />} 
+        />
+        <Route 
+        exact path={routes.login} 
+        render={() => <LoginPage setUserId={setUserId} />} 
+        />
+        <Route 
+        exact path={routes.userDash} 
+        render={() => <UserDashboard user={data.user}/>} 
+        />
+        <Route 
+        exact path={routes.doctors} 
+        render={() => <DoctorPage user={data.user}/>} 
+        />
+        <Route 
+        exact path={routes.condition} 
+        render={({match}) => <ConditionPage key={match.params.id}/>} 
+        />
+        <Route 
+        path={routes.addCondition} 
+        render={() => <NewConditionPage userId={userId} />} 
+        />
+        <Route 
+        exact path={routes.error} 
+        render={() => <ErrorPage error={'Whoops, This Page does not exist'}/>} 
+        />
+        <Redirect from='*' to={routes.error}/>
       </Switch>
     </main>
   )

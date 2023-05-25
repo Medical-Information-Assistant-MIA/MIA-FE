@@ -5,7 +5,7 @@ export const NavBar =  () => {
   const location = useLocation();
   const logoRoute = location.pathname !== '/login' && location.pathname !== '/' ? (<Link to='/user-dashboard'><img className='logo' src={require('../../Mia-logo.png')} alt='Mia: Medical Information Assistant' /></Link>) : (<Link to='/'><img className='logo' src={require('../../Mia-logo.png')} alt='Mia: Medical Information Assistant' /></Link>);
   const showLogin = location.pathname === '/';
-  const showLogOut = location.pathname !== '/' &&  location.pathname !== '/login' ? (<button className='nav-btn btn'>Logout</button>) : null;
+  const showLogOut = location.pathname !== '/' &&  location.pathname !== '/login';
   const showDashboard = location.pathname !== '/' && location.pathname !== '/login' && location.pathname !== '/user-dashboard';
   const showDoctors = location.pathname !== '/' && location.pathname !== '/your-doctors' && location.pathname !== '/login';
   const showAddCondition = location.pathname === '/user-dashboard' || location.pathname === '/your-doctors';
