@@ -8,7 +8,7 @@ describe('Home Page', () => {
         fixture: 'user-fixture.json'
       })
     })
-    .visit('https://mia-fe.vercel.app/')
+    .visit('http://localhost:3000/')
   })
 
   it('Should get a user', () => {
@@ -26,7 +26,7 @@ describe('Home Page', () => {
     })
 
   it('Should navigate to the login page from either login button', () => {
-    cy.get('.home-page > a > .submit-button').click()
+    cy.get('a.submit-button').click()
       .url().should('contain', '/login')
       .get('.nav-btn').click()
       .url().should('contain', '/')
@@ -35,7 +35,7 @@ describe('Home Page', () => {
   })
 
   it('Should be able to login a user', () => {
-    cy.get('.home-page > a > .submit-button').click()
+    cy.get('a.submit-button').click()
       .get('[type="text"]').type('1')
       .get('[type="password"]').type('mia123')
       .get('form > .submit-button').click()

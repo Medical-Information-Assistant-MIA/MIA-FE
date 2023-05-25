@@ -22,12 +22,12 @@ describe('New Condition Pages', () => {
         req.reply({fixture: 'create-event-fixture.json'})
       }
     })
-    .visit('https://mia-fe.vercel.app/')
-    cy.get('.home-page > a > .submit-button').click()
+    .visit('http://localhost:3000/')
+    cy.get('a.submit-button').click()
     .get('[type="text"]').type('1')
     .get('[type="password"]').type('mia123')
     .get('form > .submit-button').click()
-    .get('.user-dashboard > [href="/add-condition"] > .submit-button').click()
+    .get('.user-dashboard > [href="/add-condition"]').click()
   })
 
   it('Should add a new condition by title', () => {
@@ -39,7 +39,6 @@ describe('New Condition Pages', () => {
   it('Should be able to create a new condition', () => {
     cy.get('[type="text"]').type('Cold')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      const { body } = req
       if(req.body.operationName === 'User') {
         req.alias = 'User'
         req.reply({fixture: 'user-fixture-2.json'})
@@ -51,7 +50,6 @@ describe('New Condition Pages', () => {
     getInputByLabel('When was this prescribed to you?').type('2023-05-22')
     getInputByLabel('How often do you take this medication?').type('Twice a day')
     .intercept('POST', 'https://mia-be.herokuapp.com/graphql', (req) => {
-      const { body } = req
       if(req.body.operationName === 'CreateMedication') {
         req.alias = 'gqlCreateMedicationQuery'
         req.reply({fixture: 'create-medication-fixture.json'})

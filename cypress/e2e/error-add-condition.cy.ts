@@ -15,7 +15,7 @@ describe('Should see errors when errors are present', () => {
       }
     })
 
-    .visit('https://mia-fe.vercel.app/')
+    .visit('http://localhost:3000/')
     cy.get('a.submit-button').click()
     .get('[type="text"]').type('1')
     .get('[type="password"]').type('mia123')
